@@ -635,9 +635,7 @@ def render_blog_post(p):
 def render_thankyou():
     body = (
         page_hero("Request Received",
-                  "Thanks — We've Got Your Request",
-                  "We'll get back to you within 1 hour during business hours. "
-                  "Need to move sooner? Give us a call.")
+                  "Thanks — We've Got Your Request")
         + cta_block("In the meantime…",
                     "Browse the cities we serve or read our moving tips and guides.",
                     "/locations/", "View All Locations", "/blog/", "Moving Tips")
