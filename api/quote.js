@@ -8,6 +8,15 @@
 const TO = 'info@smallmoverscanada.ca';
 const FROM = 'Small Movers Canada <quote@smallmoverscanada.ca>';
 
+// Partner routing: leads from these cities are ALSO emailed to the partner.
+// Match is case-insensitive against the form's "city" value. Edit this list to
+// add/remove partner cities.
+const PARTNER_EMAIL = 'info@flashlinkmovers.ca';
+const PARTNER_CITIES = [
+  'toronto', 'mississauga', 'vaughan', 'markham', 'richmond hill', 'brampton',
+  'milton', 'etobicoke', 'north york',
+];
+
 const esc = (s) =>
   String(s == null ? '' : s).replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
 
@@ -54,12 +63,17 @@ export default async function handler(req, res) {
       </table>
     </div>`;
 
+  const recipients = [TO];
+  if (PARTNER_CITIES.includes(lead.city.trim().toLowerCase())) {
+    recipients.push(PARTNER_EMAIL);
+  }
+
   const emailPromise = fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       from: FROM,
-      to: [TO],
+      to: recipients,
       reply_to: lead.email,
       subject: `New Quote Request${lead.city ? ' — ' + lead.city : ''}`,
       html,
