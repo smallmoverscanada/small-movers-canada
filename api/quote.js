@@ -8,13 +8,19 @@
 const TO = 'info@smallmoverscanada.ca';
 const FROM = 'Small Movers Canada <quote@smallmoverscanada.ca>';
 
-// Partner routing: leads from these cities are ALSO emailed to the partner.
-// Match is case-insensitive against the form's "city" value. Edit this list to
-// add/remove partner cities.
-const PARTNER_EMAIL = 'info@flashlinkmovers.ca';
-const PARTNER_CITIES = [
-  'toronto', 'mississauga', 'vaughan', 'markham', 'richmond hill', 'brampton',
-  'milton', 'etobicoke', 'north york',
+// Partner routing: leads from a partner's cities are ALSO emailed to that partner.
+// Match is case-insensitive against the form's "city" value. Add/remove partners
+// or cities here.
+const PARTNERS = [
+  {
+    email: 'info@flashlinkmovers.ca',
+    cities: ['toronto', 'mississauga', 'vaughan', 'markham', 'richmond hill',
+             'brampton', 'milton', 'etobicoke', 'north york'],
+  },
+  {
+    email: 'silverbackmoversca@gmail.com',
+    cities: ['guelph', 'windsor', 'hamilton', 'kitchener', 'brantford', 'cambridge'],
+  },
 ];
 
 const esc = (s) =>
@@ -63,9 +69,10 @@ export default async function handler(req, res) {
       </table>
     </div>`;
 
+  const cityKey = lead.city.trim().toLowerCase();
   const recipients = [TO];
-  if (PARTNER_CITIES.includes(lead.city.trim().toLowerCase())) {
-    recipients.push(PARTNER_EMAIL);
+  for (const partner of PARTNERS) {
+    if (partner.cities.includes(cityKey)) recipients.push(partner.email);
   }
 
   const emailPromise = fetch('https://api.resend.com/emails', {
