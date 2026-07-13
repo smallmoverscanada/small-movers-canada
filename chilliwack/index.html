@@ -744,6 +744,20 @@ h1, h2, h3, h4 {
   .hero { padding: 64px 32px 80px; }
   .hero::after { height: 56px; }
 }
+
+/* ── City blog ───────────────────────────── */
+.city-blog { background:#fff; padding:64px 20px; }
+.city-blog-grid { display:grid; grid-template-columns:1fr; gap:20px; margin-top:32px; }
+.city-blog-card { display:block; background:#F6F1E7; border-radius:14px; overflow:hidden; transition:transform 0.2s, box-shadow 0.2s; }
+.city-blog-card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(14,42,71,0.08); }
+.city-blog-thumb { height:170px; overflow:hidden; background:#0E2A47; }
+.city-blog-thumb img { width:100%; height:100%; object-fit:cover; }
+.city-blog-body { padding:18px 20px 22px; }
+.city-blog-body h3 { font-family:'Inter', sans-serif; font-size:1rem; font-weight:700; color:#0E2A47; margin-bottom:8px; line-height:1.35; }
+.city-blog-body p { font-size:0.85rem; color:#5a6a7a; line-height:1.55; margin-bottom:12px; }
+.city-blog-link { font-size:0.8rem; font-weight:700; color:#41A67E; }
+@media (min-width:640px) { .city-blog-grid { grid-template-columns:1fr 1fr; } }
+@media (min-width:900px) { .city-blog-grid { grid-template-columns:1fr 1fr 1fr; } }
 </style>
 </head>
 <body>
@@ -1044,6 +1058,8 @@ h1, h2, h3, h4 {
 </section>
 
 <!-- ════════════════════════════════════════ FINAL CTA ════════════════════════════════════════ -->
+
+
 <section class="final-cta">
   <div class="container">
     <h2>Ready to Book Your Move in&nbsp;Chilliwack?</h2>

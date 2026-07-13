@@ -9,10 +9,12 @@ import csv
 import html
 import os
 import re
+from urllib.parse import urlparse
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE = os.path.join(REPO, "_template", "city.html")
 CSV_PATH = os.path.join(REPO, "build", "City_export.csv")
+BLOG_CSV = os.path.join(REPO, "build", "Blog_export.csv")
 
 # Per-province phone numbers (override whatever is in the CSV).
 PROVINCE_PHONE = {
@@ -76,7 +78,62 @@ def load_cities():
     return [v[1] for v in best.values()]
 
 
-def render(template, row):
+def _blog_img(slug, url):
+    url = (url or "").strip()
+    if not url:
+        return None
+    ext = os.path.splitext(urlparse(url).path)[1] or ".webp"
+    return f"/assets/blog/{slug}{ext}"
+
+
+def load_blog_by_city():
+    """Map city_slug -> list of published posts (newest first)."""
+    if not os.path.exists(BLOG_CSV):
+        return {}
+    rows = list(csv.DictReader(open(BLOG_CSV, newline="", encoding="utf-8-sig")))
+    by_city = {}
+    for r in rows:
+        if str(r.get("is_published", "")).strip().lower() != "true":
+            continue
+        cslug = (r.get("city_slug") or "").strip().lower()
+        if cslug:
+            by_city.setdefault(cslug, []).append(r)
+    for cslug in by_city:
+        by_city[cslug].sort(key=lambda r: (r.get("published_date") or ""), reverse=True)
+    return by_city
+
+
+def city_blog_section(city_name, posts):
+    """A 'Moving Tips for <City>' section; empty string when the city has no posts."""
+    if not posts:
+        return ""
+    cards = []
+    for p in posts:
+        pslug = (p.get("slug") or "").strip()
+        img = _blog_img(pslug, p.get("image_url"))
+        thumb = (f'<div class="city-blog-thumb"><img src="{img}" alt="{esc(p.get("title"))}" loading="lazy"></div>'
+                 if img else '<div class="city-blog-thumb"></div>')
+        cards.append(
+            f'<a class="city-blog-card" href="/blog/{pslug}/">\n'
+            f'  {thumb}\n'
+            f'  <div class="city-blog-body">\n'
+            f'    <h3>{esc(p.get("title"))}</h3>\n'
+            f'    <p>{esc(p.get("excerpt"))}</p>\n'
+            f'    <span class="city-blog-link">Read more →</span>\n'
+            f'  </div>\n</a>'
+        )
+    cards_html = "\n".join(cards)
+    return (
+        '<section class="city-blog">\n'
+        '  <div class="container">\n'
+        '    <div style="text-align:center;"><span class="section-label">From the Blog</span></div>\n'
+        f'    <h2 class="section-heading" style="text-align:center;">Moving Tips for {esc(city_name)}</h2>\n'
+        f'    <div class="city-blog-grid">\n{cards_html}\n    </div>\n'
+        '  </div>\n</section>'
+    )
+
+
+def render(template, row, blog_by_city):
     city = (row.get("city_name") or "").strip()
     slug = (row.get("slug") or "").strip()
     prov = (row.get("province") or "").strip()
@@ -118,6 +175,10 @@ def render(template, row):
     if rate2 != 140:
         out = out.replace("$140", "$" + str(rate2))
 
+    # 7. City blog section — posts tagged to this city (empty if none).
+    section = city_blog_section(city, blog_by_city.get(slug.lower(), []))
+    out = out.replace("<!--CITY_BLOG_SECTION-->", section)
+
     return out
 
 
@@ -126,10 +187,11 @@ def main():
         template = f.read()
 
     cities = sorted(load_cities(), key=lambda r: r.get("slug", ""))
+    blog_by_city = load_blog_by_city()
     written = 0
     for row in cities:
         slug = row["slug"].strip()
-        html_out = render(template, row)
+        html_out = render(template, row, blog_by_city)
         leftover = set(re.findall(r"\[[A-Z\-]+\]", html_out))
         if leftover:
             print(f"  WARNING {slug}: unreplaced tokens {leftover}")
