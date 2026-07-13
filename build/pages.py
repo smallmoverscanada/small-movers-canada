@@ -22,13 +22,14 @@ PROVINCE_PHONE = {
     "AB": "587-602-9862",
     "ON": "289-800-2197",
     "SK": "639-638-8439",
+    "MB": "431-441-8631",
 }
-PROVINCE_FULL = {"BC": "British Columbia", "AB": "Alberta",
-                 "ON": "Ontario", "SK": "Saskatchewan"}
-PROVINCE_SLUG = {"BC": "british-columbia", "AB": "alberta",
-                 "ON": "ontario", "SK": "saskatchewan"}
+PROVINCE_FULL = {"BC": "British Columbia", "AB": "Alberta", "ON": "Ontario",
+                 "SK": "Saskatchewan", "MB": "Manitoba"}
+PROVINCE_SLUG = {"BC": "british-columbia", "AB": "alberta", "ON": "ontario",
+                 "SK": "saskatchewan", "MB": "manitoba"}
 # Display order for province sections.
-PROVINCE_ORDER = ["BC", "AB", "ON", "SK"]
+PROVINCE_ORDER = ["BC", "AB", "ON", "SK", "MB"]
 
 GTM = "GTM-NV977B6T"
 
@@ -83,7 +84,7 @@ def city_grid(cities):
             continue
         items.sort(key=lambda c: c.get("city_name", ""))
         cards = "\n".join(
-            f'<a class="loc-card" href="/{c["slug"].strip()}/">'
+            f'<a class="loc-card" href="/{c["slug"].strip()}/" data-city="{esc(c.get("city_name"))}">'
             f'<span><span class="loc-city">{esc(c.get("city_name"))}</span>'
             f'<span class="loc-prov">{esc(prov)}</span></span>{ARROW}</a>'
             for c in items
@@ -97,6 +98,43 @@ def city_grid(cities):
             f'  <div class="loc-grid">\n{cards}\n  </div>\n</div>'
         )
     return "\n".join(blocks)
+
+
+def city_search():
+    return '''    <div class="city-search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="citySearch" placeholder="Search your city…" autocomplete="off" aria-label="Search for your city">
+    </div>
+    <p class="city-search-empty" hidden>No matching cities — try a different spelling.</p>'''
+
+
+# Filters the city cards live as the visitor types; hides empty province sections.
+CITY_SEARCH_JS = '''
+<script>
+(function () {
+  var input = document.getElementById('citySearch');
+  if (!input) return;
+  var cards = [].slice.call(document.querySelectorAll('.loc-card'));
+  var provinces = [].slice.call(document.querySelectorAll('.loc-province'));
+  var empty = document.querySelector('.city-search-empty');
+  input.addEventListener('input', function () {
+    var q = input.value.trim().toLowerCase();
+    var anyVisible = false;
+    cards.forEach(function (card) {
+      var name = (card.getAttribute('data-city') || '').toLowerCase();
+      var show = !q || name.indexOf(q) !== -1;
+      card.style.display = show ? '' : 'none';
+      if (show) anyVisible = true;
+    });
+    provinces.forEach(function (sec) {
+      var hasVisible = [].slice.call(sec.querySelectorAll('.loc-card'))
+        .some(function (c) { return c.style.display !== 'none'; });
+      sec.style.display = hasVisible ? '' : 'none';
+    });
+    if (empty) empty.hidden = anyVisible || !q;
+  });
+})();
+</script>'''
 
 
 HOME_CSS = """
@@ -129,6 +167,14 @@ HOME_CSS = """
 .loc-card .loc-prov { display:block; font-size:0.8rem; color:#8a96a3; margin-top:2px; }
 .loc-card .loc-arrow { color:#c2cad3; flex-shrink:0; transition:color 0.2s, transform 0.2s; }
 .loc-card:hover .loc-arrow { color:#41A67E; transform:translateX(3px); }
+
+/* City search */
+.city-search { position:relative; max-width:440px; margin:28px auto 4px; }
+.city-search svg { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:#8a96a3; pointer-events:none; }
+.city-search input { width:100%; padding:14px 18px 14px 46px; border:1.5px solid #d8dde3; border-radius:12px; font-size:1rem; font-family:'Inter',sans-serif; color:#0E2A47; background:#fff; outline:none; transition:border-color 0.2s, box-shadow 0.2s; }
+.city-search input::placeholder { color:#9aa6b2; }
+.city-search input:focus { border-color:#4DA8DA; box-shadow:0 0 0 3px rgba(77,168,218,0.15); }
+.city-search-empty { text-align:center; color:#8a96a3; font-size:0.95rem; margin-top:28px; }
 
 @media (min-width:640px) { .vprops-grid { grid-template-columns:repeat(3,1fr); } .loc-grid { grid-template-columns:1fr 1fr; } .home-cta-row { flex-direction:row; justify-content:center; } }
 @media (min-width:1024px) { .loc-grid { grid-template-columns:1fr 1fr 1fr; } }
@@ -235,6 +281,7 @@ def locations_section(cities, intro):
     return f'''<section class="page-section">
   <div class="container">
     <p style="text-align:center; color:#5a6a7a; font-size:0.95rem; max-width:560px; margin:0 auto;">{esc(intro)}</p>
+{city_search()}
 {city_grid(cities)}
   </div>
 </section>'''
@@ -243,6 +290,10 @@ def locations_section(cities, intro):
 def footer():
     nums = "\n".join(
         f'      <a href="tel:{tel(PROVINCE_PHONE[p])}">{PROVINCE_FULL[p]} — {PROVINCE_PHONE[p]}</a>'
+        for p in PROVINCE_ORDER
+    )
+    prov_links = "\n".join(
+        f'        <li><a href="/{PROVINCE_SLUG[p]}/">{PROVINCE_FULL[p]}</a></li>'
         for p in PROVINCE_ORDER
     )
     return f'''<footer class="site-footer">
@@ -261,10 +312,7 @@ def footer():
         <li><a href="/locations/">All Locations</a></li>
         <li><a href="/about/">About</a></li>
         <li><a href="/blog/">Blog</a></li>
-        <li><a href="/british-columbia/">British Columbia</a></li>
-        <li><a href="/alberta/">Alberta</a></li>
-        <li><a href="/ontario/">Ontario</a></li>
-        <li><a href="/saskatchewan/">Saskatchewan</a></li>
+{prov_links}
       </ul>
     </div>
     <div class="footer-contact">
@@ -370,6 +418,7 @@ def render_home(cities):
     <div style="text-align:center;"><span class="section-label">Locations</span></div>
     <h2 class="section-heading" style="text-align:center;">Cities We Serve</h2>
     <p style="text-align:center; color:#5a6a7a; font-size:0.95rem; max-width:540px; margin:0 auto;">Find affordable small &amp; hourly moving services in your city.</p>
+{city_search()}
 {city_grid(cities)}
   </div>
 </section>
@@ -385,7 +434,8 @@ def render_home(cities):
       <a href="/about/" class="btn-outline">About Us</a>
     </div>
   </div>
-</section>'''
+</section>
+{CITY_SEARCH_JS}'''
     return page_shell(
         "Small & Hourly Movers Across Canada | Small Movers Canada",
         "Affordable small & hourly movers across Canada. Pay by the hour, not by the truck — "
@@ -412,7 +462,7 @@ def cta_block(title, text, primary_href, primary_label, secondary_href, secondar
 
 def province_section(pcities, prov):
     cards = "\n".join(
-        f'<a class="loc-card" href="/{c["slug"].strip()}/">'
+        f'<a class="loc-card" href="/{c["slug"].strip()}/" data-city="{esc(c.get("city_name"))}">'
         f'<span><span class="loc-city">{esc(c.get("city_name"))}</span>'
         f'<span class="loc-prov">{esc(prov)}</span></span>{ARROW}</a>'
         for c in pcities
@@ -435,6 +485,7 @@ def render_locations(cities):
         + cta_block("Ready to Book Your Small Move?",
                     "Pick your city above to get a free quote, or learn more about how we work.",
                     "/", "Back to Home", "/about/", "About Us")
+        + CITY_SEARCH_JS
     )
     return page_shell(
         "Small & Hourly Movers Near You | Small Movers Canada",

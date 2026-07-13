@@ -739,6 +739,14 @@ h1, h2, h3, h4 {
 .loc-card .loc-arrow { color:#c2cad3; flex-shrink:0; transition:color 0.2s, transform 0.2s; }
 .loc-card:hover .loc-arrow { color:#41A67E; transform:translateX(3px); }
 
+/* City search */
+.city-search { position:relative; max-width:440px; margin:28px auto 4px; }
+.city-search svg { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:#8a96a3; pointer-events:none; }
+.city-search input { width:100%; padding:14px 18px 14px 46px; border:1.5px solid #d8dde3; border-radius:12px; font-size:1rem; font-family:'Inter',sans-serif; color:#0E2A47; background:#fff; outline:none; transition:border-color 0.2s, box-shadow 0.2s; }
+.city-search input::placeholder { color:#9aa6b2; }
+.city-search input:focus { border-color:#4DA8DA; box-shadow:0 0 0 3px rgba(77,168,218,0.15); }
+.city-search-empty { text-align:center; color:#8a96a3; font-size:0.95rem; margin-top:28px; }
+
 @media (min-width:640px) { .vprops-grid { grid-template-columns:repeat(3,1fr); } .loc-grid { grid-template-columns:1fr 1fr; } .home-cta-row { flex-direction:row; justify-content:center; } }
 @media (min-width:1024px) { .loc-grid { grid-template-columns:1fr 1fr 1fr; } }
 
@@ -829,15 +837,15 @@ h1, h2, h3, h4 {
 </section><section class="page-section">
   <div class="container">
     <div class="loc-grid">
-<a class="loc-card" href="/airdrie/"><span><span class="loc-city">Airdrie</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-<a class="loc-card" href="/calgary/"><span><span class="loc-city">Calgary</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-<a class="loc-card" href="/edmonton/"><span><span class="loc-city">Edmonton</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-<a class="loc-card" href="/fort-mcmurray/"><span><span class="loc-city">Fort McMurray</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-<a class="loc-card" href="/grande-prairie/"><span><span class="loc-city">Grande Prairie</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-<a class="loc-card" href="/lethbridge/"><span><span class="loc-city">Lethbridge</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-<a class="loc-card" href="/medicine-hat/"><span><span class="loc-city">Medicine Hat</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-<a class="loc-card" href="/red-deer/"><span><span class="loc-city">Red Deer</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-<a class="loc-card" href="/st-albert/"><span><span class="loc-city">St. Albert</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+<a class="loc-card" href="/airdrie/" data-city="Airdrie"><span><span class="loc-city">Airdrie</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+<a class="loc-card" href="/calgary/" data-city="Calgary"><span><span class="loc-city">Calgary</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+<a class="loc-card" href="/edmonton/" data-city="Edmonton"><span><span class="loc-city">Edmonton</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+<a class="loc-card" href="/fort-mcmurray/" data-city="Fort McMurray"><span><span class="loc-city">Fort McMurray</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+<a class="loc-card" href="/grande-prairie/" data-city="Grande Prairie"><span><span class="loc-city">Grande Prairie</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+<a class="loc-card" href="/lethbridge/" data-city="Lethbridge"><span><span class="loc-city">Lethbridge</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+<a class="loc-card" href="/medicine-hat/" data-city="Medicine Hat"><span><span class="loc-city">Medicine Hat</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+<a class="loc-card" href="/red-deer/" data-city="Red Deer"><span><span class="loc-city">Red Deer</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+<a class="loc-card" href="/st-albert/" data-city="St. Albert"><span><span class="loc-city">St. Albert</span><span class="loc-prov">AB</span></span><svg class="loc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
   </div>
 </section><section class="final-cta">
@@ -872,6 +880,7 @@ h1, h2, h3, h4 {
         <li><a href="/alberta/">Alberta</a></li>
         <li><a href="/ontario/">Ontario</a></li>
         <li><a href="/saskatchewan/">Saskatchewan</a></li>
+        <li><a href="/manitoba/">Manitoba</a></li>
       </ul>
     </div>
     <div class="footer-contact">
@@ -880,6 +889,7 @@ h1, h2, h3, h4 {
       <a href="tel:+15876029862">Alberta — 587-602-9862</a>
       <a href="tel:+12898002197">Ontario — 289-800-2197</a>
       <a href="tel:+16396388439">Saskatchewan — 639-638-8439</a>
+      <a href="tel:+14314418631">Manitoba — 431-441-8631</a>
       <p>Serving cities across all of Canada</p>
     </div>
   </div>

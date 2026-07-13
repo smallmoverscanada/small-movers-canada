@@ -20,6 +20,7 @@ PROVINCE_PHONE = {
     "AB": "587-602-9862",
     "ON": "289-800-2197",
     "SK": "639-638-8439",
+    "MB": "431-441-8631",
 }
 
 # Full province names, used when the CSV row leaves province_full blank.
@@ -28,6 +29,7 @@ PROVINCE_FULL = {
     "AB": "Alberta",
     "ON": "Ontario",
     "SK": "Saskatchewan",
+    "MB": "Manitoba",
 }
 
 # Per-city hourly-rate overrides (pulled from src/pages/*.jsx; only Toronto differs).
