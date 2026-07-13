@@ -1,0 +1,28 @@
+{
+  "_comment": "Tracks the weekly blog rotation for Small Movers Canada. The Monday routine reads this, picks the next city, generates an UNUSED topic, writes the post, then appends the new slug under that city and advances nextIndex (wrapping to 0).",
+  "rotation": [
+    { "city": "Hamilton",  "slug": "hamilton",  "province": "ON", "phone": "289-800-2197" },
+    { "city": "Victoria",  "slug": "victoria",  "province": "BC", "phone": "236-506-5898" },
+    { "city": "Saskatoon", "slug": "saskatoon", "province": "SK", "phone": "639-638-8439" },
+    { "city": "Vancouver", "slug": "vancouver", "province": "BC", "phone": "236-506-5898" },
+    { "city": "Edmonton",  "slug": "edmonton",  "province": "AB", "phone": "587-602-9862" },
+    { "city": "Toronto",   "slug": "toronto",   "province": "ON", "phone": "289-800-2197" }
+  ],
+  "nextIndex": 1,
+  "lastPublished": { "city": "Hamilton", "slug": "small-movers-hamilton-neighbourhoods", "date": "2026-07-13" },
+  "used": {
+    "Hamilton": ["small-movers-hamilton-neighbourhoods"],
+    "Victoria": [],
+    "Saskatoon": [],
+    "Vancouver": [],
+    "Edmonton": [],
+    "Toronto": [
+      "cost-move-condo-toronto",
+      "movers-cost-toronto",
+      "moving-between-toronto-neighbourhoods",
+      "prepare-condo-move-toronto",
+      "single-item-movers-toronto",
+      "types-small-moves-in-toronto"
+    ]
+  }
+}
