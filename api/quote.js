@@ -21,6 +21,11 @@ const PARTNERS = [
     email: 'silverbackmoversca@gmail.com',
     cities: ['guelph', 'windsor', 'hamilton', 'kitchener', 'brantford', 'cambridge'],
   },
+  {
+    email: 'localmovers64@gmail.com',
+    cities: ['surrey', 'richmond', 'burnaby', 'coquitlam', 'port coquitlam',
+             'maple ridge', 'delta', 'langley', 'vancouver', 'white rock', 'pitt meadows'],
+  },
 ];
 
 const esc = (s) =>
