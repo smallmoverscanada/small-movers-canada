@@ -93,6 +93,9 @@ export default async function handler(req, res) {
   });
 
   const sheetUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+  if (!sheetUrl) {
+    console.error('GOOGLE_SHEETS_WEBHOOK_URL is not set — lead emailed but NOT logged to the sheet');
+  }
   const sheetPromise = sheetUrl
     ? fetch(sheetUrl, {
         method: 'POST',
