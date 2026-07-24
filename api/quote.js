@@ -30,6 +30,10 @@ const PARTNERS = [
     email: 'aaronexpressco@gmail.com',
     cities: ['winnipeg'],
   },
+  {
+    email: 'Regalmovinginfo@gmail.com',
+    cities: ['edmonton'],
+  },
 ];
 
 const esc = (s) =>
