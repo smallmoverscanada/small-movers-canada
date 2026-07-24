@@ -26,6 +26,10 @@ const PARTNERS = [
     cities: ['surrey', 'richmond', 'burnaby', 'coquitlam', 'port coquitlam',
              'maple ridge', 'delta', 'langley', 'vancouver', 'white rock', 'pitt meadows'],
   },
+  {
+    email: 'aaronexpressco@gmail.com',
+    cities: ['winnipeg'],
+  },
 ];
 
 const esc = (s) =>
