@@ -19,7 +19,7 @@ const PARTNERS = [
   },
   {
     email: 'silverbackmoversca@gmail.com',
-    cities: ['guelph', 'windsor', 'hamilton', 'kitchener', 'brantford', 'cambridge'],
+    cities: ['guelph', 'hamilton', 'kitchener', 'brantford', 'cambridge'],
   },
   {
     email: 'localmovers64@gmail.com',
