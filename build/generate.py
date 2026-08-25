@@ -39,6 +39,12 @@ RATE_OVERRIDES = {
     "toronto": (95, 150),
 }
 
+# Per-city phone overrides — a dedicated number for a specific city (overrides the
+# province number on that city page only). Used for per-city monetization trials.
+CITY_PHONE_OVERRIDES = {
+    "barrie": "249-444-6102",
+}
+
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
 TEMPLATE_H1 = ('<h1>Small &amp; Hourly Movers&nbsp;in&nbsp;'
                '<span class="city-highlight">[CITY]</span></h1>')
@@ -138,7 +144,7 @@ def render(template, row, blog_by_city):
     slug = (row.get("slug") or "").strip()
     prov = (row.get("province") or "").strip()
     prov_full = (row.get("province_full") or "").strip() or PROVINCE_FULL.get(prov, prov)
-    phone = PROVINCE_PHONE.get(prov, (row.get("phone_number") or "").strip())
+    phone = CITY_PHONE_OVERRIDES.get(slug) or PROVINCE_PHONE.get(prov, (row.get("phone_number") or "").strip())
     rate1, rate2 = RATE_OVERRIDES.get(slug, (85, 140))
 
     out = template
