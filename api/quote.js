@@ -13,9 +13,10 @@ const FROM = 'Small Movers Canada <quote@smallmoverscanada.ca>';
 // or cities here.
 const PARTNERS = [
   {
-    email: 'info@flashlinkmovers.ca',
-    cities: ['toronto', 'mississauga', 'vaughan', 'markham', 'richmond hill',
-             'brampton', 'milton', 'etobicoke', 'north york'],
+    email: 'rolantransport@gmail.com',
+    cities: ['toronto', 'mississauga', 'brampton', 'oakville', 'north york',
+             'milton', 'etobicoke', 'scarborough', 'burlington', 'east york',
+             'vaughan', 'markham', 'richmond hill'],
   },
   {
     email: 'silverbackmoversca@gmail.com',
