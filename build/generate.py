@@ -49,6 +49,9 @@ for _slug in ["toronto", "mississauga", "brampton", "oakville", "north-york",
               "milton", "etobicoke", "scarborough", "burlington", "east-york",
               "vaughan", "markham", "richmond-hill"]:
     CITY_PHONE_OVERRIDES[_slug] = "365-694-5533"
+# Silverback (SW/Central ON) — one tracking number across all Silverback city pages.
+for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge"]:
+    CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
 TEMPLATE_H1 = ('<h1>Small &amp; Hourly Movers&nbsp;in&nbsp;'
