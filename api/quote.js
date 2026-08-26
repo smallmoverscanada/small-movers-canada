@@ -19,7 +19,7 @@ const PARTNERS = [
              'vaughan', 'markham', 'richmond hill'],
   },
   {
-    email: 'silverbackmoversca@gmail.com',
+    email: 'smallmovers.ontario@gmail.com',
     cities: ['guelph', 'hamilton', 'kitchener', 'brantford', 'cambridge'],
   },
   {
