@@ -15,12 +15,12 @@ const PARTNERS = [
   {
     email: 'rolantransport@gmail.com',
     cities: ['toronto', 'mississauga', 'brampton', 'oakville', 'north york',
-             'milton', 'etobicoke', 'scarborough', 'burlington', 'east york',
+             'milton', 'etobicoke', 'scarborough', 'east york',
              'vaughan', 'markham', 'richmond hill'],
   },
   {
     email: 'smallmovers.ontario@gmail.com',
-    cities: ['guelph', 'hamilton', 'kitchener', 'brantford', 'cambridge'],
+    cities: ['guelph', 'hamilton', 'kitchener', 'brantford', 'cambridge', 'burlington'],
   },
   {
     email: 'localmovers64@gmail.com',
