@@ -43,6 +43,7 @@ RATE_OVERRIDES = {
 # province number on that city page only). Used for per-city monetization trials.
 CITY_PHONE_OVERRIDES = {
     "barrie": "249-444-6102",
+    "victoria": "778-400-7868",
 }
 # Rolan Transport (GTA) — one tracking number across all Rolan city pages.
 for _slug in ["toronto", "mississauga", "brampton", "oakville", "north-york",
