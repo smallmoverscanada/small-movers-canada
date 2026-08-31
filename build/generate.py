@@ -51,7 +51,8 @@ for _slug in ["toronto", "mississauga", "brampton", "oakville", "north-york",
               "vaughan", "markham", "richmond-hill"]:
     CITY_PHONE_OVERRIDES[_slug] = "365-694-5533"
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
-for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington"]:
+for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
+              "niagara-falls", "st-catharines"]:
     CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).

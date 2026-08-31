@@ -20,7 +20,8 @@ const PARTNERS = [
   },
   {
     email: 'smallmovers.ontario@gmail.com',
-    cities: ['guelph', 'hamilton', 'kitchener', 'brantford', 'cambridge', 'burlington'],
+    cities: ['guelph', 'hamilton', 'kitchener', 'brantford', 'cambridge', 'burlington',
+             'niagara falls', 'st. catharines'],
   },
   {
     email: 'localmovers64@gmail.com',
