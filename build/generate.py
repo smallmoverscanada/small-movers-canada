@@ -44,6 +44,7 @@ RATE_OVERRIDES = {
 CITY_PHONE_OVERRIDES = {
     "barrie": "249-444-6102",
     "victoria": "778-400-7868",
+    "calgary": "587-317-9080",
 }
 # Rolan Transport (GTA) — one tracking number across all Rolan city pages.
 for _slug in ["toronto", "mississauga", "brampton", "oakville", "north-york",
