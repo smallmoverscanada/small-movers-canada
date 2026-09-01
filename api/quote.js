@@ -40,6 +40,10 @@ const PARTNERS = [
     email: 'isaiahoforikwabena@gmail.com',
     cities: ['barrie'],
   },
+  {
+    email: 'cargovanlogistics@gmail.com',
+    cities: ['calgary'],
+  },
 ];
 
 const esc = (s) =>
