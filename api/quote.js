@@ -26,7 +26,7 @@ const PARTNERS = [
   {
     email: 'localmovers64@gmail.com',
     cities: ['surrey', 'richmond', 'burnaby', 'coquitlam', 'port coquitlam',
-             'maple ridge', 'delta', 'langley', 'vancouver', 'white rock', 'pitt meadows'],
+             'maple ridge', 'delta', 'langley', 'white rock', 'pitt meadows'],
   },
   {
     email: 'aaronexpressco@gmail.com',
