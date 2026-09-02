@@ -56,6 +56,12 @@ for _slug in ["toronto", "mississauga", "brampton", "oakville", "north-york",
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
               "niagara-falls", "st-catharines"]:
     CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
+# ani (Lower Mainland referral partner) — one tracking number across those city pages.
+for _slug in ["vancouver", "burnaby", "new-westminster", "richmond", "delta", "surrey",
+              "maple-ridge", "coquitlam", "abbotsford", "chilliwack", "port-moody",
+              "port-coquitlam", "north-vancouver", "langley", "white-rock",
+              "west-vancouver", "pitt-meadows"]:
+    CITY_PHONE_OVERRIDES[_slug] = "778-900-8843"
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
 TEMPLATE_H1 = ('<h1>Small &amp; Hourly Movers&nbsp;in&nbsp;'
