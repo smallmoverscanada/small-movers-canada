@@ -37,6 +37,7 @@ PROVINCE_FULL = {
 # Per-city hourly-rate overrides (pulled from src/pages/*.jsx; only Toronto differs).
 RATE_OVERRIDES = {
     "toronto": (95, 150),
+    "calgary": (100, 140),
 }
 
 # Per-city phone overrides — a dedicated number for a specific city (overrides the
