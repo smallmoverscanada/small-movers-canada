@@ -13,12 +13,6 @@ const FROM = 'Small Movers Canada <quote@smallmoverscanada.ca>';
 // or cities here.
 const PARTNERS = [
   {
-    email: 'rolantransport@gmail.com',
-    cities: ['toronto', 'mississauga', 'brampton', 'oakville', 'north york',
-             'milton', 'etobicoke', 'scarborough', 'east york',
-             'vaughan', 'markham', 'richmond hill'],
-  },
-  {
     email: 'smallmovers.ontario@gmail.com',
     cities: ['guelph', 'hamilton', 'kitchener', 'brantford', 'cambridge', 'burlington',
              'niagara falls', 'st. catharines'],

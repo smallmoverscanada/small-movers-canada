@@ -47,11 +47,6 @@ CITY_PHONE_OVERRIDES = {
     "victoria": "778-400-7868",
     "calgary": "587-317-9080",
 }
-# Rolan Transport (GTA) — one tracking number across all Rolan city pages.
-for _slug in ["toronto", "mississauga", "brampton", "oakville", "north-york",
-              "milton", "etobicoke", "scarborough", "east-york",
-              "vaughan", "markham", "richmond-hill"]:
-    CITY_PHONE_OVERRIDES[_slug] = "365-694-5533"
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
               "niagara-falls", "st-catharines"]:
