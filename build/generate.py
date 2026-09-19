@@ -15,6 +15,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE = os.path.join(REPO, "_template", "city.html")
 CSV_PATH = os.path.join(REPO, "build", "City_export.csv")
 BLOG_CSV = os.path.join(REPO, "build", "Blog_export.csv")
+REVIEWS_CSV = os.path.join(REPO, "build", "Reviews.csv")
 
 # Per-province phone numbers (override whatever is in the CSV).
 PROVINCE_PHONE = {
@@ -146,7 +147,57 @@ def city_blog_section(city_name, posts):
     )
 
 
-def render(template, row, blog_by_city):
+def load_reviews_by_city():
+    """Map city_slug -> list of published reviews (newest first)."""
+    if not os.path.exists(REVIEWS_CSV):
+        return {}
+    rows = list(csv.DictReader(open(REVIEWS_CSV, newline="", encoding="utf-8-sig")))
+    by_city = {}
+    for r in rows:
+        if str(r.get("is_published", "true")).strip().lower() == "false":
+            continue
+        cslug = (r.get("city_slug") or "").strip().lower()
+        if cslug:
+            by_city.setdefault(cslug, []).append(r)
+    for cslug in by_city:
+        by_city[cslug].sort(key=lambda r: (r.get("date") or ""), reverse=True)
+    return by_city
+
+
+def city_reviews_section(city_name, reviews):
+    """A 'Customer Reviews' section; empty string when the city has no reviews."""
+    if not reviews:
+        return ""
+    cards = []
+    for r in reviews:
+        try:
+            rating = int(float(r.get("rating") or 5))
+        except (TypeError, ValueError):
+            rating = 5
+        rating = max(1, min(5, rating))
+        stars = "★" * rating + "☆" * (5 - rating)
+        author = esc(r.get("author") or "")
+        loc = esc(r.get("location") or "")
+        who = author + (f" &mdash; {loc}" if loc else "")
+        cards.append(
+            '<div class="review-card">\n'
+            f'  <div class="review-stars" aria-label="{rating} out of 5 stars">{stars}</div>\n'
+            f'  <p class="review-text">{esc(r.get("text"))}</p>\n'
+            f'  <p class="review-author">{who}</p>\n'
+            '</div>'
+        )
+    cards_html = "\n".join(cards)
+    return (
+        '<section class="city-reviews">\n'
+        '  <div class="container">\n'
+        '    <div style="text-align:center;"><span class="section-label">Customer Reviews</span></div>\n'
+        f'    <h2 class="section-heading" style="text-align:center;">What Customers Say in {esc(city_name)}</h2>\n'
+        f'    <div class="city-reviews-grid">\n{cards_html}\n    </div>\n'
+        '  </div>\n</section>'
+    )
+
+
+def render(template, row, blog_by_city, reviews_by_city):
     city = (row.get("city_name") or "").strip()
     slug = (row.get("slug") or "").strip()
     prov = (row.get("province") or "").strip()
@@ -188,7 +239,11 @@ def render(template, row, blog_by_city):
     if rate2 != 140:
         out = out.replace("$140", "$" + str(rate2))
 
-    # 7. City blog section — posts tagged to this city (empty if none).
+    # 7. City reviews section — reviews tagged to this city (empty if none).
+    reviews = city_reviews_section(city, reviews_by_city.get(slug.lower(), []))
+    out = out.replace("<!--CITY_REVIEWS_SECTION-->", reviews)
+
+    # 8. City blog section — posts tagged to this city (empty if none).
     section = city_blog_section(city, blog_by_city.get(slug.lower(), []))
     out = out.replace("<!--CITY_BLOG_SECTION-->", section)
 
@@ -201,10 +256,11 @@ def main():
 
     cities = sorted(load_cities(), key=lambda r: r.get("slug", ""))
     blog_by_city = load_blog_by_city()
+    reviews_by_city = load_reviews_by_city()
     written = 0
     for row in cities:
         slug = row["slug"].strip()
-        html_out = render(template, row, blog_by_city)
+        html_out = render(template, row, blog_by_city, reviews_by_city)
         leftover = set(re.findall(r"\[[A-Z\-]+\]", html_out))
         if leftover:
             print(f"  WARNING {slug}: unreplaced tokens {leftover}")
