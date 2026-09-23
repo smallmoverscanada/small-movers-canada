@@ -15,7 +15,8 @@ const PARTNERS = [
   {
     email: 'smallmovers.ontario@gmail.com',
     cities: ['guelph', 'hamilton', 'kitchener', 'brantford', 'cambridge', 'burlington',
-             'niagara falls', 'st. catharines'],
+             'niagara falls', 'st. catharines',
+             'mississauga', 'brampton', 'etobicoke', 'north york', 'vaughan'],
   },
   {
     // Lower Mainland referral partner ($20/hr referral fee).
