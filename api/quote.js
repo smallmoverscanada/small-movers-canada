@@ -42,6 +42,10 @@ const PARTNERS = [
     email: 'cargovanlogistics@gmail.com',
     cities: ['calgary'],
   },
+  {
+    email: 'fuller2008.19@gmail.com',
+    cities: ['courtenay'],
+  },
 ];
 
 const esc = (s) =>
