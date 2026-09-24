@@ -47,6 +47,7 @@ CITY_PHONE_OVERRIDES = {
     "barrie": "249-444-6102",
     "victoria": "778-400-7868",
     "calgary": "587-317-9080",
+    "courtenay": "778-716-0061",
 }
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
