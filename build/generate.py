@@ -53,7 +53,7 @@ for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burl
               "niagara-falls", "st-catharines"]:
     CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
 # Sal (GTA) — tracking number across these GTA pages; bin forwards to Sal.
-for _slug in ["mississauga", "brampton", "etobicoke", "north-york", "vaughan"]:
+for _slug in ["mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville"]:
     CITY_PHONE_OVERRIDES[_slug] = "365-694-5533"
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
