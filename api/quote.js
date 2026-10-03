@@ -19,14 +19,6 @@ const PARTNERS = [
              'mississauga', 'brampton', 'etobicoke', 'north york', 'vaughan', 'oakville'],
   },
   {
-    // Lower Mainland referral partner ($20/hr referral fee).
-    email: 'ani2051@gmail.com',
-    cities: ['vancouver', 'burnaby', 'new westminster', 'richmond', 'delta', 'surrey',
-             'maple ridge', 'coquitlam', 'abbotsford', 'chilliwack', 'port moody',
-             'port coquitlam', 'north vancouver', 'langley', 'white rock',
-             'west vancouver', 'pitt meadows'],
-  },
-  {
     email: 'aaronexpressco@gmail.com',
     cities: ['winnipeg'],
   },
