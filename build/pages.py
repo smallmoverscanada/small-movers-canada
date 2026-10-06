@@ -712,6 +712,14 @@ PARTNER_CSS = """
 .fee-highlight .big span { color:#7FD3AE; }
 .fee-highlight .cap-top { color:rgba(255,255,255,0.7); font-size:0.78rem; font-weight:600; letter-spacing:0.09em; text-transform:uppercase; margin-bottom:4px; }
 .fee-highlight .cap { color:rgba(255,255,255,0.8); margin-top:8px; font-size:0.98rem; }
+.results-band { background:#0E2A47; padding:64px 20px; text-align:center; }
+.results-band .section-label { color:#7FD3AE; }
+.results-band h2 { color:#fff; font-size:clamp(1.6rem,4vw,2.2rem); margin:10px 0 24px; }
+.results-stat { display:inline-flex; align-items:baseline; gap:10px; margin-bottom:20px; }
+.results-stat .big { font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(3rem,10vw,5rem); color:#7FD3AE; line-height:1; }
+.results-stat .unit { font-size:1.4rem; color:rgba(255,255,255,0.85); font-weight:600; }
+.results-sub { color:rgba(255,255,255,0.85); max-width:620px; margin:0 auto 12px; font-size:1.05rem; line-height:1.65; }
+.results-fine { color:rgba(255,255,255,0.6); font-size:0.9rem; max-width:560px; margin:0 auto; }
 .check-list { max-width:720px; margin:28px auto 0; list-style:none; padding:0; }
 .check-list li { display:flex; gap:12px; align-items:flex-start; margin-bottom:16px; color:#3a4f63; font-size:1.0rem; line-height:1.6; }
 .check-list li svg { flex-shrink:0; color:#41A67E; margin-top:3px; }
@@ -916,6 +924,16 @@ def render_partners():
     <div class="leads-grid">
 {leads_html}
     </div>
+  </div>
+</section>
+
+<section class="results-band">
+  <div class="container">
+    <span class="section-label">Real Results</span>
+    <h2>One Partner, One Month</h2>
+    <div class="results-stat"><span class="big">39.5</span><span class="unit">hours</span></div>
+    <p class="results-sub">of paid moving work booked through Small Movers Canada leads in September 2026 — handled by one partner across multiple cities within one of the larger markets we cover.</p>
+    <p class="results-fine">Real, paid jobs — and that's just one partner in a single month.</p>
   </div>
 </section>
 
