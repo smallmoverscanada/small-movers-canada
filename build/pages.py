@@ -1034,23 +1034,24 @@ def render_outreach():
         <li><strong>Kijiji</strong> — Services &rarr; Movers/Storage in that city.</li>
         <li><strong>Yelp / YellowPages</strong> — secondary directories.</li>
       </ol>
+      <p><strong>Tip:</strong> In the Google results, focus on the moving companies that rank <em>below</em> Small Movers Canada — those are the smaller, local operators who most need the leads. The big names at the very top usually aren't our target.</p>
 
       <h3>What a good prospect looks like</h3>
-      <p>Small or solo operator, owns a van or truck, does small and hourly jobs, is currently active (recent reviews or a live listing), and has a reachable email.</p>
+      <p>A <strong>small, independent, local</strong> moving company or solo operator — owns a van or truck, does small and hourly jobs, is currently active (recent reviews or a live listing), and has a website with a contact form. These are the movers who need the leads.</p>
 
       <h3>Skip these</h3>
-      <p>Big national van lines (Two Men and a Truck, Allied, etc.), clearly large companies, anything with no contact info, and duplicates.</p>
+      <p>Big national van lines and franchises (Two Men and a Truck, Allied, United Van Lines, and the like), clearly large companies, anything with no contact info, and duplicates. <strong>Do not contact GetMovers (getmovers.ca)</strong> — leave them off the list entirely.</p>
 
-      <h2>4. The Email Script</h2>
-      <p>For business emails you find online. Fill in the bracketed parts for each prospect:</p>
+      <h2>4. The Outreach Message (through their website form)</h2>
+      <p>You won't be sending email from our account. Instead, for movers' websites that have a <strong>contact form</strong>, submit this message right through their own form.</p>
+      <p class="lead-note"><strong>In the form's fields, enter:</strong> &nbsp;Name: <em>Jordan Caron — Small Movers Canada</em> &nbsp;·&nbsp; Email: <em>[the reply address Jordan gives you]</em> &nbsp;·&nbsp; Phone: <em>[Jordan's number, if there's a field]</em> &nbsp;·&nbsp; Subject (if there's one): <em>Small moving leads in [City] — want them?</em></p>
+      <p>Then paste this into the message box:</p>
       <div class="script-box">
-        <p><strong>Subject:</strong> Small moving leads in [City] — want them?</p>
-        <p>Hi [Name or "there"],</p>
-        <p>I'm reaching out on behalf of Small Movers Canada. We generate small and hourly moving leads across Canada and pass them to local movers — I came across [Company] in [City] and thought you might be a good fit.</p>
+        <p>I run Small Movers Canada. My website generates small and hourly moving leads across Canada and I want to pass them onto you. I came across your website and thought you might be a good fit.</p>
         <p>The short version: we send you web-form requests and forwarded phone calls from your area, you do the moves with your own truck and crew, and our only fee is a flat $15/hr built into the customer's rate — no monthly cost, nothing upfront.</p>
         <p>Here's exactly how it works: <a href="https://smallmoverscanada.ca/partners/" target="_blank" rel="noopener">https://smallmoverscanada.ca/partners/</a></p>
-        <p>If it sounds interesting, just reply or apply right on that page.</p>
-        <p>Thanks,<br>Jordan — Small Movers Canada<br><span class="fine">Small Movers Canada · [mailing address] · Not interested? Just reply "no thanks" and I won't follow up.</span></p>
+        <p>If it sounds interesting, apply right on that page.</p>
+        <p class="fine">Small Movers Canada · [mailing address]</p>
       </div>
 
       <h3>Shorter version — for Facebook / Kijiji / Marketplace messages</h3>
@@ -1061,8 +1062,8 @@ def render_outreach():
       <h2>5. The Rules (Important — CASL)</h2>
       <div class="warn-box">
         <ul>
-          <li><strong>Always keep the signature line</strong> — it identifies Small Movers Canada, includes the mailing address, and the "reply no thanks" opt-out. Don't remove it; it's required by Canadian anti-spam law.</li>
-          <li>Only use <strong>publicly listed business</strong> emails (from their website or listing). Don't hunt for personal addresses.</li>
+          <li><strong>Keep the sign-off</strong> that identifies Small Movers Canada and the mailing address. Keeping us clearly identified matters under Canadian anti-spam law (CASL).</li>
+          <li>Only reach out through a business's <strong>own website form</strong> or public listing. Don't hunt for personal email addresses.</li>
           <li><strong>One message per prospect.</strong> If they don't reply, leave them alone — no repeated follow-ups.</li>
           <li>Keep it personal and low-volume — not a mass blast.</li>
         </ul>
