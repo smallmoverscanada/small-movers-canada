@@ -964,6 +964,113 @@ def render_partners():
     )
 
 
+OUTREACH_CSS = """
+.lead-note { background:#eef4f1; border-radius:10px; padding:16px 20px; color:#2c3e50; font-size:0.98rem; line-height:1.6; }
+.prov-label { font-weight:700; color:#0E2A47; margin:18px 0 8px; font-size:0.86rem; text-transform:uppercase; letter-spacing:0.05em; }
+.city-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.city-tag { background:rgba(65,166,126,0.12); color:#2c7a5b; font-size:0.85rem; font-weight:600; padding:5px 13px; border-radius:100px; }
+.script-box { background:#f7f4ec; border:1px solid #e9e3d6; border-left:4px solid #41A67E; border-radius:10px; padding:4px 22px; margin:18px 0; }
+.script-box p { margin:12px 0; color:#33414f; }
+.script-box .fine { font-size:0.82rem; color:#8a8172; }
+.warn-box { background:#fff6e9; border:1px solid #f0dcb8; border-radius:10px; padding:2px 22px; margin:18px 0; }
+"""
+
+
+def render_outreach():
+    areas = [
+        ("British Columbia", ["Kelowna", "Vernon", "Penticton", "Kamloops", "Nanaimo", "Duncan", "Campbell River"]),
+        ("Alberta", ["Red Deer"]),
+        ("Ontario", ["London", "Sarnia", "Windsor", "Chatham-Kent", "Oshawa", "Ajax", "Pickering", "Kingston", "Ottawa", "Nepean", "Sudbury", "Peterborough", "Thunder Bay"]),
+        ("Saskatchewan", ["Saskatoon", "Regina"]),
+    ]
+    cities_html = ""
+    for prov, cs in areas:
+        cities_html += ('<p class="prov-label">' + prov + '</p><div class="city-tags">'
+                        + "".join('<span class="city-tag">' + c + '</span>' for c in cs)
+                        + '</div>')
+
+    part1 = '''<section class="page-section">
+  <div class="post-wrap">
+    <div class="post-content">
+      <p class="lead-note">This page is for internal use. It explains how to find movers to recruit for Small Movers Canada and exactly what to send them. Everything points prospects to our partner page: <a href="https://smallmoverscanada.ca/partners/" target="_blank" rel="noopener">smallmoverscanada.ca/partners/</a>.</p>
+
+      <h2>1. The Goal</h2>
+      <p>Find small, independent movers in our target cities and invite them to become partners. You're not closing anyone — just getting interested movers to the partner page, or to reply so Jordan can follow up.</p>
+
+      <h2>2. Target Cities — These Only</h2>
+      <p>We already have partners in other cities. Only reach out to movers in these cities:</p>
+'''
+
+    part2 = '''
+      <h2>3. Where to Find Prospects</h2>
+      <p>In priority order:</p>
+      <ol>
+        <li><strong>Google search</strong> — the best source. For each city, search: <em>small movers [city]</em>, <em>hourly movers [city]</em>, <em>man with a van [city]</em>, <em>furniture movers [city]</em>, <em>moving help [city]</em>.</li>
+        <li><strong>Google Maps</strong> — search "movers [city]", open the small/independent ones, and grab their email, phone, and website.</li>
+        <li><strong>Facebook</strong> — search Pages and Groups for "[city] movers", and check Marketplace under Services.</li>
+        <li><strong>Kijiji</strong> — Services &rarr; Movers/Storage in that city.</li>
+        <li><strong>Yelp / YellowPages</strong> — secondary directories.</li>
+      </ol>
+
+      <h3>What a good prospect looks like</h3>
+      <p>Small or solo operator, owns a van or truck, does small and hourly jobs, is currently active (recent reviews or a live listing), and has a reachable email.</p>
+
+      <h3>Skip these</h3>
+      <p>Big national van lines (Two Men and a Truck, Allied, etc.), clearly large companies, anything with no contact info, and duplicates.</p>
+
+      <h2>4. The Email Script</h2>
+      <p>For business emails you find online. Fill in the bracketed parts for each prospect:</p>
+      <div class="script-box">
+        <p><strong>Subject:</strong> Small moving leads in [City] — want them?</p>
+        <p>Hi [Name or "there"],</p>
+        <p>I'm reaching out on behalf of Small Movers Canada. We generate small and hourly moving leads across Canada and pass them to local movers — I came across [Company] in [City] and thought you might be a good fit.</p>
+        <p>The short version: we send you web-form requests and forwarded phone calls from your area, you do the moves with your own truck and crew, and our only fee is a flat $15/hr built into the customer's rate — no monthly cost, nothing upfront.</p>
+        <p>Here's exactly how it works: <a href="https://smallmoverscanada.ca/partners/" target="_blank" rel="noopener">https://smallmoverscanada.ca/partners/</a></p>
+        <p>If it sounds interesting, just reply or apply right on that page.</p>
+        <p>Thanks,<br>Jordan — Small Movers Canada<br><span class="fine">Small Movers Canada · [mailing address] · Not interested? Just reply "no thanks" and I won't follow up.</span></p>
+      </div>
+
+      <h3>Shorter version — for Facebook / Kijiji / Marketplace messages</h3>
+      <div class="script-box">
+        <p>Hi — I run Small Movers Canada. We pass small and hourly moving leads to local movers in [City]. You'd get web-form and phone leads from your area, use your own truck, and our only fee is a flat $15/hr built into the rate (nothing upfront). Here's how it works: https://smallmoverscanada.ca/partners/ — interested?</p>
+      </div>
+
+      <h2>5. The Rules (Important — CASL)</h2>
+      <div class="warn-box">
+        <ul>
+          <li><strong>Always keep the signature line</strong> — it identifies Small Movers Canada, includes the mailing address, and the "reply no thanks" opt-out. Don't remove it; it's required by Canadian anti-spam law.</li>
+          <li>Only use <strong>publicly listed business</strong> emails (from their website or listing). Don't hunt for personal addresses.</li>
+          <li><strong>One message per prospect.</strong> If they don't reply, leave them alone — no repeated follow-ups.</li>
+          <li>Keep it personal and low-volume — not a mass blast.</li>
+        </ul>
+      </div>
+
+      <h2>6. Track Everything in a Sheet</h2>
+      <p>Log every prospect so we don't double-contact and can see what's working. Use these columns:</p>
+      <p><strong>City &nbsp;|&nbsp; Company &nbsp;|&nbsp; Contact name &nbsp;|&nbsp; Email/Phone &nbsp;|&nbsp; Source (URL) &nbsp;|&nbsp; Date contacted &nbsp;|&nbsp; Status/Notes</strong></p>
+
+      <h2>7. What to Do With Replies</h2>
+      <p>Anyone interested &rarr; tell them to apply at <a href="https://smallmoverscanada.ca/partners/" target="_blank" rel="noopener">smallmoverscanada.ca/partners/</a>, or forward their reply to Jordan. Don't negotiate terms — just get them to the page or to Jordan.</p>
+
+      <h2>8. Realistic Pace</h2>
+      <p>In 3–4 hours, aim for roughly <strong>15–25 solid prospects found and contacted</strong>. Finding good ones is the slow part, not the emailing. Quality over quantity.</p>
+    </div>
+  </div>
+</section>'''
+
+    body = ("<style>" + OUTREACH_CSS + "</style>"
+            + page_hero("Internal Document", "Partner Outreach Guide",
+                        "How to find movers to recruit and exactly what to send them.")
+            + part1 + cities_html + part2)
+
+    return page_shell(
+        "Outreach Guide | Small Movers Canada",
+        "Internal outreach guide for recruiting partner movers.",
+        "https://smallmoverscanada.ca/muzahid-outreach/",
+        body, robots="noindex, nofollow",
+    )
+
+
 BASE_URL = "https://smallmoverscanada.ca"
 
 
@@ -997,6 +1104,7 @@ def main():
         "locations/index.html": render_locations(cities),
         "about/index.html": render_about(),
         "partners/index.html": render_partners(),
+        "muzahid-outreach/index.html": render_outreach(),
         "blog/index.html": render_blog_index(posts),
         "thank-you/index.html": render_thankyou(),
     }
