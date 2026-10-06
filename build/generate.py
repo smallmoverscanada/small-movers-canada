@@ -56,11 +56,13 @@ for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burl
 # Sal (GTA) — tracking number across these GTA pages; bin forwards to Sal.
 for _slug in ["mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville"]:
     CITY_PHONE_OVERRIDES[_slug] = "365-694-5533"
-# Lower Mainland partner — tracking number across these LM pages; bin forwards to him.
-for _slug in ["vancouver", "surrey", "north-vancouver", "richmond", "langley", "port-moody",
-              "white-rock", "pitt-meadows", "port-coquitlam", "burnaby", "delta",
-              "new-westminster", "west-vancouver"]:
+# Lower Mainland partner — one tracking number + his custom pricing across these pages.
+LM_SLUGS = ["vancouver", "surrey", "north-vancouver", "richmond", "langley", "port-moody",
+            "white-rock", "pitt-meadows", "port-coquitlam", "burnaby", "delta",
+            "new-westminster", "west-vancouver"]
+for _slug in LM_SLUGS:
     CITY_PHONE_OVERRIDES[_slug] = "236-707-8241"
+    RATE_OVERRIDES[_slug] = (105, 145)  # $105/hr 1 mover, $145/hr 2 movers
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
 TEMPLATE_H1 = ('<h1>Small &amp; Hourly Movers&nbsp;in&nbsp;'
@@ -247,6 +249,15 @@ def render(template, row, blog_by_city, reviews_by_city):
         out = out.replace("$85", "$" + str(rate1))
     if rate2 != 140:
         out = out.replace("$140", "$" + str(rate2))
+
+    # 6b. Lower Mainland partner pricing — different minimums + inclusions.
+    if slug in LM_SLUGS:
+        out = out.replace("for 1 mover (1 hour minimum)",
+                          "for 1 mover (2 hour minimum)")
+        out = out.replace("for 2 movers (2.5 hour minimum)",
+                          "for 2 movers + truck (2.5 hour minimum)")
+        out = out.replace("Truck, equipment &amp; insurance included",
+                          "Truck, equipment, blankets &amp; basic assembly included")
 
     # 7. City reviews section — reviews tagged to this city (empty if none).
     reviews = city_reviews_section(city, reviews_by_city.get(slug.lower(), []))
