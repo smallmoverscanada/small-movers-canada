@@ -862,6 +862,7 @@ h1, h2, h3, h4 {
 .fee-highlight { background:#0E2A47; border-radius:16px; padding:34px 28px; text-align:center; max-width:720px; margin:0 auto 26px; }
 .fee-highlight .big { font-size:clamp(2.2rem,6vw,3rem); font-weight:800; font-family:'Montserrat',sans-serif; color:#fff; line-height:1.1; }
 .fee-highlight .big span { color:#7FD3AE; }
+.fee-highlight .cap-top { color:rgba(255,255,255,0.7); font-size:0.78rem; font-weight:600; letter-spacing:0.09em; text-transform:uppercase; margin-bottom:4px; }
 .fee-highlight .cap { color:rgba(255,255,255,0.8); margin-top:8px; font-size:0.98rem; }
 .check-list { max-width:720px; margin:28px auto 0; list-style:none; padding:0; }
 .check-list li { display:flex; gap:12px; align-items:flex-start; margin-bottom:16px; color:#3a4f63; font-size:1.0rem; line-height:1.6; }
@@ -873,6 +874,11 @@ h1, h2, h3, h4 {
 .faq-item h3 { font-size:1.05rem; color:#0E2A47; margin-bottom:6px; }
 .faq-item p { color:#5a6a7a; font-size:0.95rem; line-height:1.65; }
 .apply-wrap { max-width:560px; margin:0 auto; }
+.founder-grid { display:grid; grid-template-columns:1fr; gap:26px; max-width:860px; margin:36px auto 0; align-items:center; }
+.founder-photo img { width:200px; height:200px; border-radius:18px; object-fit:cover; box-shadow:0 12px 30px rgba(14,42,71,0.14); display:block; margin:0 auto; }
+.founder-text p { color:#3a4f63; font-size:1.0rem; line-height:1.75; margin-bottom:16px; }
+.founder-text p:last-child { margin-bottom:0; }
+@media (min-width:720px) { .founder-grid { grid-template-columns:200px 1fr; gap:38px; align-items:start; } .founder-photo img { margin:0; } }
 .leads-grid { display:grid; grid-template-columns:1fr; gap:20px; max-width:860px; margin:36px auto 0; }
 .lead-card { border:1px solid #e7eaee; border-radius:14px; padding:26px 28px; background:#fff; }
 .lead-card .ico { display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:12px; background:rgba(65,166,126,0.12); color:#41A67E; margin-bottom:14px; }
@@ -894,6 +900,21 @@ h1, h2, h3, h4 {
 </section>
 
 <section class="page-section">
+  <div class="container">
+    <div style="text-align:center;"><span class="section-label">Who You're Working With</span></div>
+    <h2 class="section-heading" style="text-align:center;">Built by a Marketer, for Movers</h2>
+    <div class="founder-grid">
+      <div class="founder-photo"><img src="/assets/jordan.jpg" alt="Jordan J. Caron, founder of Small Movers Canada"></div>
+      <div class="founder-text">
+        <p>I'm Jordan Caron, and I've worked in digital marketing since 2013 — helping businesses get found online through websites, search, and strategy.</p>
+        <p>A few years back I started helping my friend Brad with small moving jobs in Victoria, BC — the couch-and-a-few-boxes moves the big companies don't want. Brad was great at the work but had no website and was relying on classified ads. Once I built him a simple site and got him showing up online, his calendar filled up fast.</p>
+        <p>That's when the gap clicked: there's steady demand for small moves everywhere, and plenty of capable movers to do them — but those movers rarely have the marketing to get found. <strong>Small Movers Canada is me doing for movers across the country what I did for Brad: bringing you the leads so you can focus on the moving.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section" style="background:#F6F1E7;">
   <div class="container">
     <div style="text-align:center;"><span class="section-label">How It Works</span></div>
     <h2 class="section-heading" style="text-align:center;">A Simple Referral Partnership</h2>
@@ -922,14 +943,16 @@ h1, h2, h3, h4 {
 <section class="page-section" style="background:#F6F1E7;">
   <div class="container">
     <div style="text-align:center;"><span class="section-label">The Fee</span></div>
-    <h2 class="section-heading" style="text-align:center;">What You Keep</h2>
+    <h2 class="section-heading" style="text-align:center;">One Flat Fee — You Keep the Rest</h2>
     <div class="fee-highlight">
+      <p class="cap-top">Our referral fee</p>
       <div class="big">$15<span>/hr</span></div>
-      <p class="cap">Flat referral fee — that's it</p>
+      <p class="cap">You keep everything else</p>
     </div>
     <div class="partner-prose">
-      <p>Our referral fee is a flat <strong>$15 per hour</strong>, and it's built into the hourly rate the customer pays — so you're not adding anything on top at the door, and the customer sees one clean price. You keep the rest.</p>
-      <p>There are no monthly fees, no sign-up costs, and no obligation. You only ever account for the referral fee on jobs we actually send you. If it's a slow month, you owe nothing.</p>
+      <p>Our fee is a flat <strong>$15 per hour</strong> — and that's the only cut we take. It's built into the hourly rate the customer pays, so you're not adding anything on top at the door, and the customer sees one clean price. <strong>Everything above our $15/hr is yours.</strong></p>
+      <p>Already have your own rates and minimums? Even better — we'll set the pricing on your city's pages to match exactly what you charge, so every lead is quoting your numbers from the start.</p>
+      <p>There are no monthly fees, no sign-up costs, and no obligation. You only account for the referral fee on jobs we actually send you — if it's a slow month, you owe nothing.</p>
     </div>
   </div>
 </section>
