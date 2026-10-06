@@ -699,6 +699,218 @@ def render_thankyou():
     )
 
 
+PARTNER_CSS = """
+.how-grid { display:grid; grid-template-columns:1fr; gap:20px; margin-top:36px; max-width:900px; margin-left:auto; margin-right:auto; }
+.how-step { background:#F6F1E7; border-radius:14px; padding:26px 28px; }
+.how-step .num { display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:#41A67E; color:#fff; font-weight:700; font-family:'Montserrat',sans-serif; margin-bottom:14px; }
+.how-step h3 { font-size:1.1rem; color:#0E2A47; margin-bottom:8px; }
+.how-step p { color:#5a6a7a; font-size:0.95rem; line-height:1.6; }
+.partner-prose { max-width:720px; margin:0 auto; }
+.partner-prose p { color:#3a4f63; font-size:1.02rem; line-height:1.8; margin-bottom:18px; }
+.fee-highlight { background:#0E2A47; border-radius:16px; padding:34px 28px; text-align:center; max-width:720px; margin:0 auto 26px; }
+.fee-highlight .big { font-size:clamp(2.2rem,6vw,3rem); font-weight:800; font-family:'Montserrat',sans-serif; color:#fff; line-height:1.1; }
+.fee-highlight .big span { color:#7FD3AE; }
+.fee-highlight .cap { color:rgba(255,255,255,0.8); margin-top:8px; font-size:0.98rem; }
+.check-list { max-width:720px; margin:28px auto 0; list-style:none; padding:0; }
+.check-list li { display:flex; gap:12px; align-items:flex-start; margin-bottom:16px; color:#3a4f63; font-size:1.0rem; line-height:1.6; }
+.check-list li svg { flex-shrink:0; color:#41A67E; margin-top:3px; }
+.areas-box { max-width:720px; margin:28px auto 0; background:#fff; border:1px solid #ece6d8; border-radius:14px; padding:26px 28px; }
+.faq { max-width:720px; margin:28px auto 0; }
+.faq-item { border-bottom:1px solid #e9e3d6; padding:18px 0; }
+.faq-item:last-child { border-bottom:none; }
+.faq-item h3 { font-size:1.05rem; color:#0E2A47; margin-bottom:6px; }
+.faq-item p { color:#5a6a7a; font-size:0.95rem; line-height:1.65; }
+.apply-wrap { max-width:560px; margin:0 auto; }
+@media (min-width:720px) { .how-grid { grid-template-columns:1fr 1fr; } }
+"""
+
+I_CHECK = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+
+PARTNER_FORM_JS = """
+<script>
+(function () {
+  var form = document.querySelector('#apply form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('.form-submit');
+    var original = btn ? btn.innerHTML : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    fetch('/api/partner', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(form)))
+    }).then(function (r) {
+      if (!r.ok) throw new Error('bad status');
+      var card = document.getElementById('apply');
+      if (card) { card.innerHTML = '<h2>Thanks — we\\'ve got your application</h2><p class="form-sub">We\\'ll review it and get back to you by email soon.</p>'; }
+    }).catch(function () {
+      if (btn) { btn.disabled = false; btn.innerHTML = original; }
+      alert('Sorry — something went wrong. Please email info@smallmoverscanada.ca instead.');
+    });
+  });
+})();
+</script>
+"""
+
+
+def render_partners():
+    steps = [
+        ("1", "We bring the leads", "Our website ranks across Canada and brings in small-move requests every day. When someone in your city asks for a quote, that lead is yours."),
+        ("2", "You get matched", "Web-form requests are emailed straight to you, and we set up a dedicated local phone number that forwards right to your phone — with a quick whisper so you know it's a Small Movers Canada call."),
+        ("3", "You do the move", "You run the job your way, with your own truck, equipment, and crew. You deal directly with the customer and handle the move start to finish."),
+        ("4", "You get paid", "You charge the hourly rate and keep it, minus our flat $15/hr referral fee. No monthly fees, nothing upfront — you only pay on jobs we actually send you."),
+    ]
+    steps_html = "\n".join(
+        f'      <div class="how-step"><span class="num">{n}</span><h3>{esc(t)}</h3><p>{esc(d)}</p></div>'
+        for n, t, d in steps
+    )
+
+    looking_for = [
+        "A reliable vehicle — a van, cube truck, or trailer suited to small and mid-size moves.",
+        "Basic moving equipment: a dolly, straps, and blankets to protect people's things.",
+        "At least one experienced mover who knows how to load, pad, and handle furniture safely.",
+        "A professional, friendly approach — clear communication by phone and email, and showing up on time.",
+        "The willingness to take on small and hourly jobs: apartments, condos, single items, and furniture pickups.",
+        "Quick responses to leads — the faster you reply, the more jobs you'll close.",
+    ]
+    looking_html = "\n".join(
+        f'      <li>{I_CHECK}<span>{esc(x)}</span></li>' for x in looking_for
+    )
+
+    faqs = [
+        ("How do I receive the leads?",
+         "Two ways. Web-form quote requests from your cities are emailed to you the moment they come in. And we set up a dedicated local phone number for your area that forwards straight to your phone, with a short whisper announcing it's a Small Movers Canada call so you can answer accordingly."),
+        ("Is there any cost to join?",
+         "No. There are no monthly fees and nothing to pay upfront. Our $15/hr referral fee is simply built into the hourly rate — you only ever account for it on jobs we actually send you."),
+        ("Do I use my own truck and equipment?",
+         "Yes. You bring the vehicle, equipment, blankets, and crew, and you run the job your way. We bring you the work."),
+        ("Can I choose which areas I cover?",
+         "Absolutely. You tell us the cities you can reliably service, and we only send you leads from those areas. You can adjust your coverage any time."),
+        ("What kind of jobs are these?",
+         "Mostly small and hourly moves — apartments, condos, single-item pickups, furniture, and short local moves. These are the jobs big van lines don't want, and there's steady demand for them."),
+    ]
+    faq_html = "\n".join(
+        f'    <div class="faq-item"><h3>{esc(q)}</h3><p>{esc(a)}</p></div>'
+        for q, a in faqs
+    )
+
+    apply_form = '''<div class="quote-form-card" id="apply">
+      <h2>Apply to Join</h2>
+      <p class="form-sub">Tell us about your crew — takes a minute</p>
+      <form action="/api/partner" method="POST">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+          </div>
+          <div class="form-field">
+            <label for="areas">Area(s) you serve</label>
+            <input type="text" id="areas" name="areas" placeholder="e.g. Burnaby, New West">
+          </div>
+        </div>
+        <div class="form-field" style="margin-bottom:16px;">
+          <label for="crew">About your crew</label>
+          <textarea id="crew" name="crew" placeholder="Your vehicle, how many movers, experience..." rows="3"></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New Mover Application">
+        <button type="submit" class="form-submit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          Apply to Join
+        </button>
+      </form>
+    </div>'''
+
+    body = f'''<style>{PARTNER_CSS}</style>
+{page_hero("For Movers", "Partner With Small Movers Canada",
+           "We bring the leads and the calls. You do the moves. Here's exactly how it works, what the fee is, and where we need crews right now.")}
+
+<section class="page-section">
+  <div class="container">
+    <div style="text-align:center;"><span class="section-label">How It Works</span></div>
+    <h2 class="section-heading" style="text-align:center;">A Simple Referral Partnership</h2>
+    <p style="text-align:center; color:#5a6a7a; font-size:0.98rem; max-width:620px; margin:0 auto;">You're the mover. We're the marketing engine that keeps your calendar full — without you spending a dollar on ads or a website.</p>
+    <div class="how-grid">
+{steps_html}
+    </div>
+  </div>
+</section>
+
+<section class="page-section" style="background:#F6F1E7;">
+  <div class="container">
+    <div style="text-align:center;"><span class="section-label">The Fee</span></div>
+    <h2 class="section-heading" style="text-align:center;">What You Keep</h2>
+    <div class="fee-highlight">
+      <div class="big">$15<span>/hr</span></div>
+      <p class="cap">Flat referral fee — that's it</p>
+    </div>
+    <div class="partner-prose">
+      <p>Our referral fee is a flat <strong>$15 per hour</strong>, and it's built into the hourly rate the customer pays — so you're not adding anything on top at the door, and the customer sees one clean price. You keep the rest.</p>
+      <p>There are no monthly fees, no sign-up costs, and no obligation. You only ever account for the referral fee on jobs we actually send you. If it's a slow month, you owe nothing.</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="container">
+    <div style="text-align:center;"><span class="section-label">What We're Looking For</span></div>
+    <h2 class="section-heading" style="text-align:center;">What Makes a Good Partner</h2>
+    <ul class="check-list">
+{looking_html}
+    </ul>
+  </div>
+</section>
+
+<section class="page-section" style="background:#F6F1E7;">
+  <div class="container">
+    <div style="text-align:center;"><span class="section-label">Where We Need Crews</span></div>
+    <h2 class="section-heading" style="text-align:center;">Areas We're Recruiting For</h2>
+    <div class="areas-box">
+      <p style="margin:0; color:#3a4f63; line-height:1.7;">We're actively expanding across <strong>British Columbia, Alberta, Ontario, Saskatchewan, and Manitoba</strong>, and we're always looking for reliable crews to take on more work. Don't see your city mentioned? Apply anyway — we get moving requests from across the country and may have leads near you right now.</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="container">
+    <div style="text-align:center;"><span class="section-label">Get Started</span></div>
+    <h2 class="section-heading" style="text-align:center;">Apply to Become a Partner</h2>
+    <div class="apply-wrap">
+{apply_form}
+    </div>
+  </div>
+</section>
+
+<section class="page-section" style="background:#F6F1E7;">
+  <div class="container">
+    <div style="text-align:center;"><span class="section-label">Common Questions</span></div>
+    <h2 class="section-heading" style="text-align:center;">Questions, Answered</h2>
+    <div class="faq">
+{faq_html}
+    </div>
+  </div>
+</section>
+{PARTNER_FORM_JS}'''
+
+    return page_shell(
+        "Partner With Us | Small Movers Canada",
+        "Become a Small Movers Canada partner mover. We bring you small-move leads and "
+        "calls in your area for a flat $15/hr referral fee — no monthly fees, no upfront cost.",
+        "https://smallmoverscanada.ca/partners/",
+        body,
+    )
+
+
 BASE_URL = "https://smallmoverscanada.ca"
 
 
@@ -706,6 +918,7 @@ def build_sitemap(cities, posts):
     urls = [("/", "1.0", "weekly"),
             ("/locations/", "0.8", "weekly"),
             ("/about/", "0.6", "monthly"),
+            ("/partners/", "0.5", "monthly"),
             ("/blog/", "0.7", "weekly")]
     for prov in PROVINCE_ORDER:
         urls.append((f"/{PROVINCE_SLUG[prov]}/", "0.8", "monthly"))
@@ -730,6 +943,7 @@ def main():
         "index.html": render_home(cities),
         "locations/index.html": render_locations(cities),
         "about/index.html": render_about(),
+        "partners/index.html": render_partners(),
         "blog/index.html": render_blog_index(posts),
         "thank-you/index.html": render_thankyou(),
     }
