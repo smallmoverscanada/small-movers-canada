@@ -822,11 +822,11 @@ def render_partners():
 
     recruit_areas = [
         ("British Columbia", ["Kelowna", "Vernon", "Penticton", "Kamloops", "Nanaimo",
-                              "Duncan", "Courtenay", "Campbell River"]),
+                              "Duncan", "Campbell River"]),
         ("Alberta", ["Red Deer"]),
         ("Ontario", ["London", "Sarnia", "Windsor", "Chatham-Kent", "Oshawa", "Ajax",
-                     "Pickering", "Whitby", "Kingston", "Belleville", "Ottawa", "Nepean",
-                     "Kanata", "Sudbury", "Peterborough", "Thunder Bay"]),
+                     "Pickering", "Kingston", "Ottawa", "Nepean", "Sudbury",
+                     "Peterborough", "Thunder Bay"]),
         ("Saskatchewan", ["Saskatoon", "Regina"]),
     ]
     areas_groups = "\n".join(
