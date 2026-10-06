@@ -771,7 +771,7 @@ PARTNER_FORM_JS = """
     }).then(function (r) {
       if (!r.ok) throw new Error('bad status');
       var card = document.getElementById('apply');
-      if (card) { card.innerHTML = '<h2>Thanks — we\\'ve got your application</h2><p class="form-sub">We\\'ll review it and get back to you by email soon.</p>'; }
+      if (card) { card.innerHTML = '<h2>Thanks — I\\'ve got your application</h2><p class="form-sub">I\\'ll review it and get back to you by email soon.</p>'; }
     }).catch(function () {
       if (btn) { btn.disabled = false; btn.innerHTML = original; }
       alert('Sorry — something went wrong. Please email info@smallmoverscanada.ca instead.');
@@ -784,10 +784,10 @@ PARTNER_FORM_JS = """
 
 def render_partners():
     steps = [
-        ("1", "We bring the leads", "Our website ranks across Canada and brings in small-move requests every day. When someone in your city asks for a quote, that lead is yours."),
-        ("2", "You get matched", "You tell us the cities you can cover, and we route every lead from those pages straight to you — both web-form requests and forwarded phone calls (more on that below)."),
+        ("1", "I bring the leads", "My website ranks across Canada and brings in small-move requests every day. When someone in your city asks for a quote, that lead is yours."),
+        ("2", "You get matched", "You tell me the cities you can cover, and I route every lead from those pages straight to you — both web-form requests and forwarded phone calls (more on that below)."),
         ("3", "You do the move", "You run the job your way, with your own truck, equipment, and crew. You deal directly with the customer and handle the move start to finish."),
-        ("4", "You get paid", "You charge the hourly rate and keep it, minus our flat $15/hr referral fee. No monthly fees, nothing upfront — you only pay on jobs we actually send you."),
+        ("4", "You get paid", "You charge the hourly rate and keep it, minus my flat $15/hr referral fee. No monthly fees, nothing upfront — you only pay on jobs I actually send you."),
     ]
     steps_html = "\n".join(
         f'      <div class="how-step"><span class="num">{n}</span><h3>{esc(t)}</h3><p>{esc(d)}</p></div>'
@@ -808,13 +808,13 @@ def render_partners():
 
     faqs = [
         ("How do I receive the leads?",
-         "Two ways. Web-form quote requests from your cities are emailed to you the moment they come in. And we set up a dedicated local phone number for your area that forwards straight to your phone, with a short whisper announcing it's a Small Movers Canada call so you can answer accordingly."),
+         "Two ways. Web-form quote requests from your cities are emailed to you the moment they come in. And I set up a dedicated local phone number for your area that forwards straight to your phone, with a short whisper announcing it's a Small Movers Canada call so you can answer accordingly."),
         ("Is there any cost to join?",
-         "No. There are no monthly fees and nothing to pay upfront. Our $15/hr referral fee is simply built into the hourly rate — you only ever account for it on jobs we actually send you."),
+         "No. There are no monthly fees and nothing to pay upfront. My $15/hr referral fee is simply built into the hourly rate — you only ever account for it on jobs I actually send you."),
         ("Do I use my own truck and equipment?",
-         "Yes. You bring the vehicle, equipment, blankets, and crew, and you run the job your way. We bring you the work."),
+         "Yes. You bring the vehicle, equipment, blankets, and crew, and you run the job your way. I bring you the work."),
         ("Can I choose which areas I cover?",
-         "Absolutely. You tell us the cities you can reliably service, and we only send you leads from those areas. You can adjust your coverage any time."),
+         "Absolutely. You tell me the cities you can reliably service, and I only send you leads from those areas. You can adjust your coverage any time."),
         ("What kind of jobs are these?",
          "Mostly small and hourly moves — apartments, condos, single-item pickups, furniture, and short local moves. These are the jobs big van lines don't want, and there's steady demand for them."),
     ]
@@ -825,9 +825,9 @@ def render_partners():
 
     lead_items = [
         (I_MAIL, "Web form submissions",
-         "The moment someone requests a quote on one of your city's pages, the lead is emailed straight to you — and to us — in real time. You get the customer's name, contact details, and what they're moving, so you can reach out right away."),
+         "The moment someone requests a quote on one of your city's pages, the lead is emailed straight to you — and to me — in real time. You get the customer's name, contact details, and what they're moving, so you can reach out right away."),
         (I_PHONE2, "Forwarded phone calls",
-         "We put a dedicated local number on your city's pages that forwards straight to your phone. Before you're connected, a short whisper lets you know it's a Small Movers Canada lead so you can answer professionally. Both you and we also get an email confirmation of every call, so each lead is tracked and verified."),
+         "I put a dedicated local number on your city's pages that forwards straight to your phone. Before you're connected, a short whisper lets you know it's a Small Movers Canada lead so you can answer professionally. Both you and I also get an email confirmation of every call, so each lead is tracked and verified."),
     ]
     leads_html = "\n".join(
         f'      <div class="lead-card"><span class="ico">{ic}</span><h3>{esc(t)}</h3><p>{esc(d)}</p></div>'
@@ -852,7 +852,7 @@ def render_partners():
 
     apply_form = '''<div class="quote-form-card" id="apply">
       <h2>Apply to Join</h2>
-      <p class="form-sub">Tell us about your crew — takes a minute</p>
+      <p class="form-sub">Tell me about your crew — takes a minute</p>
       <form action="/api/partner" method="POST">
         <div class="form-row">
           <div class="form-field">
@@ -888,7 +888,7 @@ def render_partners():
 
     body = f'''<style>{PARTNER_CSS}</style>
 {page_hero("For Movers", "Partner With Small Movers Canada",
-           "We bring the leads and the calls. You do the moves. Here's exactly how it works, what the fee is, and where we need crews right now.")}
+           "I bring the leads and the calls. You do the moves. Here's exactly how it works, what the fee is, and where I need crews right now.")}
 
 <section class="page-section">
   <div class="container">
@@ -909,7 +909,7 @@ def render_partners():
   <div class="container">
     <div style="text-align:center;"><span class="section-label">How It Works</span></div>
     <h2 class="section-heading" style="text-align:center;">A Simple Referral Partnership</h2>
-    <p style="text-align:center; color:#5a6a7a; font-size:0.98rem; max-width:620px; margin:0 auto;">You're the mover. We're the marketing engine that keeps your calendar full — without you spending a dollar on ads or a website.</p>
+    <p style="text-align:center; color:#5a6a7a; font-size:0.98rem; max-width:620px; margin:0 auto;">You're the mover. I'm the marketing engine that keeps your calendar full — without you spending a dollar on ads or a website.</p>
     <div class="how-grid">
 {steps_html}
     </div>
@@ -920,7 +920,7 @@ def render_partners():
   <div class="container">
     <div style="text-align:center;"><span class="section-label">How Leads Reach You</span></div>
     <h2 class="section-heading" style="text-align:center;">Two Ways the Work Comes In</h2>
-    <p style="text-align:center; color:#5a6a7a; font-size:0.98rem; max-width:620px; margin:0 auto;">Every lead from your cities reaches you directly and instantly — and both of us are notified, so nothing slips through the cracks.</p>
+    <p style="text-align:center; color:#5a6a7a; font-size:0.98rem; max-width:620px; margin:0 auto;">Every lead from your cities reaches you directly and instantly — and I'm notified too, so nothing slips through the cracks.</p>
     <div class="leads-grid">
 {leads_html}
     </div>
@@ -932,7 +932,7 @@ def render_partners():
     <span class="section-label">Real Results</span>
     <h2>One Partner, One Month</h2>
     <div class="results-stat"><span class="big">39.5</span><span class="unit">hours</span></div>
-    <p class="results-sub">of paid moving work booked through Small Movers Canada leads in September 2026 — handled by one partner across multiple cities within one of the larger markets we cover.</p>
+    <p class="results-sub">of paid moving work booked through Small Movers Canada leads in September 2026 — handled by one partner across multiple cities within one of the larger markets I cover.</p>
     <p class="results-fine">Real, paid jobs — and that's just one partner in a single month.</p>
   </div>
 </section>
@@ -942,21 +942,21 @@ def render_partners():
     <div style="text-align:center;"><span class="section-label">The Fee</span></div>
     <h2 class="section-heading" style="text-align:center;">One Flat Fee — You Keep the Rest</h2>
     <div class="fee-highlight">
-      <p class="cap-top">Our referral fee</p>
+      <p class="cap-top">My referral fee</p>
       <div class="big">$15<span>/hr</span></div>
       <p class="cap">You keep everything else</p>
     </div>
     <div class="partner-prose">
-      <p>Our fee is a flat <strong>$15 per hour</strong> — and that's the only cut we take. It's built into the hourly rate the customer pays, so you're not adding anything on top at the door, and the customer sees one clean price. <strong>Everything above our $15/hr is yours.</strong></p>
-      <p>Already have your own rates and minimums? Even better — we'll set the pricing on your city's pages to match exactly what you charge, so every lead is quoting your numbers from the start.</p>
-      <p>There are no monthly fees, no sign-up costs, and no obligation. You only account for the referral fee on jobs we actually send you — if it's a slow month, you owe nothing.</p>
+      <p>My fee is a flat <strong>$15 per hour</strong> — and that's the only cut I take. It's built into the hourly rate the customer pays, so you're not adding anything on top at the door, and the customer sees one clean price. <strong>Everything above my $15/hr is yours.</strong></p>
+      <p>Already have your own rates and minimums? Even better — I'll set the pricing on your city's pages to match exactly what you charge, so every lead is quoting your numbers from the start.</p>
+      <p>There are no monthly fees, no sign-up costs, and no obligation. You only account for the referral fee on jobs I actually send you — if it's a slow month, you owe nothing.</p>
     </div>
   </div>
 </section>
 
 <section class="page-section">
   <div class="container">
-    <div style="text-align:center;"><span class="section-label">What We're Looking For</span></div>
+    <div style="text-align:center;"><span class="section-label">What I'm Looking For</span></div>
     <h2 class="section-heading" style="text-align:center;">What Makes a Good Partner</h2>
     <ul class="check-list">
 {looking_html}
@@ -966,10 +966,10 @@ def render_partners():
 
 <section class="page-section" style="background:#F6F1E7;">
   <div class="container">
-    <div style="text-align:center;"><span class="section-label">Where We Need Crews</span></div>
-    <h2 class="section-heading" style="text-align:center;">Areas We're Recruiting For</h2>
+    <div style="text-align:center;"><span class="section-label">Where I Need Crews</span></div>
+    <h2 class="section-heading" style="text-align:center;">Areas I'm Recruiting For</h2>
     <div class="areas-box">
-      <p class="areas-intro">We're actively recruiting reliable crews in the cities below. Don't see yours? Apply anyway — we get moving requests from across the country and may have leads near you right now.</p>
+      <p class="areas-intro">I'm actively recruiting reliable crews in the cities below. Don't see yours? Apply anyway — I get moving requests from across the country and may have leads near you right now.</p>
 {areas_groups}
     </div>
   </div>
@@ -998,7 +998,7 @@ def render_partners():
 
     return page_shell(
         "Partner With Us | Small Movers Canada",
-        "Become a Small Movers Canada partner mover. We bring you small-move leads and "
+        "Become a Small Movers Canada partner mover. I bring you small-move leads and "
         "calls in your area for a flat $15/hr referral fee — no monthly fees, no upfront cost.",
         "https://smallmoverscanada.ca/partners/",
         body,
