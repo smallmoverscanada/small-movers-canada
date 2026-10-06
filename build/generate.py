@@ -56,6 +56,11 @@ for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burl
 # Sal (GTA) — tracking number across these GTA pages; bin forwards to Sal.
 for _slug in ["mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville"]:
     CITY_PHONE_OVERRIDES[_slug] = "365-694-5533"
+# Lower Mainland partner — tracking number across these LM pages; bin forwards to him.
+for _slug in ["vancouver", "surrey", "north-vancouver", "richmond", "langley", "port-moody",
+              "white-rock", "pitt-meadows", "port-coquitlam", "burnaby", "delta",
+              "new-westminster"]:
+    CITY_PHONE_OVERRIDES[_slug] = "236-707-8241"
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
 TEMPLATE_H1 = ('<h1>Small &amp; Hourly Movers&nbsp;in&nbsp;'
