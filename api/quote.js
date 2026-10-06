@@ -38,6 +38,13 @@ const PARTNERS = [
     email: 'fuller2008.19@gmail.com',
     cities: ['courtenay'],
   },
+  {
+    // Lower Mainland partner.
+    email: 'vasylshelever6@gmail.com',
+    cities: ['vancouver', 'surrey', 'north vancouver', 'richmond', 'langley', 'port moody',
+             'white rock', 'pitt meadows', 'port coquitlam', 'burnaby', 'delta',
+             'new westminster'],
+  },
 ];
 
 const esc = (s) =>
