@@ -721,10 +721,24 @@ PARTNER_CSS = """
 .faq-item h3 { font-size:1.05rem; color:#0E2A47; margin-bottom:6px; }
 .faq-item p { color:#5a6a7a; font-size:0.95rem; line-height:1.65; }
 .apply-wrap { max-width:560px; margin:0 auto; }
-@media (min-width:720px) { .how-grid { grid-template-columns:1fr 1fr; } }
+.leads-grid { display:grid; grid-template-columns:1fr; gap:20px; max-width:860px; margin:36px auto 0; }
+.lead-card { border:1px solid #e7eaee; border-radius:14px; padding:26px 28px; background:#fff; }
+.lead-card .ico { display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:12px; background:rgba(65,166,126,0.12); color:#41A67E; margin-bottom:14px; }
+.lead-card h3 { font-size:1.1rem; color:#0E2A47; margin-bottom:8px; }
+.lead-card p { color:#5a6a7a; font-size:0.95rem; line-height:1.65; }
+.areas-intro { margin:0 0 20px; color:#3a4f63; line-height:1.7; }
+.areas-group { margin-bottom:20px; }
+.areas-group:last-child { margin-bottom:0; }
+.areas-group h4 { font-family:'Inter',sans-serif; font-size:0.74rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#41A67E; margin-bottom:8px; }
+.areas-group ul { list-style:none; padding:0; margin:0; columns:2; }
+.areas-group li { color:#3a4f63; font-size:0.94rem; padding:3px 0; break-inside:avoid; }
+@media (min-width:560px) { .areas-group ul { columns:3; } }
+@media (min-width:720px) { .how-grid { grid-template-columns:1fr 1fr; } .leads-grid { grid-template-columns:1fr 1fr; } }
 """
 
 I_CHECK = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+I_MAIL = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>'
+I_PHONE2 = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>'
 
 PARTNER_FORM_JS = """
 <script>
@@ -757,7 +771,7 @@ PARTNER_FORM_JS = """
 def render_partners():
     steps = [
         ("1", "We bring the leads", "Our website ranks across Canada and brings in small-move requests every day. When someone in your city asks for a quote, that lead is yours."),
-        ("2", "You get matched", "Web-form requests are emailed straight to you, and we set up a dedicated local phone number that forwards right to your phone — with a quick whisper so you know it's a Small Movers Canada call."),
+        ("2", "You get matched", "You tell us the cities you can cover, and we route every lead from those pages straight to you — both web-form requests and forwarded phone calls (more on that below)."),
         ("3", "You do the move", "You run the job your way, with your own truck, equipment, and crew. You deal directly with the customer and handle the move start to finish."),
         ("4", "You get paid", "You charge the hourly rate and keep it, minus our flat $15/hr referral fee. No monthly fees, nothing upfront — you only pay on jobs we actually send you."),
     ]
@@ -793,6 +807,33 @@ def render_partners():
     faq_html = "\n".join(
         f'    <div class="faq-item"><h3>{esc(q)}</h3><p>{esc(a)}</p></div>'
         for q, a in faqs
+    )
+
+    lead_items = [
+        (I_MAIL, "Web form submissions",
+         "The moment someone requests a quote on one of your city's pages, the lead is emailed straight to you — and to us — in real time. You get the customer's name, contact details, and what they're moving, so you can reach out right away."),
+        (I_PHONE2, "Forwarded phone calls",
+         "We put a dedicated local number on your city's pages that forwards straight to your phone. Before you're connected, a short whisper lets you know it's a Small Movers Canada lead so you can answer professionally. Both you and we also get an email confirmation of every call, so each lead is tracked and verified."),
+    ]
+    leads_html = "\n".join(
+        f'      <div class="lead-card"><span class="ico">{ic}</span><h3>{esc(t)}</h3><p>{esc(d)}</p></div>'
+        for ic, t, d in lead_items
+    )
+
+    recruit_areas = [
+        ("British Columbia", ["Kelowna", "Vernon", "Penticton", "Kamloops", "Nanaimo",
+                              "Duncan", "Courtenay", "Campbell River"]),
+        ("Alberta", ["Red Deer"]),
+        ("Ontario", ["London", "Sarnia", "Windsor", "Chatham-Kent", "Oshawa", "Ajax",
+                     "Pickering", "Whitby", "Kingston", "Belleville", "Ottawa", "Nepean",
+                     "Kanata", "Sudbury", "Peterborough", "Thunder Bay"]),
+        ("Saskatchewan", ["Saskatoon", "Regina"]),
+    ]
+    areas_groups = "\n".join(
+        '      <div class="areas-group"><h4>' + esc(prov) + '</h4><ul>'
+        + "".join(f'<li>{esc(c)}</li>' for c in cities_)
+        + '</ul></div>'
+        for prov, cities_ in recruit_areas
     )
 
     apply_form = '''<div class="quote-form-card" id="apply">
@@ -846,6 +887,17 @@ def render_partners():
   </div>
 </section>
 
+<section class="page-section">
+  <div class="container">
+    <div style="text-align:center;"><span class="section-label">How Leads Reach You</span></div>
+    <h2 class="section-heading" style="text-align:center;">Two Ways the Work Comes In</h2>
+    <p style="text-align:center; color:#5a6a7a; font-size:0.98rem; max-width:620px; margin:0 auto;">Every lead from your cities reaches you directly and instantly — and both of us are notified, so nothing slips through the cracks.</p>
+    <div class="leads-grid">
+{leads_html}
+    </div>
+  </div>
+</section>
+
 <section class="page-section" style="background:#F6F1E7;">
   <div class="container">
     <div style="text-align:center;"><span class="section-label">The Fee</span></div>
@@ -876,7 +928,8 @@ def render_partners():
     <div style="text-align:center;"><span class="section-label">Where We Need Crews</span></div>
     <h2 class="section-heading" style="text-align:center;">Areas We're Recruiting For</h2>
     <div class="areas-box">
-      <p style="margin:0; color:#3a4f63; line-height:1.7;">We're actively expanding across <strong>British Columbia, Alberta, Ontario, Saskatchewan, and Manitoba</strong>, and we're always looking for reliable crews to take on more work. Don't see your city mentioned? Apply anyway — we get moving requests from across the country and may have leads near you right now.</p>
+      <p class="areas-intro">We're actively recruiting reliable crews in the cities below. Don't see yours? Apply anyway — we get moving requests from across the country and may have leads near you right now.</p>
+{areas_groups}
     </div>
   </div>
 </section>
