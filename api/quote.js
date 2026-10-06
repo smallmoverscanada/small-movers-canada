@@ -43,7 +43,7 @@ const PARTNERS = [
     email: 'vasylshelever6@gmail.com',
     cities: ['vancouver', 'surrey', 'north vancouver', 'richmond', 'langley', 'port moody',
              'white rock', 'pitt meadows', 'port coquitlam', 'burnaby', 'delta',
-             'new westminster'],
+             'new westminster', 'west vancouver'],
   },
 ];
 

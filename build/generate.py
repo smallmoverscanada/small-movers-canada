@@ -59,7 +59,7 @@ for _slug in ["mississauga", "brampton", "etobicoke", "north-york", "vaughan", "
 # Lower Mainland partner — tracking number across these LM pages; bin forwards to him.
 for _slug in ["vancouver", "surrey", "north-vancouver", "richmond", "langley", "port-moody",
               "white-rock", "pitt-meadows", "port-coquitlam", "burnaby", "delta",
-              "new-westminster"]:
+              "new-westminster", "west-vancouver"]:
     CITY_PHONE_OVERRIDES[_slug] = "236-707-8241"
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
