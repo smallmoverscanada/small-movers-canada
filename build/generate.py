@@ -52,7 +52,8 @@ CITY_PHONE_OVERRIDES = {
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
               "niagara-falls", "st-catharines",
-              "stoney-creek", "ancaster", "grimsby", "georgetown", "maple", "aurora"]:
+              "stoney-creek", "ancaster", "grimsby", "georgetown", "maple", "aurora",
+              "port-dover", "binbrook", "caledonia", "acton", "st-jacobs", "smithville"]:
     CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
 # Sal (GTA) — tracking number across these GTA pages; bin forwards to Sal.
 for _slug in ["mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville"]:
@@ -61,7 +62,9 @@ for _slug in ["mississauga", "brampton", "etobicoke", "north-york", "vaughan", "
 # $50 fuel/travel/equipment/insurance fee and a per-km charge beyond 10 km.
 ON_PARTNER_SLUGS = ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
                     "niagara-falls", "st-catharines",
-                    "mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville"]
+                    "mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville",
+                    "stoney-creek", "ancaster", "grimsby", "georgetown", "maple", "aurora",
+                    "port-dover", "binbrook", "caledonia", "acton", "st-jacobs", "smithville"]
 # Lower Mainland partner — one tracking number + his custom pricing across these pages.
 LM_SLUGS = ["vancouver", "surrey", "north-vancouver", "richmond", "langley", "port-moody",
             "white-rock", "pitt-meadows", "port-coquitlam", "burnaby", "delta",

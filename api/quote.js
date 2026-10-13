@@ -17,7 +17,8 @@ const PARTNERS = [
     cities: ['guelph', 'hamilton', 'kitchener', 'brantford', 'cambridge', 'burlington',
              'niagara falls', 'st. catharines',
              'mississauga', 'brampton', 'etobicoke', 'north york', 'vaughan', 'oakville',
-             'stoney creek', 'ancaster', 'grimsby', 'georgetown', 'maple', 'aurora'],
+             'stoney creek', 'ancaster', 'grimsby', 'georgetown', 'maple', 'aurora',
+             'port dover', 'binbrook', 'caledonia', 'acton', 'st. jacobs', 'smithville'],
   },
   {
     email: 'aaronexpressco@gmail.com',
