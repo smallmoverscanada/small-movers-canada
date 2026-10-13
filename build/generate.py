@@ -56,6 +56,11 @@ for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burl
 # Sal (GTA) — tracking number across these GTA pages; bin forwards to Sal.
 for _slug in ["mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville"]:
     CITY_PHONE_OVERRIDES[_slug] = "365-694-5533"
+# smallmovers.ontario pricing (both groups above): default hourly rates, plus a flat
+# $50 fuel/travel/equipment/insurance fee and a per-km charge beyond 10 km.
+ON_PARTNER_SLUGS = ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
+                    "niagara-falls", "st-catharines",
+                    "mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville"]
 # Lower Mainland partner — one tracking number + his custom pricing across these pages.
 LM_SLUGS = ["vancouver", "surrey", "north-vancouver", "richmond", "langley", "port-moody",
             "white-rock", "pitt-meadows", "port-coquitlam", "burnaby", "delta",
@@ -258,6 +263,13 @@ def render(template, row, blog_by_city, reviews_by_city):
                           "for 2 movers + truck (2.5 hour minimum)")
         out = out.replace("Truck, equipment &amp; insurance included",
                           "Truck, equipment, blankets &amp; basic assembly included")
+
+    # 6c. smallmovers.ontario pricing — flat fee + per-km charge instead of "included".
+    if slug in ON_PARTNER_SLUGS:
+        out = out.replace(
+            "<li>Truck, equipment &amp; insurance included</li>",
+            "<li>$50 flat fee covers fuel, travel, equipment &amp; insurance</li>\n"
+            "            <li>10 km included, then $1.50/km</li>")
 
     # 7. City reviews section — reviews tagged to this city (empty if none).
     reviews = city_reviews_section(city, reviews_by_city.get(slug.lower(), []))
