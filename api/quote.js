@@ -16,7 +16,8 @@ const PARTNERS = [
     email: 'smallmovers.ontario@gmail.com',
     cities: ['guelph', 'hamilton', 'kitchener', 'brantford', 'cambridge', 'burlington',
              'niagara falls', 'st. catharines',
-             'mississauga', 'brampton', 'etobicoke', 'north york', 'vaughan', 'oakville'],
+             'mississauga', 'brampton', 'etobicoke', 'north york', 'vaughan', 'oakville',
+             'stoney creek', 'ancaster', 'grimsby', 'georgetown', 'maple', 'aurora'],
   },
   {
     email: 'aaronexpressco@gmail.com',

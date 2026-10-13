@@ -51,7 +51,8 @@ CITY_PHONE_OVERRIDES = {
 }
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
-              "niagara-falls", "st-catharines"]:
+              "niagara-falls", "st-catharines",
+              "stoney-creek", "ancaster", "grimsby", "georgetown", "maple", "aurora"]:
     CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
 # Sal (GTA) — tracking number across these GTA pages; bin forwards to Sal.
 for _slug in ["mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville"]:
