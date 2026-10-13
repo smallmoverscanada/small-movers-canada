@@ -269,7 +269,8 @@ def render(template, row, blog_by_city, reviews_by_city):
         out = out.replace(
             "<li>Truck, equipment &amp; insurance included</li>",
             "<li>$50 flat fee covers fuel, travel, equipment &amp; insurance</li>\n"
-            "            <li>10 km included, then $1.50/km</li>")
+            "            <li>10 km included, then $1.50/km</li>\n"
+            "            <li>2.5-hour minimum waived for single-item and in-home moves</li>")
 
     # 7. City reviews section — reviews tagged to this city (empty if none).
     reviews = city_reviews_section(city, reviews_by_city.get(slug.lower(), []))
