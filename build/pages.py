@@ -218,7 +218,7 @@ PAGE_CSS = """
 .blog-meta span { display:inline-flex; align-items:center; gap:5px; }
 
 /* Blog post */
-.post-hero { max-width:900px; margin:32px auto 0; padding:0 20px; }
+.post-hero { max-width:760px; margin:32px auto 0; padding:0 20px; }
 .post-hero img { display:block; width:100%; height:auto; border-radius:14px; }
 .post-wrap { max-width:760px; margin:0 auto; padding:40px 20px 64px; }
 .post-back { display:inline-flex; align-items:center; gap:6px; font-size:0.85rem; color:#8a96a3; margin-bottom:24px; font-weight:600; }
