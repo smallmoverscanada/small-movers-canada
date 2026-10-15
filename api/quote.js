@@ -47,6 +47,12 @@ const PARTNERS = [
              'white rock', 'pitt meadows', 'port coquitlam', 'burnaby', 'delta',
              'new westminster', 'west vancouver'],
   },
+  {
+    // Brad (Oshawa / Durham area).
+    email: 'pwservices24@gmail.com',
+    cities: ['whitby', 'clarington', 'kawartha lakes', 'belleville', 'whitchurch-stouffville',
+             'ajax', 'pickering', 'peterborough', 'oshawa', 'scarborough'],
+  },
 ];
 
 const esc = (s) =>
