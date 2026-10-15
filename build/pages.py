@@ -1061,14 +1061,15 @@ def render_outreach():
 
       <h2>4. The Outreach Message (through their website form)</h2>
       <p>You won't be sending email from our account. Instead, for movers' websites that have a <strong>contact form</strong>, submit this message right through their own form.</p>
-      <p class="lead-note"><strong>In the form's fields, enter:</strong> &nbsp;Name: <em>Jordan Caron — Small Movers Canada</em> &nbsp;·&nbsp; Email: <em>[the reply address Jordan gives you]</em> &nbsp;·&nbsp; Phone: <em>[Jordan's number, if there's a field]</em> &nbsp;·&nbsp; Subject (if there's one): <em>Small moving leads in [City] — want them?</em></p>
+      <p class="lead-note"><strong>In the form's fields, enter:</strong> &nbsp;Name: <em>Jordan Caron</em> &nbsp;·&nbsp; Email: <em>info@smallmoverscanada.ca</em> &nbsp;·&nbsp; Phone: <em>[Jordan's number, if there's a field]</em> &nbsp;·&nbsp; Subject (if there's one): <em>Moving leads in [City]</em></p>
       <p>Then paste this into the message box:</p>
       <div class="script-box">
-        <p>I run Small Movers Canada. My website generates small and hourly moving leads across Canada and I want to pass them onto you. I came across your website and thought you might be a good fit.</p>
-        <p>The short version: we send you web-form requests and forwarded phone calls from your area, you do the moves with your own truck and crew, and our only fee is a flat $15/hr built into the customer's rate — no monthly cost, nothing upfront.</p>
-        <p>Here's exactly how it works: <a href="https://smallmoverscanada.ca/partners/" target="_blank" rel="noopener">https://smallmoverscanada.ca/partners/</a></p>
-        <p>If it sounds interesting, apply right on that page.</p>
-        <p class="fine">Small Movers Canada · [mailing address]</p>
+        <p><strong>Subject:</strong> Moving leads in [City]</p>
+        <p>Hey there!</p>
+        <p>I run a moving website that gets a handful of leads a month in the [City] area that I can't cover, and I'm looking for one local mover to send them to.</p>
+        <p>No cost and nothing upfront. You quote and book under your own company name, keep the customer and the payment, and send me a small referral fee only on jobs that actually close. No contracts.</p>
+        <p>If that's useful I'll start sending them your way. Interested?</p>
+        <p>Jordan Caron<br>Small Movers Canada<br>info@smallmoverscanada.ca</p>
       </div>
 
       <h3>Shorter version — for Facebook / Kijiji / Marketplace messages</h3>
