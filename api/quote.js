@@ -25,7 +25,7 @@ const PARTNERS = [
     cities: ['winnipeg'],
   },
   {
-    email: 'Regalmovinginfo@gmail.com',
+    email: 'Sugam.passi07@gmail.com',
     cities: ['edmonton'],
   },
   {
