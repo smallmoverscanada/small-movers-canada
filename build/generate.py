@@ -78,6 +78,7 @@ EDM_SLUGS = ["edmonton", "sherwood-park", "fort-saskatchewan", "leduc",
              "spruce-grove", "beaumont"]
 for _slug in EDM_SLUGS:
     RATE_OVERRIDES[_slug] = (90, 140)
+    CITY_PHONE_OVERRIDES[_slug] = "587-713-9768"  # Sugam's Edmonton-area tracking number
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
 TEMPLATE_H1 = ('<h1>Small &amp; Hourly Movers&nbsp;in&nbsp;'
