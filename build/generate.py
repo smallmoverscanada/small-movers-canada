@@ -72,6 +72,11 @@ LM_SLUGS = ["vancouver", "surrey", "north-vancouver", "richmond", "langley", "po
 for _slug in LM_SLUGS:
     CITY_PHONE_OVERRIDES[_slug] = "236-707-8241"
     RATE_OVERRIDES[_slug] = (105, 145)  # $105/hr 1 mover, $145/hr 2 movers
+# Edmonton partner (Sugam) pricing — $90/hr 1 mover, $140/hr 2 movers, 3-hour minimum,
+# plus a $75 truck & fuel fee.
+EDM_SLUGS = ["edmonton"]
+for _slug in EDM_SLUGS:
+    RATE_OVERRIDES[_slug] = (90, 140)
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
 TEMPLATE_H1 = ('<h1>Small &amp; Hourly Movers&nbsp;in&nbsp;'
@@ -277,6 +282,17 @@ def render(template, row, blog_by_city, reviews_by_city):
             "            <li>2.5-hour minimum waived for single-item and in-home moves</li>")
         out = out.replace("</span> No hidden fees</span>",
                           "</span> $50 flat travel fee</span>")
+
+    # 6d. Edmonton partner (Sugam) pricing — 3-hour minimum + $75 truck & fuel fee.
+    if slug in EDM_SLUGS:
+        out = out.replace("for 1 mover (1 hour minimum)",
+                          "for 1 mover (3 hour minimum)")
+        out = out.replace("for 2 movers (2.5 hour minimum)",
+                          "for 2 movers (3 hour minimum)")
+        out = out.replace("<li>Truck, equipment &amp; insurance included</li>",
+                          "<li>$75 truck &amp; fuel fee</li>")
+        out = out.replace("</span> No hidden fees</span>",
+                          "</span> $75 truck &amp; fuel fee</span>")
 
     # 7. City reviews section — reviews tagged to this city (empty if none).
     reviews = city_reviews_section(city, reviews_by_city.get(slug.lower(), []))
