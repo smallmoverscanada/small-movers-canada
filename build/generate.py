@@ -74,7 +74,8 @@ for _slug in LM_SLUGS:
     RATE_OVERRIDES[_slug] = (105, 145)  # $105/hr 1 mover, $145/hr 2 movers
 # Edmonton partner (Sugam) pricing — $90/hr 1 mover, $140/hr 2 movers, 3-hour minimum,
 # plus a $75 truck & fuel fee.
-EDM_SLUGS = ["edmonton"]
+EDM_SLUGS = ["edmonton", "sherwood-park", "fort-saskatchewan", "leduc",
+             "spruce-grove", "beaumont"]
 for _slug in EDM_SLUGS:
     RATE_OVERRIDES[_slug] = (90, 140)
 

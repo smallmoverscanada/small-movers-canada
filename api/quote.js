@@ -26,7 +26,8 @@ const PARTNERS = [
   },
   {
     email: 'Sugam.passi07@gmail.com',
-    cities: ['edmonton'],
+    cities: ['edmonton', 'sherwood park', 'fort saskatchewan', 'leduc',
+             'spruce grove', 'beaumont'],
   },
   {
     email: 'isaiahoforikwabena@gmail.com',
