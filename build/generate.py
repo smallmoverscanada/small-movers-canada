@@ -48,6 +48,8 @@ CITY_PHONE_OVERRIDES = {
     "victoria": "778-400-7868",
     "calgary": "587-317-9080",
     "courtenay": "778-716-0061",
+    "kelowna": "778-946-0968",
+    "vernon": "778-946-0968",
 }
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
