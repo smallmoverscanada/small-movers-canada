@@ -49,6 +49,11 @@ const PARTNERS = [
              'new westminster', 'west vancouver'],
   },
   {
+    // Kelowna / Vernon partner.
+    email: 'kelownapackers@hotmail.com',
+    cities: ['kelowna', 'vernon'],
+  },
+  {
     // Brad (Oshawa / Durham area).
     email: 'pwservices24@gmail.com',
     cities: ['whitby', 'clarington', 'kawartha lakes', 'belleville', 'whitchurch-stouffville',
