@@ -1121,6 +1121,7 @@ def build_sitemap(cities, posts):
             ("/locations/", "0.8", "weekly"),
             ("/about/", "0.6", "monthly"),
             ("/partners/", "0.5", "monthly"),
+            ("/hamilton/senior-moves/", "0.6", "monthly"),
             ("/blog/", "0.7", "weekly")]
     for prov in PROVINCE_ORDER:
         urls.append((f"/{PROVINCE_SLUG[prov]}/", "0.8", "monthly"))

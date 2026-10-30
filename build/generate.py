@@ -82,6 +82,10 @@ for _slug in EDM_SLUGS:
     RATE_OVERRIDES[_slug] = (90, 140)
     CITY_PHONE_OVERRIDES[_slug] = "587-713-9768"  # Sugam's Edmonton-area tracking number
 
+# Cities that have a dedicated Senior Moves landing page — a contextual link is
+# injected into the city page (see render()).
+SENIOR_MOVES = {"hamilton": "/hamilton/senior-moves/"}
+
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
 TEMPLATE_H1 = ('<h1>Small &amp; Hourly Movers&nbsp;in&nbsp;'
                '<span class="city-highlight">[CITY]</span></h1>')
@@ -305,6 +309,20 @@ def render(template, row, blog_by_city, reviews_by_city):
     # 8. City blog section — posts tagged to this city (empty if none).
     section = city_blog_section(city, blog_by_city.get(slug.lower(), []))
     out = out.replace("<!--CITY_BLOG_SECTION-->", section)
+
+    # 9. Contextual link to the Senior Moves page (cities that have one).
+    if slug in SENIOR_MOVES:
+        su = SENIOR_MOVES[slug]
+        banner = (
+            '<section style="background:#F6F1E7; padding:44px 20px; text-align:center;">\n'
+            '  <div class="container">\n'
+            '    <p style="color:#3a4f63; font-size:1.05rem; line-height:1.7; max-width:640px; margin:0 auto;">'
+            'Moving a parent into a retirement residence? See our '
+            f'<a href="{su}" style="color:#2c7a5b; font-weight:700;">{esc(city)} senior moves</a> page '
+            'for what is included, suite setup, rates, and a list of local residences.</p>\n'
+            '  </div>\n</section>\n\n'
+        )
+        out = out.replace('<section class="final-cta">', banner + '<section class="final-cta">', 1)
 
     return out
 

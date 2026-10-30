@@ -78,6 +78,9 @@ export default async function handler(req, res) {
     date: (b.date || '').toString().trim(),
     city: (b.city || '').toString().trim(),
     details: (b.details || '').toString().trim(),
+    // New fields appended at the END so existing sheet columns never shift.
+    residence: (b.residence || '').toString().trim(),
+    lead_type: (b.lead_type || '').toString().trim(),
   };
 
   if (!lead.name || !lead.email) {
@@ -104,6 +107,8 @@ export default async function handler(req, res) {
         ${row('Date of move', lead.date)}
         ${row('City', lead.city)}
         ${row("What they're moving", lead.details)}
+        ${lead.residence ? row('Residence', lead.residence) : ''}
+        ${lead.lead_type ? row('Lead type', lead.lead_type) : ''}
       </table>
     </div>`;
 
