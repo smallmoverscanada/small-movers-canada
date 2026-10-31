@@ -57,9 +57,9 @@ for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burl
               "stoney-creek", "ancaster", "grimsby", "georgetown", "maple", "aurora",
               "port-dover", "binbrook", "caledonia", "acton", "st-jacobs", "smithville"]:
     CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
-# Sal (GTA) — tracking number across these GTA pages; bin forwards to Sal.
+# Sal (GTA) — now on his main tracking number (replaced Rolan's retired 365-694-5533).
 for _slug in ["mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville"]:
-    CITY_PHONE_OVERRIDES[_slug] = "365-694-5533"
+    CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
 # smallmovers.ontario pricing (both groups above): default hourly rates, plus a flat
 # $50 fuel/travel/equipment/insurance fee and a per-km charge beyond 10 km.
 ON_PARTNER_SLUGS = ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
@@ -98,6 +98,16 @@ def esc(s):
 
 def tel_digits(display):
     return "+1" + re.sub(r"\D", "", display)
+
+
+def phone_paren(display):
+    """Render a dash-style number as (XXX) XXX-XXXX for meta-description snippets."""
+    d = re.sub(r"\D", "", display)
+    if len(d) == 11 and d[0] == "1":
+        d = d[1:]
+    if len(d) != 10:
+        return display
+    return f"({d[0:3]}) {d[3:6]}-{d[6:10]}"
 
 
 def build_h1(h1_heading, city_name):
@@ -244,8 +254,12 @@ def render(template, row, blog_by_city, reviews_by_city):
     out = re.sub(r"<title>.*?</title>",
                  lambda m: f"<title>{esc(row.get('meta_title'))}</title>",
                  out, count=1, flags=re.DOTALL)
+    # Swap any phone number baked into the CMS meta description for this city's
+    # real tracking number, so search snippets never advertise the wrong line.
+    meta_desc = esc(row.get("meta_description"))
+    meta_desc = re.sub(r'\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4}', phone_paren(phone), meta_desc)
     out = re.sub(r'(<meta name="description" content=")[^"]*(">)',
-                 lambda m: m.group(1) + esc(row.get("meta_description")) + m.group(2),
+                 lambda m: m.group(1) + meta_desc + m.group(2),
                  out, count=1)
 
     # 2. Hero H1 — real heading with the city name highlighted.
