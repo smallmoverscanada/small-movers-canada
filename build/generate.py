@@ -310,9 +310,17 @@ def render(template, row, blog_by_city, reviews_by_city):
     section = city_blog_section(city, blog_by_city.get(slug.lower(), []))
     out = out.replace("<!--CITY_BLOG_SECTION-->", section)
 
-    # 9. Contextual link to the Senior Moves page (cities that have one).
+    # 9. Contextual link to the Senior Moves page (cities that have one):
+    #    link the "Senior Moves" service card, plus a banner before the final CTA.
     if slug in SENIOR_MOVES:
         su = SENIOR_MOVES[slug]
+        out = out.replace(
+            '<h3>Senior Moves</h3>\n'
+            '        <p>Patient, careful movers who treat your belongings with respect.</p>',
+            '<h3>Senior Moves</h3>\n'
+            '        <p>Patient, careful movers who treat your belongings with respect. '
+            f'<a href="{su}" style="color:#2c7a5b; font-weight:700;">See our {esc(city)} senior moves page &rarr;</a></p>',
+            1)
         banner = (
             '<section style="background:#F6F1E7; padding:44px 20px; text-align:center;">\n'
             '  <div class="container">\n'
