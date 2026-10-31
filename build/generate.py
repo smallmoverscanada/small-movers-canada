@@ -70,7 +70,7 @@ ON_PARTNER_SLUGS = ["guelph", "hamilton", "kitchener", "brantford", "cambridge",
 # Lower Mainland partner — one tracking number + his custom pricing across these pages.
 LM_SLUGS = ["vancouver", "surrey", "north-vancouver", "richmond", "langley", "port-moody",
             "white-rock", "pitt-meadows", "port-coquitlam", "burnaby", "delta",
-            "new-westminster", "west-vancouver"]
+            "new-westminster", "west-vancouver", "ladner", "tsawwassen"]
 for _slug in LM_SLUGS:
     CITY_PHONE_OVERRIDES[_slug] = "236-707-8241"
     RATE_OVERRIDES[_slug] = (105, 145)  # $105/hr 1 mover, $145/hr 2 movers
@@ -82,9 +82,36 @@ for _slug in EDM_SLUGS:
     RATE_OVERRIDES[_slug] = (90, 140)
     CITY_PHONE_OVERRIDES[_slug] = "587-713-9768"  # Sugam's Edmonton-area tracking number
 
+# New ON town pages (weekly rollout) routed to Sal — his tracking number + ON pricing.
+SAL_BATCH_SLUGS = ["waterdown", "dundas", "welland", "thorold"]
+for _slug in SAL_BATCH_SLUGS:
+    CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
+ON_PARTNER_SLUGS += SAL_BATCH_SLUGS
+
 # Cities that have a dedicated Senior Moves landing page — a contextual link is
 # injected into the city page (see render()).
 SENIOR_MOVES = {"hamilton": "/hamilton/senior-moves/", "surrey": "/surrey/senior-moves/"}
+
+# Bidirectional "nearby towns we serve" cross-links (slug -> neighbouring slugs).
+# Each new town links to its neighbours, and each neighbour links back.
+NEARBY = {
+    # New batch-1 pages:
+    "ladner": ["delta", "richmond", "surrey", "tsawwassen"],
+    "tsawwassen": ["delta", "ladner", "richmond"],
+    "waterdown": ["hamilton", "burlington"],
+    "dundas": ["hamilton", "ancaster"],
+    "welland": ["st-catharines", "niagara-falls", "thorold"],
+    "thorold": ["st-catharines", "welland"],
+    # Back-links added to existing parent pages:
+    "delta": ["ladner", "tsawwassen"],
+    "richmond": ["ladner", "tsawwassen"],
+    "surrey": ["ladner"],
+    "hamilton": ["waterdown", "dundas"],
+    "burlington": ["waterdown"],
+    "ancaster": ["dundas"],
+    "st-catharines": ["welland", "thorold"],
+    "niagara-falls": ["welland"],
+}
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
 TEMPLATE_H1 = ('<h1>Small &amp; Hourly Movers&nbsp;in&nbsp;'
@@ -108,6 +135,29 @@ def phone_paren(display):
     if len(d) != 10:
         return display
     return f"({d[0:3]}) {d[3:6]}-{d[6:10]}"
+
+
+def nearby_section(slug, city_names):
+    """Render the 'Nearby towns we serve' cross-link block (empty if none)."""
+    links = []
+    for ns in NEARBY.get(slug, []):
+        name = city_names.get(ns)
+        if name:
+            links.append(
+                f'<a href="/{ns}/" style="color:#2c7a5b; font-weight:700;">'
+                f'{esc(name)} movers</a>')
+    if not links:
+        return ""
+    joined = ' &nbsp;&middot;&nbsp; '.join(links)
+    return (
+        '<section style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:760px; text-align:center;">\n'
+        '    <h2 style="margin-bottom:14px;">Nearby towns we serve</h2>\n'
+        '    <p style="color:#3a4f63; margin-bottom:22px;">Moving to or from a '
+        'neighbouring community? Our crews cover the whole area.</p>\n'
+        f'    <p style="font-size:1.05rem; line-height:2;">{joined}</p>\n'
+        '  </div>\n</section>\n\n'
+    )
 
 
 def build_h1(h1_heading, city_name):
@@ -240,7 +290,7 @@ def city_reviews_section(city_name, reviews):
     )
 
 
-def render(template, row, blog_by_city, reviews_by_city):
+def render(template, row, blog_by_city, reviews_by_city, city_names):
     city = (row.get("city_name") or "").strip()
     slug = (row.get("slug") or "").strip()
     prov = (row.get("province") or "").strip()
@@ -346,6 +396,11 @@ def render(template, row, blog_by_city, reviews_by_city):
         )
         out = out.replace('<section class="final-cta">', banner + '<section class="final-cta">', 1)
 
+    # 10. "Nearby towns we serve" cross-links (new town pages + their parents).
+    nearby = nearby_section(slug, city_names)
+    if nearby:
+        out = out.replace('<section class="final-cta">', nearby + '<section class="final-cta">', 1)
+
     return out
 
 
@@ -356,10 +411,12 @@ def main():
     cities = sorted(load_cities(), key=lambda r: r.get("slug", ""))
     blog_by_city = load_blog_by_city()
     reviews_by_city = load_reviews_by_city()
+    city_names = {(r.get("slug") or "").strip(): (r.get("city_name") or "").strip()
+                  for r in cities}
     written = 0
     for row in cities:
         slug = row["slug"].strip()
-        html_out = render(template, row, blog_by_city, reviews_by_city)
+        html_out = render(template, row, blog_by_city, reviews_by_city, city_names)
         leftover = set(re.findall(r"\[[A-Z\-]+\]", html_out))
         if leftover:
             print(f"  WARNING {slug}: unreplaced tokens {leftover}")

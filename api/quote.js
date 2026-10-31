@@ -18,7 +18,8 @@ const PARTNERS = [
              'niagara falls', 'st. catharines',
              'mississauga', 'brampton', 'etobicoke', 'north york', 'vaughan', 'oakville',
              'stoney creek', 'ancaster', 'grimsby', 'georgetown', 'maple', 'aurora',
-             'port dover', 'binbrook', 'caledonia', 'acton', 'st. jacobs', 'smithville'],
+             'port dover', 'binbrook', 'caledonia', 'acton', 'st. jacobs', 'smithville',
+             'waterdown', 'dundas', 'welland', 'thorold'],
   },
   {
     email: 'aaronexpressco@gmail.com',
@@ -46,7 +47,7 @@ const PARTNERS = [
     email: 'vasylshelever6@gmail.com',
     cities: ['vancouver', 'surrey', 'north vancouver', 'richmond', 'langley', 'port moody',
              'white rock', 'pitt meadows', 'port coquitlam', 'burnaby', 'delta',
-             'new westminster', 'west vancouver'],
+             'new westminster', 'west vancouver', 'ladner', 'tsawwassen'],
   },
   {
     // Kelowna / Vernon partner.
