@@ -84,7 +84,7 @@ for _slug in EDM_SLUGS:
 
 # Cities that have a dedicated Senior Moves landing page — a contextual link is
 # injected into the city page (see render()).
-SENIOR_MOVES = {"hamilton": "/hamilton/senior-moves/"}
+SENIOR_MOVES = {"hamilton": "/hamilton/senior-moves/", "surrey": "/surrey/senior-moves/"}
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
 TEMPLATE_H1 = ('<h1>Small &amp; Hourly Movers&nbsp;in&nbsp;'

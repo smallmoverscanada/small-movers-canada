@@ -3,10 +3,10 @@
 
 A reusable template for the senior-moves channel. Mirrors the city page shell
 (header, footer, inline styles, phone, web form, schema) and swaps in
-senior-specific content. Config-driven so copying to another partner city is
-just a new entry in CITIES. Run from the repo root: python3 build/senior_moves.py
+senior-specific, city-local content. All city specifics live in the CITIES
+config, so copying to another partner city is a new config block, not a new
+file. Run from the repo root: python3 build/senior_moves.py
 """
-import csv
 import html
 import json
 import os
@@ -92,14 +92,36 @@ PHONE_SVG = ('<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke
              '1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>')
 
 HAMILTON = {
-    "city": "Hamilton",
-    "prov": "Ontario",
-    "prov_abbr": "ON",
-    "slug": "hamilton",
-    "phone": "289-780-3118",
-    "path": "/hamilton/senior-moves/",
-    "lead_type": "senior-hamilton",
-    "nearby": "Stoney Creek, Ancaster, Dundas, and Waterdown",
+    "city": "Hamilton", "prov": "Ontario", "prov_abbr": "ON", "slug": "hamilton",
+    "phone": "289-780-3118", "path": "/hamilton/senior-moves/", "lead_type": "senior-hamilton",
+    "hero_sub": ("Careful, patient help moving a parent into a retirement residence, or downsizing "
+                 "from the family home. We handle the suite setup so day one feels like home."),
+    "who_lead": ("Later-in-life moves come with a lot of feelings and a lot of logistics. Our crew "
+                 "keeps it calm, careful, and on schedule so families can focus on the person, not "
+                 "the heavy lifting."),
+    "who_cards": [
+        ("Moving a parent into a residence",
+         "We handle the move into independent or assisted living and set the suite up so it feels like home from the first night."),
+        ("Downsizing from a family home",
+         "Going from a house to a suite means leaving a lot behind. We move what is coming and place it with care."),
+        ("Moving between suites",
+         "Changing suites or moving to a residence with more care? We make the short move simple and stress-free."),
+    ],
+    "rates_lead": ("You pay by the hour, not by the truck. A typical one-bedroom suite move is two "
+                   "movers for two to four hours, usually well under a full-service price."),
+    "rate_rows": [
+        ("One mover", "$85/hr"),
+        ("Two movers", "$140/hr"),
+        ("Flat fee (fuel, travel, equipment & insurance)", "$50"),
+        ("First 10 km included, then", "$1.50/km"),
+    ],
+    "rate_note": ("A 2.5-hour minimum applies to a two-mover crew, and it is waived for single-item "
+                  "and in-suite moves. We give you an honest time estimate before the day so there "
+                  "are no surprises."),
+    "resource_heading": "Retirement Residences in Hamilton",
+    "resource_intro": ("A helpful starting point if you are still comparing options. These are "
+                       "independent and assisted living residences in Hamilton and nearby Stoney "
+                       "Creek, Ancaster, Dundas, and Waterdown. We are not affiliated with any of them."),
     "residences": [
         ("Amica Dundas", "Dundas",
          "Independent living, assisted living, and memory care at 50 Hatt Street in Dundas.",
@@ -132,6 +154,14 @@ HAMILTON = {
          "Independent and assisted living at 118 Market Street in downtown Hamilton.",
          "https://www.caroline-place.com"),
     ],
+    "tips": [
+        "Measure the suite and your key furniture first, so you know what will fit before moving day.",
+        "Ask the residence for their move-in rules, elevator booking, and any insurance they require from movers.",
+        "Label furniture and boxes with where they go in the new suite, so setup is quick.",
+        "Keep a small bag of daily essentials and medications with you, not on the truck.",
+        "Downsize before the move, not after, so you only move what fits the new space.",
+        "Plan the first night: bed made, medications, glasses, and chargers easy to reach.",
+    ],
     "faqs": [
         ("How long does a suite move take?",
          "Most moves into a retirement suite take two movers about two to four hours, depending on how much is coming and the access at both ends. We give you an honest time estimate before the day."),
@@ -148,40 +178,117 @@ HAMILTON = {
     ],
 }
 
+SURREY = {
+    "city": "Surrey", "prov": "British Columbia", "prov_abbr": "BC", "slug": "surrey",
+    "phone": "236-707-8241", "path": "/surrey/senior-moves/", "lead_type": "senior-surrey",
+    "hero_sub": ("Careful, patient help moving a parent into a South Surrey or White Rock residence, "
+                 "or downsizing from a longtime family home or townhouse. Our crew handles the suite "
+                 "setup so day one feels like home."),
+    "who_lead": ("A later-in-life move across the Peninsula comes with a lot of feelings and a lot of "
+                 "logistics. Our crew keeps it calm and on schedule, so families can focus on the "
+                 "person and not the heavy lifting."),
+    "who_cards": [
+        ("Moving a parent into a residence",
+         "We handle the move into an independent or assisted living residence in Surrey or White Rock, and set the suite up so it feels like home the first night."),
+        ("Downsizing from a house or townhouse",
+         "Leaving a longtime family home in Surrey or Delta means leaving a lot behind. We move what is coming and place it with care."),
+        ("Moving between suites",
+         "Changing suites, or moving to a residence with more care on the Peninsula? We make the short move simple and stress-free."),
+    ],
+    "rates_lead": ("You pay by the hour, not by the truck. A typical one-bedroom suite move is two "
+                   "movers for two to four hours, usually well under a full-service price."),
+    "rate_rows": [
+        ("One mover", "$105/hr"),
+        ("Two movers plus truck", "$145/hr"),
+    ],
+    "rate_note": ("A 2-hour minimum applies for one mover, and a 2.5-hour minimum for two movers. "
+                  "Your rate includes the truck, moving equipment, blankets, and basic disassembly "
+                  "and reassembly, so there are no surprise add-ons. We give you an honest time "
+                  "estimate before the day."),
+    "resource_heading": "Retirement Residences in Surrey and White Rock",
+    "resource_intro": ("A helpful starting point if you are still comparing options. These are "
+                       "independent and assisted living residences across Surrey and White Rock, "
+                       "from South Surrey and the Peninsula to Fleetwood, Newton, Cloverdale, and "
+                       "City Centre. We are not affiliated with any of them."),
+    "residences": [
+        ("Amica White Rock", "White Rock",
+         "Independent and assisted living at 15333 16th Avenue in White Rock.",
+         "https://amica.ca/white-rock"),
+        ("Oceana PARC", "White Rock",
+         "Independent living in uptown White Rock at 1575 George Street.",
+         "https://www.parcliving.ca"),
+        ("Chartwell Crescent Gardens", "South Surrey",
+         "Independent and assisted living near White Rock, just off Highway 99 in South Surrey.",
+         "https://chartwell.com/bc/surrey/crescent-gardens"),
+        ("Aspira Pacifica Retirement Residence", "South Surrey",
+         "Independent and assisted living at 2525 King George Boulevard in South Surrey.",
+         "https://www.aspiralife.ca/our-locations/british-columbia/surrey/aspira-pacifica-retirement-living/"),
+        ("Aspira Peninsula Retirement Residence", "South Surrey",
+         "Independent and assisted living at 2088 152nd Street in South Surrey.",
+         "https://www.aspiralife.ca/our-locations/british-columbia/surrey/aspira-peninsula-retirement-living/"),
+        ("Whitecliff", "South Surrey",
+         "Independent and assisted living at 15501 16th Avenue in South Surrey.",
+         "https://www.cogirseniorliving.ca/retirement-home-south-surrey-british-columbia/whitecliff"),
+        ("Venvi Fleetwood Villa", "Fleetwood",
+         "Independent and assisted living in the Fleetwood area of Surrey.",
+         "https://www.cogirseniorliving.ca/retirement-home-surrey-british-columbia/venvi-fleetwood-villa"),
+        ("Chartwell Imperial Place", "City Centre",
+         "Independent and assisted living at 13853 102nd Avenue in Surrey City Centre.",
+         "https://chartwell.com/bc/surrey/imperial-place"),
+        ("Arbourside Court", "Newton",
+         "Independent living with supportive services at 13751 74th Avenue in Newton.",
+         "https://arbourside.com"),
+        ("Bethshan Gardens", "Cloverdale",
+         "Independent living, a non-profit residence at 17528 59th Avenue in Cloverdale.",
+         "https://www.bethshangardens.org"),
+    ],
+    "tips": [
+        "Measure the suite and your key furniture first. Peninsula residences often have smaller one-bedroom and studio suites than a Surrey house or townhouse.",
+        "Ask the residence for their move-in rules, elevator or loading-bay booking, and any insurance they require from movers.",
+        "Label furniture and boxes with where they go in the new suite, so setup is quick.",
+        "Downsize before the move, not after, so you only move what fits the new space.",
+        "Keep a small bag of daily essentials and medications with you, not on the truck.",
+        "Plan around traffic. Moves from North Surrey or Delta into South Surrey and White Rock go smoother outside the morning and afternoon rush.",
+    ],
+    "faqs": [
+        ("How long does a suite move take?",
+         "Most moves into a retirement suite take two movers about two to four hours, depending on how much is coming and the access at both ends. We give you an honest time estimate before the day."),
+        ("Do you set up the bed in the new suite?",
+         "Yes. Our crew places your furniture where you want it and reassembles beds and basic furniture, so the suite is ready to settle into the same day."),
+        ("Can you coordinate with the residence's move-in day?",
+         "Yes. We work around the residence's assigned move-in window and their elevator or loading-bay booking, which many Surrey and White Rock buildings require."),
+        ("Is there a minimum charge?",
+         "Our Surrey rate has a 2-hour minimum for one mover and a 2.5-hour minimum for two movers, so a smaller suite move does not cost you a big minimum."),
+        ("Which areas do you cover?",
+         "We cover Surrey and White Rock, including South Surrey, Fleetwood, Guildford, Newton, Cloverdale, and City Centre, plus nearby Delta and Langley, whether the move is across town or from a family home into a residence."),
+        ("How far in advance should we book?",
+         "A week or two of notice is ideal, especially near month-end. We can often help on shorter notice, so it is always worth a call."),
+    ],
+}
+
 
 def build_schema(cfg, canonical):
     faq_entities = [{
-        "@type": "Question",
-        "name": q,
+        "@type": "Question", "name": q,
         "acceptedAnswer": {"@type": "Answer", "text": a},
     } for q, a in cfg["faqs"]]
-
     graph = [
         {
-            "@type": "MovingCompany",
-            "name": "Small Movers Canada",
+            "@type": "MovingCompany", "name": "Small Movers Canada",
             "description": ("Senior moving help in %s, %s. Careful, patient crews for retirement "
                             "residence and suite moves." % (cfg["city"], cfg["prov"])),
-            "url": canonical,
-            "telephone": cfg["phone"],
-            "priceRange": "$$",
-            "areaServed": {
-                "@type": "City", "name": cfg["city"],
-                "containedInPlace": {"@type": "AdministrativeArea", "name": cfg["prov"]},
-            },
-            "address": {
-                "@type": "PostalAddress", "addressLocality": cfg["city"],
-                "addressRegion": cfg["prov_abbr"], "addressCountry": "CA",
-            },
+            "url": canonical, "telephone": cfg["phone"], "priceRange": "$$",
+            "areaServed": {"@type": "City", "name": cfg["city"],
+                           "containedInPlace": {"@type": "AdministrativeArea", "name": cfg["prov"]}},
+            "address": {"@type": "PostalAddress", "addressLocality": cfg["city"],
+                        "addressRegion": cfg["prov_abbr"], "addressCountry": "CA"},
             "image": BASE + "/assets/logo-icon.png",
         },
         {
-            "@type": "Service",
-            "name": "Senior Moves in %s" % cfg["city"],
+            "@type": "Service", "name": "Senior Moves in %s" % cfg["city"],
             "serviceType": "Senior and retirement residence moving",
             "provider": {"@type": "MovingCompany", "name": "Small Movers Canada", "telephone": cfg["phone"]},
-            "areaServed": {"@type": "City", "name": cfg["city"]},
-            "url": canonical,
+            "areaServed": {"@type": "City", "name": cfg["city"]}, "url": canonical,
             "description": ("Moving seniors into retirement residences and between suites in %s and "
                             "nearby communities, with furniture placement and bed setup included." % cfg["city"]),
         },
@@ -201,55 +308,52 @@ def build_schema(cfg, canonical):
 def render(cfg):
     city = cfg["city"]
     phone = cfg["phone"]
-    tel = tel_digits(phone)
     canonical = BASE + cfg["path"]
     title = "Senior Movers in %s | Retirement Residence Moves | Small Movers Canada" % city
     meta = ("Senior moves in %s. Careful, patient crews for retirement residence and suite moves, "
             "with furniture placement and bed setup. Call %s for a free quote." % (city, phone))
 
-    # Residence resource list
-    res_cards = []
-    for name, comm, desc, url in cfg["residences"]:
-        res_cards.append(
-            '      <div class="res-card">\n'
-            '        <div class="res-head"><h3>%s</h3><span class="res-comm">%s</span></div>\n'
-            '        <p>%s</p>\n'
-            '        <a class="res-link" href="%s" target="_blank" rel="noopener">Visit official site &rarr;</a>\n'
-            '      </div>' % (esc(name), esc(comm), esc(desc), esc(url))
-        )
-    res_html = "\n".join(res_cards)
-
-    faq_html = "\n".join(
+    who_cards = "\n".join(
+        '      <div class="sr-card">\n        <h3>%s</h3>\n        <p>%s</p>\n      </div>' % (esc(t), esc(b))
+        for t, b in cfg["who_cards"])
+    rate_rows = "\n".join(
+        '      <div class="rate-row"><span class="rate-lbl">%s</span><span class="rate-num">%s</span></div>'
+        % (esc(l), esc(v)) for l, v in cfg["rate_rows"])
+    rate_note = '      <p class="rate-note">%s</p>' % esc(cfg["rate_note"])
+    tips = "\n".join('      <li>%s</li>' % esc(t) for t in cfg["tips"])
+    res_cards = "\n".join(
+        '      <div class="res-card">\n'
+        '        <div class="res-head"><h3>%s</h3><span class="res-comm">%s</span></div>\n'
+        '        <p>%s</p>\n'
+        '        <a class="res-link" href="%s" target="_blank" rel="noopener">Visit official site &rarr;</a>\n'
+        '      </div>' % (esc(n), esc(comm), esc(d), esc(u))
+        for n, comm, d, u in cfg["residences"])
+    faq_items = "\n".join(
         '      <div class="item"><h3>%s</h3><p>%s</p></div>' % (esc(q), esc(a))
-        for q, a in cfg["faqs"]
-    )
+        for q, a in cfg["faqs"])
 
-    schema = build_schema(cfg, canonical)
-    shared = shared_style()
-
+    repl = {
+        "{{TITLE}}": esc(title), "{{META}}": esc(meta), "{{CANONICAL}}": canonical, "{{GTM}}": GTM,
+        "{{SHARED_STYLE}}": shared_style(), "{{SENIOR_CSS}}": SENIOR_CSS,
+        "{{SCHEMA}}": build_schema(cfg, canonical),
+        "{{CITY}}": esc(city), "{{CITY_SLUG}}": cfg["slug"], "{{LEAD_TYPE}}": esc(cfg["lead_type"]),
+        "{{HERO_SUB}}": esc(cfg["hero_sub"]), "{{WHO_LEAD}}": esc(cfg["who_lead"]),
+        "{{WHO_CARDS}}": who_cards, "{{RATES_LEAD}}": esc(cfg["rates_lead"]),
+        "{{RATE_ROWS}}": rate_rows, "{{RATE_NOTE}}": rate_note,
+        "{{RESOURCE_HEADING}}": esc(cfg["resource_heading"]), "{{RESOURCE_INTRO}}": esc(cfg["resource_intro"]),
+        "{{RES_CARDS}}": res_cards, "{{TIPS}}": tips, "{{FAQ_ITEMS}}": faq_items,
+        "{{RES_PLACEHOLDER}}": esc(cfg["residences"][0][0]),
+        "{{PHONE_SVG}}": PHONE_SVG, "{{CHECK}}": CHECK,
+    }
     page = PAGE_TEMPLATE
-    page = page.replace("{{TITLE}}", esc(title))
-    page = page.replace("{{META}}", esc(meta))
-    page = page.replace("{{CANONICAL}}", canonical)
-    page = page.replace("{{GTM}}", GTM)
-    page = page.replace("{{SHARED_STYLE}}", shared)
-    page = page.replace("{{SENIOR_CSS}}", SENIOR_CSS)
-    page = page.replace("{{SCHEMA}}", schema)
-    page = page.replace("{{CITY}}", esc(city))
-    page = page.replace("{{NEARBY}}", esc(cfg["nearby"]))
-    page = page.replace("{{CITY_SLUG}}", cfg["slug"])
-    page = page.replace("{{LEAD_TYPE}}", esc(cfg["lead_type"]))
-    page = page.replace("{{RES_CARDS}}", res_html)
-    page = page.replace("{{FAQ_ITEMS}}", faq_html)
-    page = page.replace("{{PHONE_SVG}}", PHONE_SVG)
-    page = page.replace("{{CHECK}}", CHECK)
-    page = page.replace("{{TEL}}", tel)
-    page = page.replace("[PHONE]", esc(phone))  # header/footer phone tokens
+    for k, v in repl.items():
+        page = page.replace(k, v)
+    page = page.replace("[PHONE]", esc(phone))  # header/footer/CTA phone tokens
     return page
 
 
-# NOTE: kept as a plain string (not an f-string) so CSS/JS braces and [PHONE]
-# tokens pass through untouched; substitution is done with .replace above.
+# Plain string (not an f-string) so CSS/JS braces and [PHONE] tokens pass through
+# untouched; all substitution is done with .replace in render().
 PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -313,7 +417,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="hero-text">
       <span class="hero-badge">Serving {{CITY}} &amp; nearby communities</span>
       <h1>Senior Moves&nbsp;in&nbsp;<span class="city-highlight">{{CITY}}</span></h1>
-      <p class="hero-subtitle">Careful, patient help moving a parent into a retirement residence, or downsizing from the family home. We handle the suite setup so day one feels like home.</p>
+      <p class="hero-subtitle">{{HERO_SUB}}</p>
       <a href="tel:[PHONE]" class="hero-cta-btn">
         {{PHONE_SVG}}
         Call Now: [PHONE]
@@ -353,7 +457,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div class="form-field" style="margin-bottom: 12px;">
           <label for="residence">Which residence are you moving into? (optional)</label>
-          <input type="text" id="residence" name="residence" placeholder="e.g. Amica Dundas">
+          <input type="text" id="residence" name="residence" placeholder="e.g. {{RES_PLACEHOLDER}}">
         </div>
         <div class="form-field" style="margin-bottom: 12px;">
           <label for="city-field">City</label>
@@ -379,20 +483,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="container">
     <div style="text-align:center;"><span class="section-label">Who It's For</span></div>
     <h2 class="section-heading" style="text-align:center;">Senior Moves, Made Gentle</h2>
-    <p class="sr-lead">Later-in-life moves come with a lot of feelings and a lot of logistics. Our crew keeps it calm, careful, and on schedule so families can focus on the person, not the heavy lifting.</p>
+    <p class="sr-lead">{{WHO_LEAD}}</p>
     <div class="sr-grid3">
-      <div class="sr-card">
-        <h3>Moving a parent into a residence</h3>
-        <p>We handle the move into independent or assisted living and set the suite up so it feels like home from the first night.</p>
-      </div>
-      <div class="sr-card">
-        <h3>Downsizing from a family home</h3>
-        <p>Going from a house to a suite means leaving a lot behind. We move what is coming and place it with care.</p>
-      </div>
-      <div class="sr-card">
-        <h3>Moving between suites</h3>
-        <p>Changing suites or moving to a residence with more care? We make the short move simple and stress-free.</p>
-      </div>
+{{WHO_CARDS}}
     </div>
   </div>
 </section>
@@ -418,13 +511,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="container">
     <div style="text-align:center;"><span class="section-label">Simple Rates</span></div>
     <h2 class="section-heading" style="text-align:center;">What a Suite Move Costs</h2>
-    <p class="sr-lead">You pay by the hour, not by the truck. A typical one-bedroom suite move is two movers for two to four hours, usually well under a full-service price.</p>
+    <p class="sr-lead">{{RATES_LEAD}}</p>
     <div class="sr-rate">
-      <div class="rate-row"><span class="rate-lbl">One mover</span><span class="rate-num">$85/hr</span></div>
-      <div class="rate-row"><span class="rate-lbl">Two movers</span><span class="rate-num">$140/hr</span></div>
-      <div class="rate-row"><span class="rate-lbl">Flat fee (fuel, travel, equipment &amp; insurance)</span><span class="rate-num">$50</span></div>
-      <div class="rate-row"><span class="rate-lbl">First 10 km included, then</span><span class="rate-num">$1.50/km</span></div>
-      <p class="rate-note">A 2.5-hour minimum applies to a two-mover crew, and it is waived for single-item and in-suite moves. We give you an honest time estimate before the day so there are no surprises.</p>
+{{RATE_ROWS}}
+{{RATE_NOTE}}
     </div>
   </div>
 </section>
@@ -447,8 +537,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <section class="sr-section">
   <div class="container">
     <div style="text-align:center;"><span class="section-label">Local Resource</span></div>
-    <h2 class="section-heading" style="text-align:center;">Retirement Residences in {{CITY}}</h2>
-    <p class="sr-lead">A helpful starting point if you are still comparing options. These are independent and assisted living residences in {{CITY}} and nearby {{NEARBY}}. We are not affiliated with any of them.</p>
+    <h2 class="section-heading" style="text-align:center;">{{RESOURCE_HEADING}}</h2>
+    <p class="sr-lead">{{RESOURCE_INTRO}}</p>
     <div class="res-list">
 {{RES_CARDS}}
     </div>
@@ -462,12 +552,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div style="text-align:center;"><span class="section-label">Helpful Tips</span></div>
     <h2 class="section-heading" style="text-align:center;">Moving a Parent Into a Residence</h2>
     <ul class="sr-tips">
-      <li>Measure the suite and your key furniture first, so you know what will fit before moving day.</li>
-      <li>Ask the residence for their move-in rules, elevator booking, and any insurance they require from movers.</li>
-      <li>Label furniture and boxes with where they go in the new suite, so setup is quick.</li>
-      <li>Keep a small bag of daily essentials and medications with you, not on the truck.</li>
-      <li>Downsize before the move, not after, so you only move what fits the new space.</li>
-      <li>Plan the first night: bed made, medications, glasses, and chargers easy to reach.</li>
+{{TIPS}}
     </ul>
   </div>
 </section>
@@ -560,7 +645,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </html>
 """
 
-CITIES = [HAMILTON]
+CITIES = [HAMILTON, SURREY]
 
 
 def main():
