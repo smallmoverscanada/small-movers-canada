@@ -50,7 +50,7 @@ const PARTNERS = [
   },
   {
     // Kelowna / Vernon partner.
-    email: 'kelownapackers@hotmail.com',
+    email: 'sheakearns77@gmail.com',
     cities: ['kelowna', 'vernon'],
   },
   {
