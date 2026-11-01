@@ -46,8 +46,9 @@ const PARTNERS = [
     // Lower Mainland partner.
     email: 'vasylshelever6@gmail.com',
     cities: ['vancouver', 'surrey', 'north vancouver', 'richmond', 'langley', 'port moody',
-             'white rock', 'pitt meadows', 'port coquitlam', 'burnaby', 'delta',
-             'new westminster', 'west vancouver', 'ladner', 'tsawwassen'],
+             'white rock', 'pitt meadows', 'coquitlam', 'port coquitlam', 'burnaby', 'delta',
+             'new westminster', 'west vancouver', 'ladner', 'tsawwassen', 'abbotsford',
+             'maple ridge'],
   },
   {
     // Kelowna / Vernon partner.

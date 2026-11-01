@@ -70,8 +70,9 @@ ON_PARTNER_SLUGS = ["guelph", "hamilton", "kitchener", "brantford", "cambridge",
                     "port-dover", "binbrook", "caledonia", "acton", "st-jacobs", "smithville"]
 # Lower Mainland partner — one tracking number + his custom pricing across these pages.
 LM_SLUGS = ["vancouver", "surrey", "north-vancouver", "richmond", "langley", "port-moody",
-            "white-rock", "pitt-meadows", "port-coquitlam", "burnaby", "delta",
-            "new-westminster", "west-vancouver", "ladner", "tsawwassen"]
+            "white-rock", "pitt-meadows", "coquitlam", "port-coquitlam", "burnaby", "delta",
+            "new-westminster", "west-vancouver", "ladner", "tsawwassen", "abbotsford",
+            "maple-ridge"]
 for _slug in LM_SLUGS:
     CITY_PHONE_OVERRIDES[_slug] = "236-707-8241"
     RATE_OVERRIDES[_slug] = (105, 145)  # $105/hr 1 mover, $145/hr 2 movers
