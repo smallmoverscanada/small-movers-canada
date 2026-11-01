@@ -50,6 +50,7 @@ CITY_PHONE_OVERRIDES = {
     "courtenay": "778-716-0061",
     "kelowna": "778-946-0968",
     "vernon": "778-946-0968",
+    "kingston": "343-600-4428",  # Bill (eastern ON) — Twilio tracking number
 }
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",

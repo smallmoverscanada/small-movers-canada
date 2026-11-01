@@ -55,6 +55,11 @@ const PARTNERS = [
     cities: ['kelowna', 'vernon'],
   },
   {
+    // Bill — Kingston (eastern Ontario).
+    email: 'Billclouthier@gmail.com',
+    cities: ['kingston'],
+  },
+  {
     // Brad (Oshawa / Durham area).
     email: 'pwservices24@gmail.com',
     cities: ['whitby', 'clarington', 'kawartha lakes', 'belleville', 'whitchurch-stouffville',
