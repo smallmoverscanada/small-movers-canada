@@ -7,6 +7,7 @@ to <slug>/index.html. Run from the repo root: python3 build/generate.py
 """
 import csv
 import html
+import json
 import os
 import re
 from urllib.parse import urlparse
@@ -113,6 +114,9 @@ NEARBY = {
     "ancaster": ["dundas"],
     "st-catharines": ["welland", "thorold"],
     "niagara-falls": ["welland"],
+    # Vancouver -> Lower Mainland neighbours (SEO internal linking).
+    "vancouver": ["burnaby", "north-vancouver", "west-vancouver",
+                  "new-westminster", "coquitlam", "delta"],
 }
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
@@ -292,6 +296,122 @@ def city_reviews_section(city_name, reviews):
     )
 
 
+# ---------------------------------------------------------------------------
+# Page-specific SEO blocks (hand-written, injected only on the slugs listed).
+# Injected AFTER the generic rate swaps in render(), so the literal rates in
+# this copy are preserved exactly as written.
+# ---------------------------------------------------------------------------
+
+# Custom H2 content block, injected at <!--CITY_SEO_SECTION-->.
+SEO_SECTIONS = {
+    "kitchener": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Local Movers in Kitchener &amp; Waterloo</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">We are local movers '
+        'serving Kitchener, Waterloo, Cambridge and the Guelph area. Our crews know the region, '
+        'from downtown Kitchener apartments to Uptown Waterloo condos and the student '
+        'neighbourhoods near the universities. Because we charge by the hour with a right-sized '
+        'crew, a small move across town does not cost what a full-service van line charges.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Moving a little further out? We also cover '
+        '<a href="/cambridge/" style="color:#2c7a5b; font-weight:700;">Cambridge movers</a> and '
+        '<a href="/guelph/" style="color:#2c7a5b; font-weight:700;">Guelph movers</a>, with the '
+        'same hourly pricing and small-move focus.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "vancouver": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Affordable Small Moves in Vancouver</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">Small moves cost less '
+        'with us because we do not send a five-ton truck and a four-person crew for a job that does '
+        'not need one. You get a right-sized crew, an hourly rate of $105/hr for one mover or '
+        '$145/hr for two movers plus a truck, and a low minimum, so you only pay for the time your '
+        'move actually takes.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">That is what keeps a studio, apartment or '
+        'single-item move in Vancouver genuinely affordable: no big-truck overhead and no padded '
+        'estimates, just honest hourly pricing.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+}
+
+# FAQ items per slug: (question, answer). Injected at <!--CITY_FAQ_SECTION-->
+# as both a visible section and FAQPage JSON-LD.
+FAQS = {
+    "kitchener": [
+        ("How much do movers cost in Kitchener?",
+         "Our small moves start at $85/hr for one mover and $140/hr for two movers. A $50 flat fee "
+         "covers fuel, travel, equipment and insurance, with 10 km included and $1.50/km after that."),
+        ("Is there a minimum number of hours?",
+         "Two movers have a 2.5-hour minimum, which we waive for single-item and in-home moves. One "
+         "mover starts at a 1-hour minimum."),
+        ("Can you move a single item?",
+         "Yes. Single-item moves such as a couch, a fridge or an appliance are one of the most common "
+         "jobs we do, and the 2.5-hour minimum is waived for them."),
+        ("Do you move on weekends?",
+         "Yes. We book 7 days a week, including evenings and weekends, subject to availability."),
+        ("How quickly can I book a move?",
+         "Often same-day or next-day, depending on the schedule. Send a quick quote request and we "
+         "will confirm the soonest slot."),
+    ],
+    "vancouver": [
+        ("How much do cheap movers cost in Vancouver?",
+         "Our small moves are $105/hr for one mover and $145/hr for two movers plus a truck. You pay "
+         "by the hour with no big-truck overhead, which keeps a small move affordable."),
+        ("Is there a minimum number of hours?",
+         "One mover has a 2-hour minimum. Two movers plus a truck have a 2.5-hour minimum."),
+        ("Can you move just one item?",
+         "Yes. Single pieces like a couch, a bed or an appliance are a common job for our right-sized "
+         "crews."),
+        ("Do you offer same-day moves in Vancouver?",
+         "Often yes, depending on the day's schedule. Send a quote request and we will confirm the "
+         "soonest availability."),
+    ],
+}
+
+
+def seo_section(slug):
+    """Hand-written SEO H2 block for a specific page (empty if none)."""
+    return SEO_SECTIONS.get(slug, "")
+
+
+def faq_section(slug):
+    """Visible FAQ section + FAQPage JSON-LD for a specific page (empty if none)."""
+    items = FAQS.get(slug)
+    if not items:
+        return ""
+    cards = []
+    for q, a in items:
+        cards.append(
+            '      <div style="margin-bottom:26px;">\n'
+            f'        <h3 style="margin-bottom:8px; color:#0E2A47;">{esc(q)}</h3>\n'
+            f'        <p style="color:#3a4f63; line-height:1.7;">{esc(a)}</p>\n'
+            '      </div>'
+        )
+    body = "\n".join(cards)
+    jsonld = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": q,
+             "acceptedAnswer": {"@type": "Answer", "text": a}}
+            for q, a in items
+        ],
+    }
+    script = json.dumps(jsonld, ensure_ascii=False, indent=2)
+    return (
+        '<section class="faq" id="faq" style="padding:64px 20px; background:#F6F1E7;">\n'
+        '  <div class="container" style="max-width:760px;">\n'
+        '    <h2 class="section-heading" style="text-align:center;">Frequently Asked Questions</h2>\n'
+        '    <div style="margin-top:32px;">\n'
+        f'{body}\n'
+        '    </div>\n'
+        '  </div>\n'
+        f'  <script type="application/ld+json">\n{script}\n  </script>\n'
+        '</section>\n\n'
+    )
+
+
 def render(template, row, blog_by_city, reviews_by_city, city_names):
     city = (row.get("city_name") or "").strip()
     slug = (row.get("slug") or "").strip()
@@ -402,6 +522,14 @@ def render(template, row, blog_by_city, reviews_by_city, city_names):
     nearby = nearby_section(slug, city_names)
     if nearby:
         out = out.replace('<section class="final-cta">', nearby + '<section class="final-cta">', 1)
+
+    # 11. Hand-written SEO section + FAQ (specific pages only). Done after the
+    #     rate swaps so the literal rates in this copy are preserved. The markers
+    #     are consumed together with their surrounding newlines so pages without
+    #     a block are byte-identical to the pre-feature output (no diff noise).
+    seo = seo_section(slug)
+    out = out.replace("\n\n<!--CITY_SEO_SECTION-->", ("\n\n" + seo) if seo else "")
+    out = out.replace("<!--CITY_FAQ_SECTION-->\n", faq_section(slug))
 
     return out
 
