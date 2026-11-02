@@ -21,7 +21,7 @@ PROVINCE_PHONE = {
     "BC": "236-506-5898",
     "AB": "587-602-9862",
     "ON": "289-800-2197",
-    "SK": "639-638-8439",
+    "SK": "639-391-7969",
     "MB": "431-441-8631",
 }
 PROVINCE_FULL = {"BC": "British Columbia", "AB": "Alberta", "ON": "Ontario",

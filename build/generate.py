@@ -23,7 +23,7 @@ PROVINCE_PHONE = {
     "BC": "236-506-5898",
     "AB": "587-602-9862",
     "ON": "289-800-2197",
-    "SK": "639-638-8439",
+    "SK": "639-391-7969",
     "MB": "431-441-8631",
 }
 
@@ -52,6 +52,7 @@ CITY_PHONE_OVERRIDES = {
     "kelowna": "778-946-0968",
     "vernon": "778-946-0968",
     "kingston": "343-600-4428",  # Bill (eastern ON) — Twilio tracking number
+    "saskatoon": "639-638-8439",  # Trigo (Meshack) — existing Saskatoon line (kept; SK default moved to the new Twilio)
 }
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",

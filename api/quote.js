@@ -61,6 +61,15 @@ const PARTNERS = [
     cities: ['kingston'],
   },
   {
+    // Trigo Logistics (Meshack) — Saskatoon. Leads go to both addresses.
+    email: 'Triglologistics@gmail.com',
+    cities: ['saskatoon'],
+  },
+  {
+    email: 'appiahmeshack8@gmail.com',
+    cities: ['saskatoon'],
+  },
+  {
     // Brad (Oshawa / Durham area).
     email: 'pwservices24@gmail.com',
     cities: ['whitby', 'clarington', 'kawartha lakes', 'belleville', 'whitchurch-stouffville',
