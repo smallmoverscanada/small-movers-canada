@@ -22,17 +22,9 @@ const PARTNERS = [
              'waterdown', 'dundas', 'welland', 'thorold'],
   },
   {
-    email: 'aaronexpressco@gmail.com',
-    cities: ['winnipeg'],
-  },
-  {
     email: 'Sugam.passi07@gmail.com',
     cities: ['edmonton', 'sherwood park', 'fort saskatchewan', 'leduc',
              'spruce grove', 'beaumont'],
-  },
-  {
-    email: 'isaiahoforikwabena@gmail.com',
-    cities: ['barrie'],
   },
   {
     email: 'cargovanlogistics@gmail.com',
