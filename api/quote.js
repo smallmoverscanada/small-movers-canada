@@ -53,13 +53,13 @@ const PARTNERS = [
     cities: ['kingston'],
   },
   {
-    // Trigo Logistics (Meshack) — Saskatoon. Leads go to both addresses.
+    // Trigo Logistics (Meshack) — Saskatoon + satellites. Leads go to both addresses.
     email: 'Triglologistics@gmail.com',
-    cities: ['saskatoon'],
+    cities: ['saskatoon', 'warman', 'martensville'],
   },
   {
     email: 'appiahmeshack8@gmail.com',
-    cities: ['saskatoon'],
+    cities: ['saskatoon', 'warman', 'martensville'],
   },
   {
     // Khalil (Sairon Logistics) — Barrie / Simcoe corridor (Newmarket to follow once that page is built).

@@ -62,6 +62,8 @@ CITY_PHONE_OVERRIDES = {
     "orillia": "249-444-6102",   # Khalil — shares the Barrie tracking line (src=BAR)
     "bradford": "249-444-6102",  # Khalil — shares the Barrie tracking line (src=BAR)
     "newmarket": "249-444-6102",  # Khalil — shares the Barrie tracking line (src=BAR)
+    "warman": "639-638-8439",       # Trigo (Meshack) — shares the Saskatoon line
+    "martensville": "639-638-8439", # Trigo (Meshack) — shares the Saskatoon line
 }
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
@@ -134,6 +136,14 @@ NEARBY = {
     "orillia": ["barrie", "innisfil"],
     "bradford": ["barrie", "newmarket", "innisfil"],
     "newmarket": ["bradford", "barrie"],
+    # Trigo (Meshack) — Saskatoon satellites.
+    "warman": ["saskatoon", "martensville"],
+    "martensville": ["saskatoon", "warman"],
+    "saskatoon": ["warman", "martensville"],
+    # Brad (Durham) — broad-SEO trial pages.
+    "oshawa": ["whitby", "ajax", "pickering"],
+    "ajax": ["pickering", "whitby", "oshawa"],
+    "kawartha-lakes": ["oshawa", "peterborough"],
 }
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
@@ -348,6 +358,128 @@ SEO_SECTIONS = {
         '    <p style="color:#3a4f63; line-height:1.8;">That is what keeps a studio, apartment or '
         'single-item move in Vancouver genuinely affordable: no big-truck overhead and no padded '
         'estimates, just honest hourly pricing.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "warman": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Warman and Saskatoon</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">A lot of our Warman jobs '
+        'are short hops to or from Saskatoon &mdash; a first apartment in the city, a move back home '
+        'to Warman, or a growing family upsizing. Because we bill by the hour with a right-sized crew '
+        'instead of a full van line, a Warman&ndash;Saskatoon move usually costs a fraction of what '
+        'the big companies quote.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Moving within town or a little further out? '
+        'We also cover <a href="/saskatoon/" style="color:#2c7a5b; font-weight:700;">Saskatoon '
+        'movers</a> and <a href="/martensville/" style="color:#2c7a5b; font-weight:700;">Martensville '
+        'movers</a>, with the same hourly pricing and small-move focus. Give us both addresses when '
+        'you request a quote and we will send back an honest estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "martensville": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Martensville and Saskatoon</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">Many Martensville moves '
+        'are quick trips to or from Saskatoon &mdash; students heading into the city, or families '
+        'moving out to Martensville for more space. With by-the-hour pricing and a crew sized to the '
+        'job, a Martensville&ndash;Saskatoon move costs far less than a traditional van line.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Staying local or heading further? We also '
+        'cover <a href="/saskatoon/" style="color:#2c7a5b; font-weight:700;">Saskatoon movers</a> and '
+        '<a href="/warman/" style="color:#2c7a5b; font-weight:700;">Warman movers</a>, same hourly '
+        'rate and small-move focus. Send both addresses with your quote request and we will give you '
+        'a flat, honest estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "innisfil": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Innisfil and Barrie</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">Plenty of our Innisfil '
+        'jobs run to or from Barrie &mdash; a move into the city for work, or out to Innisfil for the '
+        'lake and more space. Because we charge by the hour with a right-sized crew instead of a full '
+        'van line, a short Innisfil&ndash;Barrie move costs far less than the big companies quote.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Staying in town or heading up the corridor? '
+        'We also cover <a href="/barrie/" style="color:#2c7a5b; font-weight:700;">Barrie movers</a> '
+        'and <a href="/bradford/" style="color:#2c7a5b; font-weight:700;">Bradford movers</a>, with '
+        'the same hourly pricing and small-move focus. Give us both addresses with your quote and we '
+        'will send an honest estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "orillia": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Orillia and Barrie</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">Many Orillia moves are '
+        'short trips down to Barrie or back up to the lakes &mdash; a new job, a first apartment, or '
+        'a family resizing. With by-the-hour pricing and a crew sized to the job, an '
+        'Orillia&ndash;Barrie move costs a fraction of a traditional van line.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Moving within Orillia or further afield? We '
+        'also cover <a href="/barrie/" style="color:#2c7a5b; font-weight:700;">Barrie movers</a> and '
+        '<a href="/innisfil/" style="color:#2c7a5b; font-weight:700;">Innisfil movers</a> on the same '
+        'hourly rate. Send both addresses with your quote request for a flat, honest estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "oshawa": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Oshawa and Toronto</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">A lot of our Oshawa jobs '
+        'run along the GO line to or from Toronto &mdash; a first apartment downtown, a move back out '
+        'to Durham for more space, or a growing family resizing. Because we bill by the hour with a '
+        'right-sized crew instead of a full van line, an Oshawa&ndash;Toronto move usually costs a '
+        'fraction of what the big companies quote.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Moving within Durham instead? We also cover '
+        '<a href="/whitby/" style="color:#2c7a5b; font-weight:700;">Whitby movers</a> and '
+        '<a href="/pickering/" style="color:#2c7a5b; font-weight:700;">Pickering movers</a>, with the '
+        'same hourly pricing and small-move focus. Give us both addresses when you request a quote and '
+        'we will send back an honest estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "ajax": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Ajax and Toronto</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">Many Ajax moves are short '
+        'trips to or from Toronto &mdash; a commute-driven move into the city, or back out to Ajax for '
+        'more room. With by-the-hour pricing and a crew sized to the job, an Ajax&ndash;Toronto move '
+        'costs far less than a traditional van line.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Staying closer to home? We also cover '
+        '<a href="/pickering/" style="color:#2c7a5b; font-weight:700;">Pickering movers</a> and '
+        '<a href="/whitby/" style="color:#2c7a5b; font-weight:700;">Whitby movers</a> on the same '
+        'hourly rate. Send both addresses with your quote request and we will give you a flat, honest '
+        'estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "kawartha-lakes": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Kawartha Lakes and the GTA</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">A lot of Kawartha Lakes '
+        'moves are trips out of the GTA &mdash; families and retirees leaving the city for more space '
+        'and lake country around Lindsay, Fenelon Falls and Bobcaygeon. Because we bill by the hour '
+        'with a right-sized crew, a move between Kawartha Lakes and the GTA usually costs far less '
+        'than a full-service van line.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Moving locally or nearby? We also cover '
+        '<a href="/oshawa/" style="color:#2c7a5b; font-weight:700;">Oshawa movers</a> and '
+        '<a href="/peterborough/" style="color:#2c7a5b; font-weight:700;">Peterborough movers</a>, '
+        'with the same hourly pricing and small-move focus. Give us both addresses with your quote '
+        'and we will send an honest estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "bradford": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Bradford and Barrie</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">A lot of Bradford moves '
+        'run along the GO corridor &mdash; up to Barrie or down toward Newmarket and the GTA. Because '
+        'we bill by the hour with a right-sized crew, a short Bradford move usually costs far less '
+        'than a full-service van line.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Staying in Bradford or moving nearby? We also '
+        'cover <a href="/barrie/" style="color:#2c7a5b; font-weight:700;">Barrie movers</a> and '
+        '<a href="/newmarket/" style="color:#2c7a5b; font-weight:700;">Newmarket movers</a>, with the '
+        'same hourly pricing and small-move focus. Give us both addresses with your quote and we will '
+        'send back an honest estimate.</p>\n'
         '  </div>\n</section>\n\n'
     ),
 }
