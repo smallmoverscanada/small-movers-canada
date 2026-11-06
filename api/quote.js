@@ -62,6 +62,11 @@ const PARTNERS = [
     cities: ['saskatoon'],
   },
   {
+    // Khalil (Sairon Logistics) — Barrie / Simcoe corridor (Newmarket to follow once that page is built).
+    email: 'contact@saironlogistics.com',
+    cities: ['barrie', 'innisfil', 'orillia', 'bradford'],
+  },
+  {
     // Brad (Oshawa / Durham area).
     email: 'pwservices24@gmail.com',
     cities: ['whitby', 'clarington', 'kawartha lakes', 'belleville', 'whitchurch-stouffville',

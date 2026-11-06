@@ -40,6 +40,10 @@ PROVINCE_FULL = {
 RATE_OVERRIDES = {
     "toronto": (95, 150),
     "calgary": (100, 140),
+    "barrie": (85, 150),    # Khalil (Sairon Logistics) — $85/hr 1 mover, $150/hr 2 movers
+    "innisfil": (85, 150),  # Khalil (Sairon Logistics)
+    "orillia": (85, 150),   # Khalil (Sairon Logistics)
+    "bradford": (85, 150),  # Khalil (Sairon Logistics) — Bradford West Gwillimbury
 }
 
 # Per-city phone overrides — a dedicated number for a specific city (overrides the
@@ -52,6 +56,10 @@ CITY_PHONE_OVERRIDES = {
     "vernon": "778-946-0968",
     "kingston": "343-600-4428",  # Bill (eastern ON) — Twilio tracking number
     "saskatoon": "639-638-8439",  # Trigo (Meshack) — existing Saskatoon line (kept; SK default moved to the new Twilio)
+    "barrie": "249-444-6102",  # Khalil (Sairon Logistics) — Twilio tracking # → +18078086110, src=BAR
+    "innisfil": "249-444-6102",  # Khalil — shares the Barrie tracking line (src=BAR)
+    "orillia": "249-444-6102",   # Khalil — shares the Barrie tracking line (src=BAR)
+    "bradford": "249-444-6102",  # Khalil — shares the Barrie tracking line (src=BAR)
 }
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
@@ -117,6 +125,12 @@ NEARBY = {
     # Vancouver -> Lower Mainland neighbours (SEO internal linking).
     "vancouver": ["burnaby", "north-vancouver", "west-vancouver",
                   "new-westminster", "coquitlam", "delta"],
+    # Khalil (Sairon Logistics) — Barrie / Simcoe corridor. 'newmarket' lights up
+    # automatically once that page is built (missing pages are skipped).
+    "barrie": ["innisfil", "orillia", "bradford", "newmarket"],
+    "innisfil": ["barrie", "orillia", "bradford"],
+    "orillia": ["barrie", "innisfil"],
+    "bradford": ["barrie", "newmarket", "innisfil"],
 }
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
