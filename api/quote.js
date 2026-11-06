@@ -64,7 +64,7 @@ const PARTNERS = [
   {
     // Khalil (Sairon Logistics) — Barrie / Simcoe corridor (Newmarket to follow once that page is built).
     email: 'contact@saironlogistics.com',
-    cities: ['barrie', 'innisfil', 'orillia', 'bradford'],
+    cities: ['barrie', 'innisfil', 'orillia', 'bradford', 'newmarket'],
   },
   {
     // Brad (Oshawa / Durham area).

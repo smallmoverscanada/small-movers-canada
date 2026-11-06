@@ -44,6 +44,7 @@ RATE_OVERRIDES = {
     "innisfil": (85, 150),  # Khalil (Sairon Logistics)
     "orillia": (85, 150),   # Khalil (Sairon Logistics)
     "bradford": (85, 150),  # Khalil (Sairon Logistics) — Bradford West Gwillimbury
+    "newmarket": (85, 150), # Khalil (Sairon Logistics)
 }
 
 # Per-city phone overrides — a dedicated number for a specific city (overrides the
@@ -60,6 +61,7 @@ CITY_PHONE_OVERRIDES = {
     "innisfil": "249-444-6102",  # Khalil — shares the Barrie tracking line (src=BAR)
     "orillia": "249-444-6102",   # Khalil — shares the Barrie tracking line (src=BAR)
     "bradford": "249-444-6102",  # Khalil — shares the Barrie tracking line (src=BAR)
+    "newmarket": "249-444-6102",  # Khalil — shares the Barrie tracking line (src=BAR)
 }
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
@@ -131,6 +133,7 @@ NEARBY = {
     "innisfil": ["barrie", "orillia", "bradford"],
     "orillia": ["barrie", "innisfil"],
     "bradford": ["barrie", "newmarket", "innisfil"],
+    "newmarket": ["bradford", "barrie"],
 }
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
