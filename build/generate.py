@@ -45,6 +45,7 @@ RATE_OVERRIDES = {
     "orillia": (85, 150),   # Khalil (Sairon Logistics)
     "bradford": (85, 150),  # Khalil (Sairon Logistics) — Bradford West Gwillimbury
     "newmarket": (85, 150), # Khalil (Sairon Logistics)
+    "winnipeg": (90, 140),  # Vansh/Anmol Kapoor — $90 1 mover, $140 2 movers (1.5h min, see 6e)
 }
 
 # Per-city phone overrides — a dedicated number for a specific city (overrides the
@@ -636,6 +637,11 @@ def render(template, row, blog_by_city, reviews_by_city, city_names):
                           "<li>$75 truck &amp; fuel fee</li>")
         out = out.replace("</span> No hidden fees</span>",
                           "</span> $75 truck &amp; fuel fee</span>")
+
+    # 6e. Winnipeg partner (Vansh/Anmol Kapoor) — 2-mover minimum 1.5h instead of 2.5h.
+    if slug == "winnipeg":
+        out = out.replace("for 2 movers (2.5 hour minimum)",
+                          "for 2 movers (1.5 hour minimum)")
 
     # 7. City reviews section — reviews tagged to this city (empty if none).
     reviews = city_reviews_section(city, reviews_by_city.get(slug.lower(), []))

@@ -67,6 +67,11 @@ const PARTNERS = [
     cities: ['barrie', 'innisfil', 'orillia', 'bradford', 'newmarket'],
   },
   {
+    // Vansh & Anmol Kapoor (Brothers Big Truck) — Winnipeg.
+    email: 'brothersbigtruckwpg@gmail.com',
+    cities: ['winnipeg'],
+  },
+  {
     // Brad (Oshawa / Durham area).
     email: 'pwservices24@gmail.com',
     cities: ['whitby', 'clarington', 'kawartha lakes', 'belleville', 'whitchurch-stouffville',
