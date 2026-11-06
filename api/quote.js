@@ -72,6 +72,11 @@ const PARTNERS = [
     cities: ['winnipeg'],
   },
   {
+    // Steve Bourgoin (Perfect Brushes) — Thunder Bay.
+    email: 'Perfectbrushesthunderbay@gmail.com',
+    cities: ['thunder bay'],
+  },
+  {
     // Brad (Oshawa / Durham area).
     email: 'pwservices24@gmail.com',
     cities: ['whitby', 'clarington', 'kawartha lakes', 'belleville', 'whitchurch-stouffville',

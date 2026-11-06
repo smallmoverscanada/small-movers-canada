@@ -65,6 +65,7 @@ CITY_PHONE_OVERRIDES = {
     "newmarket": "249-444-6102",  # Khalil — shares the Barrie tracking line (src=BAR)
     "warman": "639-638-8439",       # Trigo (Meshack) — shares the Saskatoon line
     "martensville": "639-638-8439", # Trigo (Meshack) — shares the Saskatoon line
+    "thunder-bay": "807-700-3451",  # Steve Bourgoin (Perfect Brushes) — Twilio tracking # → +18073560091, src=TBY
 }
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
