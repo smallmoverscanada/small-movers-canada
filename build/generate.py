@@ -66,6 +66,8 @@ CITY_PHONE_OVERRIDES = {
     "warman": "639-638-8439",       # Trigo (Meshack) — shares the Saskatoon line
     "martensville": "639-638-8439", # Trigo (Meshack) — shares the Saskatoon line
     "thunder-bay": "807-700-3451",  # Steve Bourgoin (Perfect Brushes) — Twilio tracking # → +18073560091, src=TBY
+    "ottawa": "343-429-6895",  # Salaman (A1 Property Solutions) — Twilio tracking # → +16137956969, src=OTT
+    "nepean": "343-429-6895",  # Salaman — shares the Ottawa tracking line (src=OTT)
 }
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",

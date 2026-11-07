@@ -77,6 +77,11 @@ const PARTNERS = [
     cities: ['thunder bay'],
   },
   {
+    // Salaman (A1 Property Solutions) — Ottawa area.
+    email: 'a1propertysolutionsca@gmail.com',
+    cities: ['ottawa', 'nepean'],
+  },
+  {
     // Brad (Oshawa / Durham area).
     email: 'pwservices24@gmail.com',
     cities: ['whitby', 'clarington', 'kawartha lakes', 'belleville', 'whitchurch-stouffville',
