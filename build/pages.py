@@ -1117,24 +1117,34 @@ BASE_URL = "https://smallmoverscanada.ca"
 
 
 def build_sitemap(cities, posts):
-    urls = [("/", "1.0", "weekly"),
-            ("/locations/", "0.8", "weekly"),
-            ("/about/", "0.6", "monthly"),
-            ("/partners/", "0.5", "monthly"),
-            ("/hamilton/senior-moves/", "0.6", "monthly"),
-            ("/surrey/senior-moves/", "0.6", "monthly"),
-            ("/blog/", "0.7", "weekly")]
+    # <lastmod> comes from each city/post's CSV updated_date (YYYY-MM-DD) so a
+    # freshly edited page shows a current date — the signal Google uses to
+    # prioritise a recrawl. Static/hub pages carry no lastmod (they'd churn on
+    # every build and dilute the signal).
+    def lm(val):
+        s = str(val or "").strip()[:10]
+        return s if re.match(r"^\d{4}-\d{2}-\d{2}$", s) else None
+
+    urls = [("/", "1.0", "weekly", None),
+            ("/locations/", "0.8", "weekly", None),
+            ("/about/", "0.6", "monthly", None),
+            ("/partners/", "0.5", "monthly", None),
+            ("/hamilton/senior-moves/", "0.6", "monthly", None),
+            ("/surrey/senior-moves/", "0.6", "monthly", None),
+            ("/blog/", "0.7", "weekly", None)]
     for prov in PROVINCE_ORDER:
-        urls.append((f"/{PROVINCE_SLUG[prov]}/", "0.8", "monthly"))
+        urls.append((f"/{PROVINCE_SLUG[prov]}/", "0.8", "monthly", None))
     for c in sorted(cities, key=lambda c: c.get("slug", "")):
-        urls.append((f'/{c["slug"].strip()}/', "0.9", "monthly"))
+        urls.append((f'/{c["slug"].strip()}/', "0.9", "monthly", lm(c.get("updated_date"))))
     for p in posts:
-        urls.append((f'/blog/{p["slug"].strip()}/', "0.6", "monthly"))
+        urls.append((f'/blog/{p["slug"].strip()}/', "0.6", "monthly",
+                     lm(p.get("updated_date") or p.get("created_date"))))
     out = ['<?xml version="1.0" encoding="UTF-8"?>',
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    for loc, pr, cf in urls:
+    for loc, pr, cf, mod in urls:
+        modline = f"    <lastmod>{mod}</lastmod>\n" if mod else ""
         out.append(f"  <url>\n    <loc>{BASE_URL}{loc}</loc>\n"
-                   f"    <changefreq>{cf}</changefreq>\n"
+                   f"{modline}    <changefreq>{cf}</changefreq>\n"
                    f"    <priority>{pr}</priority>\n  </url>")
     out.append("</urlset>\n")
     return "\n".join(out)
