@@ -146,6 +146,13 @@ NEARBY = {
     "oshawa": ["whitby", "ajax", "pickering"],
     "ajax": ["pickering", "whitby", "oshawa"],
     "kawartha-lakes": ["oshawa", "peterborough"],
+    # Sugam (Edmonton) — broad-SEO satellites around Edmonton.
+    "sherwood-park": ["edmonton", "fort-saskatchewan", "spruce-grove"],
+    "spruce-grove": ["edmonton", "leduc", "sherwood-park"],
+    "leduc": ["edmonton", "beaumont", "spruce-grove"],
+    "beaumont": ["edmonton", "leduc"],
+    "fort-saskatchewan": ["edmonton", "sherwood-park"],
+    "edmonton": ["sherwood-park", "spruce-grove", "leduc", "fort-saskatchewan", "beaumont"],
 }
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
@@ -393,6 +400,82 @@ SEO_SECTIONS = {
         'a flat, honest estimate.</p>\n'
         '  </div>\n</section>\n\n'
     ),
+    "sherwood-park": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Sherwood Park and Edmonton</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">A lot of our Sherwood Park '
+        'jobs run to or from Edmonton &mdash; a move into the city for work, or out to Sherwood Park for '
+        'more room and a quieter street. Because we charge by the hour with a right-sized crew instead of '
+        'a full van line, a short Sherwood Park&ndash;Edmonton move costs far less than the big companies '
+        'quote.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Staying local or heading a little further? We '
+        'also cover <a href="/edmonton/" style="color:#2c7a5b; font-weight:700;">Edmonton movers</a> and '
+        '<a href="/fort-saskatchewan/" style="color:#2c7a5b; font-weight:700;">Fort Saskatchewan '
+        'movers</a>, with the same hourly pricing and small-move focus. Give us both addresses when you '
+        'request a quote and we will send back an honest estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "spruce-grove": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Spruce Grove and Edmonton</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">Many Spruce Grove moves are '
+        'quick trips to or from Edmonton &mdash; a first apartment in the city, or a family moving west '
+        'for more space. With by-the-hour pricing and a crew sized to the job, a Spruce '
+        'Grove&ndash;Edmonton move costs far less than a traditional van line.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Staying in town or heading further? We also cover '
+        '<a href="/edmonton/" style="color:#2c7a5b; font-weight:700;">Edmonton movers</a> and '
+        '<a href="/leduc/" style="color:#2c7a5b; font-weight:700;">Leduc movers</a>, with the same hourly '
+        'rate and small-move focus. Send both addresses with your quote request and we will give you an '
+        'honest estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "leduc": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Leduc and Edmonton</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">Plenty of our Leduc jobs run '
+        'to or from Edmonton &mdash; a move into the city, or out to Leduc near the airport and more '
+        'affordable homes. Because we bill by the hour with a right-sized crew instead of a full van '
+        'line, a Leduc&ndash;Edmonton move usually costs a fraction of what the big companies quote.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Moving within town or a little further out? We '
+        'also cover <a href="/edmonton/" style="color:#2c7a5b; font-weight:700;">Edmonton movers</a> and '
+        '<a href="/beaumont/" style="color:#2c7a5b; font-weight:700;">Beaumont movers</a>, with the same '
+        'hourly pricing and small-move focus. Give us both addresses and we will send back a flat, honest '
+        'estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "beaumont": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Beaumont and Edmonton</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">A lot of Beaumont moves are '
+        'short hops to or from Edmonton &mdash; a growing family upsizing, or a move out to Beaumont for '
+        'the small-town feel. With hourly pricing and a crew sized to the job, a Beaumont&ndash;Edmonton '
+        'move costs far less than a full van line.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Staying local or heading further? We also cover '
+        '<a href="/edmonton/" style="color:#2c7a5b; font-weight:700;">Edmonton movers</a> and '
+        '<a href="/leduc/" style="color:#2c7a5b; font-weight:700;">Leduc movers</a>, same hourly rate and '
+        'small-move focus. Send both addresses with your quote request and we will give you an honest '
+        'estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
+    "fort-saskatchewan": (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        '    <h2 style="margin-bottom:16px;">Moving Between Fort Saskatchewan and Edmonton</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">Many Fort Saskatchewan jobs '
+        'run to or from Edmonton &mdash; a move into the city for work, or out to the Fort for more '
+        'space. Because we charge by the hour with a right-sized crew instead of a full van line, a short '
+        'Fort Saskatchewan&ndash;Edmonton move costs far less than the big companies quote.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Staying local or heading a little further? We '
+        'also cover <a href="/edmonton/" style="color:#2c7a5b; font-weight:700;">Edmonton movers</a> and '
+        '<a href="/sherwood-park/" style="color:#2c7a5b; font-weight:700;">Sherwood Park movers</a>, with '
+        'the same hourly pricing and small-move focus. Give us both addresses and we will send back an '
+        'honest estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    ),
     "innisfil": (
         '<section class="local-seo" style="padding:56px 20px;">\n'
         '  <div class="container" style="max-width:820px;">\n'
@@ -485,6 +568,88 @@ SEO_SECTIONS = {
         '  </div>\n</section>\n\n'
     ),
 }
+
+
+# ---- ON under-120k broad rollout (2026-11-06) ----------------------------
+# Generated inter-city / local SEO sections for the Ontario satellite pages
+# flipped to the "Movers in [City]" head-term style. Each hub entry carries a
+# unique hook sentence so the pages are not boilerplate; standalone cities get
+# a local "Small Moves in [City]" section instead.
+def _mk_intercity(city, hub, hub_slug, hook, sib, sib_slug):
+    return (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        f'    <h2 style="margin-bottom:16px;">Moving Between {city} and {hub}</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">'
+        f'{hook} &mdash; and because we bill by the hour with a right-sized crew instead of a full van '
+        f'line, a short {city}&ndash;{hub} move usually costs a fraction of what the big companies '
+        'quote. A studio, an apartment, a condo or a few big items &mdash; you only pay for the time '
+        'the move actually takes.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">Staying in town or heading a little further? '
+        f'We also cover <a href="/{hub_slug}/" style="color:#2c7a5b; font-weight:700;">{hub} movers</a> '
+        f'and <a href="/{sib_slug}/" style="color:#2c7a5b; font-weight:700;">{sib} movers</a>, with the '
+        'same hourly pricing and small-move focus. Give us both addresses when you request a quote and '
+        'we will send back an honest estimate.</p>\n'
+        '  </div>\n</section>\n\n'
+    )
+
+
+def _mk_local(city, hook):
+    return (
+        '<section class="local-seo" style="padding:56px 20px;">\n'
+        '  <div class="container" style="max-width:820px;">\n'
+        f'    <h2 style="margin-bottom:16px;">Small Moves in {city}</h2>\n'
+        '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">'
+        f'{hook} Most moves here are smaller jobs &mdash; a one-bedroom, a condo, a single-item '
+        f'delivery or a few rooms of furniture &mdash; and those do not need a five-ton truck and a '
+        'four-person crew. We bring a right-sized crew and charge by the hour, so you are not paying '
+        'for space and time your move never uses.</p>\n'
+        '    <p style="color:#3a4f63; line-height:1.8;">That is what keeps a small or local move in '
+        f'{city} genuinely affordable: no big-truck overhead and no padded estimates, just honest '
+        'hourly pricing with a low minimum.</p>\n'
+        '  </div>\n</section>\n\n'
+    )
+
+
+# slug: (City, Hub, hub_slug, hook, Sibling, sib_slug)
+_ON_HUB = [
+    ("ancaster", "Ancaster", "Hamilton", "hamilton", "Ancaster sits right against Hamilton's west end, so a lot of our jobs here are quick moves to or from the city", "Dundas", "dundas"),
+    ("dundas", "Dundas", "Hamilton", "hamilton", "Dundas runs straight into Hamilton at the bottom of the valley, and plenty of moves cross between the two", "Ancaster", "ancaster"),
+    ("stoney-creek", "Stoney Creek", "Hamilton", "hamilton", "Stoney Creek is Hamilton's east end now, so moves between the two are short, everyday trips", "Binbrook", "binbrook"),
+    ("waterdown", "Waterdown", "Hamilton", "hamilton", "Waterdown sits on the edge of Hamilton and Burlington, so short hops into either are common", "Dundas", "dundas"),
+    ("binbrook", "Binbrook", "Hamilton", "hamilton", "Binbrook is Hamilton's fast-growing south end, with new families moving out from the city", "Stoney Creek", "stoney-creek"),
+    ("caledonia", "Caledonia", "Hamilton", "hamilton", "Caledonia is a short run down the Grand River from Hamilton", "Binbrook", "binbrook"),
+    ("grimsby", "Grimsby", "Hamilton", "hamilton", "Grimsby sits between Hamilton and the Niagara wineries, an easy move in either direction", "Stoney Creek", "stoney-creek"),
+    ("niagara-falls", "Niagara Falls", "St. Catharines", "st-catharines", "Niagara Falls and St. Catharines are a quick trip apart along the QEW", "Welland", "welland"),
+    ("welland", "Welland", "St. Catharines", "st-catharines", "Welland sits just south of St. Catharines, so moves between the two are short runs", "Thorold", "thorold"),
+    ("thorold", "Thorold", "St. Catharines", "st-catharines", "Thorold sits right between St. Catharines and Welland", "Welland", "welland"),
+    ("smithville", "Smithville", "St. Catharines", "st-catharines", "Smithville is a short drive from both Grimsby and the St. Catharines area", "Grimsby", "grimsby"),
+    ("aurora", "Aurora", "Toronto", "toronto", "Aurora sits on the GO line north of Toronto, so plenty of moves run down into the city", "Newmarket", "newmarket"),
+    ("maple", "Maple", "Vaughan", "vaughan", "Maple is part of Vaughan, and many moves stay within the city or head next door", "Richmond Hill", "richmond-hill"),
+    ("whitchurch-stouffville", "Whitchurch-Stouffville", "Markham", "markham", "Stouffville is a short hop from Markham on the north edge of York Region", "Aurora", "aurora"),
+    ("pickering", "Pickering", "Toronto", "toronto", "Pickering sits between Toronto and Ajax on the lakeshore, an easy move either way", "Ajax", "ajax"),
+    ("acton", "Acton", "Georgetown", "georgetown", "Acton and Georgetown are the two halves of Halton Hills", "Milton", "milton"),
+    ("georgetown", "Georgetown", "Milton", "milton", "Georgetown sits right beside Milton in Halton Hills", "Acton", "acton"),
+    ("st-jacobs", "St. Jacobs", "Kitchener", "kitchener", "St. Jacobs is just north of Waterloo and Kitchener", "Cambridge", "cambridge"),
+    ("clarington", "Clarington", "Oshawa", "oshawa", "Clarington sits just east of Oshawa, so Bowmanville and Courtice moves often run into Durham", "Whitby", "whitby"),
+    ("east-york", "East York", "Toronto", "toronto", "East York is central Toronto, so most moves here are short cross-town trips", "Scarborough", "scarborough"),
+]
+for _slug, _city, _hub, _hubslug, _hook, _sib, _sibslug in _ON_HUB:
+    SEO_SECTIONS[_slug] = _mk_intercity(_city, _hub, _hubslug, _hook, _sib, _sibslug)
+
+# slug: (City, hook)
+_ON_LOCAL = [
+    ("brantford", "Brantford", "Brantford is a working river city on the western edge of the Golden Horseshoe."),
+    ("chatham-kent", "Chatham-Kent", "Chatham-Kent spreads across a string of small communities between Windsor and London."),
+    ("thunder-bay", "Thunder Bay", "Thunder Bay sits on its own at the head of the lake, a long way from the southern cities."),
+    ("peterborough", "Peterborough", "Peterborough is the hub of the Kawarthas, with students, downtown apartments and lakeside homes."),
+    ("belleville", "Belleville", "Belleville sits on the Bay of Quinte, halfway between Toronto and Kingston."),
+    ("sarnia", "Sarnia", "Sarnia sits on the water where Lake Huron meets the St. Clair River."),
+    ("port-dover", "Port Dover", "Port Dover is a small Lake Erie town that doubles in size every summer."),
+]
+for _slug, _city, _hook in _ON_LOCAL:
+    SEO_SECTIONS[_slug] = _mk_local(_city, _hook)
+
 
 # FAQ items per slug: (question, answer). Injected at <!--CITY_FAQ_SECTION-->
 # as both a visible section and FAQPage JSON-LD.
