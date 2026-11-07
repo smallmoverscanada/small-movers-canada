@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hauling Heroes — Edmonton Demolition</title>
+<meta name="description" content="Demolition in Edmonton — tear-out to clean-up. Selective demolition, interior gut jobs, concrete and stucco removal. Our own crew tears it out and hauls the debris. Licensed, insured, WCB covered. Free quotes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f1ec; --panel:#ffffff; --soft:#e9ebef;
+  --navy:#0c2d54; --navy-2:#09233f; --navy-line:#204571;
+  --ink:#16202d; --muted:#5e6b7b; --line:#dcdfe5;
+  --accent:#ef5a22; --accent-2:#ff6d39; --sky:#9ec3ea; --ok:#2f9e63;
+  --display:"Anton","Arial Black",sans-serif;
+  --cond:"Barlow Condensed","Arial Narrow",sans-serif;
+  --body:"Barlow","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+a{color:inherit}
+.btn{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:16px;
+  background:var(--accent);color:#fff;border:0;border-radius:0;padding:14px 24px;cursor:pointer;
+  text-decoration:none;display:inline-flex;align-items:center;gap:9px;transition:background .12s}
+.btn:hover{background:var(--accent-2)}
+.btn--ghost{background:transparent;color:#fff;border:2px solid #ffffff5c}
+.btn--ghost:hover{background:#ffffff1a;border-color:#fff}
+.btn--lg{padding:17px 30px;font-size:18px}
+a.btn:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+header{position:absolute;top:0;left:0;right:0;z-index:20}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
+.brand{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none}
+.brand .mk{width:34px;height:34px;flex:0 0 auto;color:var(--accent)}
+.brand .wm{font-family:var(--display);text-transform:uppercase;line-height:.86;font-size:20px;letter-spacing:.02em}
+.brand .wm b{color:var(--accent);font-weight:400}
+.brand .wm small{display:block;font-family:var(--cond);font-weight:600;font-size:10px;letter-spacing:.22em;color:var(--sky)}
+.navcta{display:flex;align-items:center;gap:16px}
+.phone{font-family:var(--cond);font-weight:700;font-size:21px;letter-spacing:.02em;text-decoration:none;line-height:1;color:#fff}
+.phone small{display:block;font-family:var(--body);font-weight:500;font-size:10.5px;letter-spacing:.16em;color:var(--sky);text-transform:uppercase;margin-top:2px}
+@media(max-width:620px){.phone small{display:none}.phone{font-size:17px}}
+.hero{position:relative;min-height:clamp(540px,84vh,740px);display:flex;align-items:flex-end;background:var(--navy);border-bottom:4px solid var(--accent)}
+.hero-img{position:absolute;inset:0;z-index:0;background:#0c2d54 url('hero.webp') center/cover;}
+.hero-img::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(7,26,48,.30) 0%,rgba(7,26,48,0) 28%,rgba(7,26,48,.60) 60%,rgba(7,26,48,.95) 100%),
+  linear-gradient(90deg,rgba(7,26,48,.60) 0%,rgba(7,26,48,.12) 45%,rgba(7,26,48,0) 70%);}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-bottom:56px;padding-top:120px}
+.eyebrow{font-family:var(--cond);font-weight:700;letter-spacing:.14em;font-size:14px;color:var(--sky);text-transform:uppercase;margin:0 0 14px}
+.hero h1{font-family:var(--display);text-transform:uppercase;font-size:clamp(50px,10.5vw,112px);line-height:.9;letter-spacing:.005em;margin:0;color:#fff;text-shadow:0 2px 20px rgba(5,16,34,.6)}
+.hero h1 em{font-style:normal;color:var(--accent);text-shadow:0 2px 16px rgba(5,16,34,.75)}
+.subhead{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.03em;font-size:clamp(20px,3vw,30px);color:var(--accent);margin:10px 0 0}
+.hero .lede{max-width:48ch;margin:18px 0 30px;font-size:clamp(16px,2.2vw,20px);color:#dfe7f0;line-height:1.5}
+.cta-row{display:flex;flex-wrap:wrap;gap:13px;align-items:center}
+.strip{background:var(--panel);border-bottom:1px solid var(--line)}
+.strip .wrap{display:flex;flex-wrap:wrap;gap:10px 36px;justify-content:center;padding:16px 22px;font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:16px;color:var(--navy)}
+.strip span{display:inline-flex;align-items:center;gap:9px}
+.strip svg{width:18px;height:18px;color:var(--accent)}
+section.pad{padding:70px 0}
+.khead{margin-bottom:34px}
+.khead .tag{font-family:var(--cond);font-weight:700;letter-spacing:.16em;font-size:13px;color:var(--accent);text-transform:uppercase}
+.khead h2{font-family:var(--display);text-transform:uppercase;font-size:clamp(32px,5.5vw,52px);line-height:.95;margin:6px 0 0;color:var(--navy)}
+.khead p{color:var(--muted);max-width:64ch;margin:12px 0 0;font-size:16.5px}
+.spec{border-top:2px solid var(--navy)}
+.spec .row{display:grid;grid-template-columns:auto 1fr;gap:18px 20px;padding:20px 4px;border-bottom:1px solid var(--line);align-items:baseline;transition:background .12s}
+.spec .row:hover{background:#00000006}
+.spec .ix{font-family:var(--cond);font-weight:700;color:var(--accent);font-size:16px;letter-spacing:.05em;padding-top:3px}
+.spec .rt{display:grid;grid-template-columns:minmax(230px,0.9fr) 1.4fr;gap:4px 28px;align-items:baseline}
+.spec h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;font-size:23px;letter-spacing:.01em;margin:0;line-height:1;color:var(--navy)}
+.spec p{margin:0;color:var(--muted);font-size:15.5px}
+@media(max-width:620px){.spec .rt{grid-template-columns:1fr}}
+.proc{background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.step{background:var(--panel);padding:28px 24px}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;background:var(--navy);color:#fff;font-family:var(--display);font-size:24px;margin-bottom:16px}
+.step h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;font-size:22px;margin:0 0 8px;color:var(--navy)}
+.step p{margin:0;color:var(--muted);font-size:15px}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px 28px}
+.why .item{border-top:3px solid var(--accent);padding-top:16px}
+.why h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;font-size:19px;margin:0 0 6px;color:var(--navy)}
+.why p{margin:0;color:var(--muted);font-size:15px}
+.quote{background:var(--navy);border-top:4px solid var(--accent)}
+.quote .lead h2{color:#fff}
+.qgrid{display:grid;grid-template-columns:1.05fr 1fr;gap:46px;align-items:start}
+.qgrid .lead .tag{font-family:var(--cond);font-weight:700;letter-spacing:.16em;font-size:13px;color:var(--accent);text-transform:uppercase}
+.qgrid .lead h2{font-family:var(--display);text-transform:uppercase;font-size:clamp(32px,5vw,50px);line-height:.95;margin:6px 0 14px}
+.qgrid .lead p{color:#d4ddea;font-size:17px;max-width:44ch}
+.ql{list-style:none;padding:0;margin:22px 0 22px;display:flex;flex-direction:column;gap:11px}
+.ql li{display:flex;gap:11px;align-items:center;font-weight:500;color:#e7edf4}
+.ql svg{width:20px;height:20px;color:var(--accent);flex:0 0 auto}
+.textline{color:#c2d0e2;font-size:15px}
+.textline a{color:#fff;font-weight:600;text-decoration:none;border-bottom:2px solid var(--accent)}
+form{background:var(--panel);border:0;padding:26px}
+form .fhead{font-family:var(--display);text-transform:uppercase;font-size:26px;margin:0 0 4px;line-height:1;color:var(--navy)}
+form .fsub{color:var(--muted);font-size:13.5px;margin:0 0 18px}
+.frow{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.frow.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.07em;font-size:13px;color:var(--navy)}
+input,select,textarea{font:15px var(--body);color:var(--ink);background:#f7f8fa;border:1px solid var(--line);border-radius:0;padding:12px;width:100%}
+input:focus,select:focus,textarea:focus{background:#fff}
+input::placeholder,textarea::placeholder{color:#97a0ab}
+textarea{resize:vertical;min-height:84px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.okmsg{display:none;background:#2f9e6314;border:1px solid var(--ok);padding:16px;color:#1d6b42;font-size:15px;margin-top:4px}
+.okmsg.on{display:block}
+.errmsg{display:none;background:#c43a2714;border:1px solid #c43a27;padding:14px;color:#9a2c1d;font-size:14px;margin-top:10px}
+.errmsg.on{display:block}
+.areas{display:flex;flex-wrap:wrap;gap:8px}
+.areas span{background:var(--panel);border:1px solid var(--line);padding:7px 15px;font-family:var(--cond);font-weight:600;text-transform:uppercase;letter-spacing:.03em;font-size:14px;color:var(--navy)}
+footer{border-top:4px solid var(--accent);background:var(--navy)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding:28px 0;align-items:center}
+.foot .b{display:flex;align-items:center;gap:10px;color:#fff;font-family:var(--display);text-transform:uppercase;font-size:20px;letter-spacing:.02em}
+.foot .b svg{width:24px;height:24px;color:var(--accent)}
+.foot .b b{color:var(--accent);font-weight:400}
+.foot .meta{color:#aebdd0;font-size:13.5px;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+.foot a{color:#aebdd0;text-decoration:none}.foot a:hover{color:#fff}
+@media(max-width:760px){.qgrid{grid-template-columns:1fr;gap:28px}.frow.two{grid-template-columns:1fr}section.pad{padding:52px 0}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top">
+      <svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>
+      <span class="wm">Hauling<b>Heroes</b><small>Limited · Demolition</small></span>
+    </a>
+    <div class="navcta">
+      <a class="phone" href="tel:+15874059454">(587)&nbsp;405-9454<small>Free quote · call or text</small></a>
+      <a class="btn" href="#quote">Book a Site Visit</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-img" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow">Edmonton &amp; surrounding areas</p>
+    <h1>Demolition in <em>Edmonton</em></h1>
+    <p class="subhead">Tear-out to clean-up</p>
+    <p class="lede">Interior demolition, gut jobs, concrete and stucco removal. Our own crew does the tear-out and hauls the debris away in our own trucks and bins.</p>
+    <div class="cta-row">
+      <a class="btn btn--lg" href="#quote">Get a free quote</a>
+      <a class="btn btn--ghost btn--lg" href="tel:+15874059454">Call (587) 405-9454</a>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Licensed</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Insured</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>WCB covered</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Experienced crew</span>
+  </div>
+</div>
+
+<section class="pad">
+  <div class="wrap">
+    <div class="khead">
+      <div class="tag">What we take down</div>
+      <h2>Demolition services</h2>
+      <p>We do the tear-out and the haul-away — our own crew, our own trucks and bins. Only what you want gone comes out.</p>
+    </div>
+    <div class="spec">
+      <div class="row"><div class="ix">01</div><div class="rt"><h3>Selective demolition</h3><p>Kitchens, bathrooms, walls, flooring and fixtures — only what you want removed.</p></div></div>
+      <div class="row"><div class="ix">02</div><div class="rt"><h3>Full interior gut jobs</h3><p>Strip a room, basement or whole interior back to the framing, ready for your reno.</p></div></div>
+      <div class="row"><div class="ix">03</div><div class="rt"><h3>Concrete demolition</h3><p>Patios, walkways, steps and slabs broken up and removed.</p></div></div>
+      <div class="row"><div class="ix">04</div><div class="rt"><h3>Stucco removal</h3><p>Stucco taken off and disposed of, ready for new siding or repairs.</p></div></div>
+      <div class="row"><div class="ix">05</div><div class="rt"><h3>Flooring &amp; tile tear-out</h3><p>Tile, hardwood and subfloor removed and prepped for what's next.</p></div></div>
+      <div class="row"><div class="ix">06</div><div class="rt"><h3>Debris hauling &amp; bins</h3><p>Already torn out? We'll load the pile into our bins and haul it off.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad proc">
+  <div class="wrap">
+    <div class="khead"><div class="tag">Dead simple</div><h2>How it works</h2></div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Book a site visit</h3><p>We come look, confirm the scope, and give you a flat quote — no surprises.</p></div>
+      <div class="step"><div class="n">2</div><h3>Our crew tears it out</h3><p>Our own experienced crew handles the demo safely, with the permits sorted.</p></div>
+      <div class="step"><div class="n">3</div><h3>We haul it away</h3><p>Debris loaded into our own trucks and bins. Site left swept and clean.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad">
+  <div class="wrap">
+    <div class="khead"><div class="tag">Why Hauling Heroes</div><h2>Tear-out and haul in one</h2></div>
+    <div class="why">
+      <div class="item"><h3>Our own crew</h3><p>Not subcontracted — our experienced team does the work start to finish.</p></div>
+      <div class="item"><h3>Own trucks &amp; bins</h3><p>Demo and disposal in one go. No separate bin rental, no leftover pile.</p></div>
+      <div class="item"><h3>Licensed, insured, WCB</h3><p>Fully covered before anyone swings a hammer — you're protected.</p></div>
+      <div class="item"><h3>Flat, honest quotes</h3><p>Confirmed on site. What we say is what you pay.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad quote" id="quote">
+  <div class="wrap qgrid">
+    <div class="lead">
+      <div class="tag">Free · no obligation</div>
+      <h2>Get your quote</h2>
+      <p>Tell us what needs to come out. We'll set up a quick on-site look and send back a flat price.</p>
+      <ul class="ql">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Usually a same-week site visit</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Flat quote, permits included</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Tear-out + full haul-away</li>
+      </ul>
+      <p class="textline">In a hurry? <a href="sms:+15874059454">Text photos of the job</a> and we'll quote it fast.</p>
+    </div>
+    <form id="qform" method="post" action="/api/demolition">
+      <input type="hidden" name="service" value="Demolition">
+      <input type="hidden" name="city" value="Edmonton">
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
+      <p class="fhead">Request a quote</p>
+      <p class="fsub">We'll get back to you the same day.</p>
+      <div class="frow two">
+        <div class="frow" style="margin:0"><label for="n">Name</label><input id="n" name="name" autocomplete="name" placeholder="Your name" required></div>
+        <div class="frow" style="margin:0"><label for="p">Phone</label><input id="p" name="phone" type="tel" autocomplete="tel" placeholder="(587) 000-0000" required></div>
+      </div>
+      <div class="frow"><label for="e">Email</label><input id="e" name="email" type="email" autocomplete="email" placeholder="you@email.com"></div>
+      <div class="frow two">
+        <div class="frow" style="margin:0"><label for="j">Job type</label>
+          <select id="j" name="job"><option>Selective demolition</option><option>Full interior gut jobs</option><option>Concrete demolition</option><option>Stucco removal</option><option>Flooring &amp; tile tear-out</option><option>Debris hauling &amp; bins</option><option>Other</option></select>
+        </div>
+        <div class="frow" style="margin:0"><label for="a">Area / postal</label><input id="a" name="area" placeholder="e.g. Sherwood Park"></div>
+      </div>
+      <div class="frow"><label for="d">What needs to come out?</label><textarea id="d" name="details" placeholder="e.g. gut a 1970s kitchen back to studs, haul everything"></textarea></div>
+      <button class="btn btn--lg" type="submit" style="width:100%;justify-content:center">Send my request</button>
+      <div class="okmsg" id="ok">Thanks — we'll call you back shortly to set up your free on-site quote.</div>
+      <div class="errmsg" id="err">Something went wrong sending that. Please call or text (587) 405-9454 and we'll sort it right away.</div>
+    </form>
+  </div>
+</section>
+
+<section class="pad">
+  <div class="wrap">
+    <div class="khead"><div class="tag">Where we work</div><h2>Edmonton &amp; area</h2></div>
+    <div class="areas"><span>Edmonton</span><span>St. Albert</span><span>Sherwood Park</span><span>Spruce Grove</span><span>Stony Plain</span><span>Leduc</span><span>Beaumont</span><span>Fort Saskatchewan</span><span>Morinville</span><span>Devon</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>Hauling<b>Heroes</b></div>
+    <div class="meta">
+      <a href="tel:+15874059454">(587) 405-9454</a>
+      <span>Licensed · Insured · WCB covered</span>
+      <a href="#quote">Free quote</a>
+      <span>&copy; 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var f=document.getElementById("qform"),ok=document.getElementById("ok"),err=document.getElementById("err");
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    if(!f.name.value.trim()||!f.phone.value.trim()){f.reportValidity&&f.reportValidity();return;}
+    err.classList.remove("on");
+    var btn=f.querySelector("button[type=submit]");btn.disabled=true;btn.textContent="Sending…";
+    var data={};new FormData(f).forEach(function(v,k){data[k]=v;});
+    fetch(f.action,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
+      .then(function(r){if(!r.ok)throw 0;return r.json().catch(function(){return{};});})
+      .then(function(){
+        f.querySelectorAll("input,select,textarea,button").forEach(function(el){el.disabled=true;});
+        ok.classList.add("on");ok.scrollIntoView({behavior:"smooth",block:"nearest"});
+      })
+      .catch(function(){btn.disabled=false;btn.textContent="Send my request";err.classList.add("on");});
+  });
+</script>
+</body>
+</html>

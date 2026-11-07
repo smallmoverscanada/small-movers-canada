@@ -13,6 +13,8 @@ import os
 import re
 from urllib.parse import urlparse
 
+import verticals
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE = os.path.join(REPO, "_template", "city.html")
 CSV_PATH = os.path.join(REPO, "build", "City_export.csv")
@@ -1139,6 +1141,7 @@ def build_sitemap(cities, posts):
     for p in posts:
         urls.append((f'/blog/{p["slug"].strip()}/', "0.6", "monthly",
                      lm(p.get("updated_date") or p.get("created_date"))))
+    urls.extend(verticals.sitemap_rows())  # demolition / service-vertical pages
     out = ['<?xml version="1.0" encoding="UTF-8"?>',
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for loc, pr, cf, mod in urls:
@@ -1176,9 +1179,12 @@ def main():
         flag = f"  ⚠ tokens {leftover}" if leftover else ""
         print(f"wrote {rel}{flag}")
 
+    for rel in verticals.write_pages(REPO):
+        print(f"wrote {rel}")
+
     with open(os.path.join(REPO, "sitemap.xml"), "w", encoding="utf-8") as f:
         f.write(build_sitemap(cities, posts))
-    print(f"wrote sitemap.xml ({len(cities) + len(posts) + 8} urls)")
+    print(f"wrote sitemap.xml ({len(cities) + len(posts) + 8 + len(verticals.sitemap_rows())} urls)")
 
 
 if __name__ == "__main__":
