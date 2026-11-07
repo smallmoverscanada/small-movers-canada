@@ -30,7 +30,7 @@ DEMO = {
         "city": "Edmonton",
         "brand1": "Hauling",
         "brand2": "Heroes",
-        "title": "Hauling Heroes — Edmonton Demolition",
+        "title": "Edmonton Demolition | Residential &amp; Commercial",
         "meta": ("Demolition in Edmonton — tear-out to clean-up. Selective demolition, interior "
                  "gut jobs, concrete and stucco removal. Our own crew tears it out and hauls the "
                  "debris. Licensed, insured, WCB covered. Free quotes."),
