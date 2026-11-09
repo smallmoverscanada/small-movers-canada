@@ -48,8 +48,8 @@ const PARTNERS = [
     cities: ['kelowna', 'vernon'],
   },
   {
-    // Bill — Kingston (eastern Ontario).
-    email: 'Billclouthier@gmail.com',
+    // Ibrahim — Kingston (eastern Ontario). Replaced Bill 2026-11-09.
+    email: 'mmbawe8469@gmail.com',
     cities: ['kingston'],
   },
   {

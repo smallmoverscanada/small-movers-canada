@@ -811,6 +811,11 @@ def render(template, row, blog_by_city, reviews_by_city, city_names):
         out = out.replace("for 2 movers (2.5 hour minimum)",
                           "for 2 movers (1.5 hour minimum)")
 
+    # 6f. Kingston partner (Ibrahim) — 2-mover minimum 1h instead of 2.5h.
+    if slug == "kingston":
+        out = out.replace("for 2 movers (2.5 hour minimum)",
+                          "for 2 movers (1 hour minimum)")
+
     # 7. City reviews section — reviews tagged to this city (empty if none).
     reviews = city_reviews_section(city, reviews_by_city.get(slug.lower(), []))
     out = out.replace("<!--CITY_REVIEWS_SECTION-->", reviews)
