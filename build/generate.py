@@ -68,6 +68,8 @@ CITY_PHONE_OVERRIDES = {
     "thunder-bay": "807-700-3451",  # Steve Bourgoin (Perfect Brushes) — Twilio tracking # → +18073560091, src=TBY
     "ottawa": "343-429-6895",  # Salaman (A1 Property Solutions) — Twilio tracking # → +16137956969, src=OTT
     "nepean": "343-429-6895",  # Salaman — shares the Ottawa tracking line (src=OTT)
+    "kanata": "343-429-6895",  # Salaman — shares the Ottawa tracking line (src=OTT)
+    "orleans": "343-429-6895", # Salaman — shares the Ottawa tracking line (src=OTT)
 }
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
@@ -155,6 +157,11 @@ NEARBY = {
     "beaumont": ["edmonton", "leduc"],
     "fort-saskatchewan": ["edmonton", "sherwood-park"],
     "edmonton": ["sherwood-park", "spruce-grove", "leduc", "fort-saskatchewan", "beaumont"],
+    # Salaman (A1 Property Solutions) — Ottawa cluster.
+    "kanata": ["ottawa", "nepean", "orleans"],
+    "orleans": ["ottawa", "nepean", "kanata"],
+    "ottawa": ["kanata", "orleans", "nepean"],
+    "nepean": ["kanata", "orleans", "ottawa"],
 }
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
@@ -635,6 +642,8 @@ _ON_HUB = [
     ("st-jacobs", "St. Jacobs", "Kitchener", "kitchener", "St. Jacobs is just north of Waterloo and Kitchener", "Cambridge", "cambridge"),
     ("clarington", "Clarington", "Oshawa", "oshawa", "Clarington sits just east of Oshawa, so Bowmanville and Courtice moves often run into Durham", "Whitby", "whitby"),
     ("east-york", "East York", "Toronto", "toronto", "East York is central Toronto, so most moves here are short cross-town trips", "Scarborough", "scarborough"),
+    ("kanata", "Kanata", "Ottawa", "ottawa", "Kanata is Ottawa's tech hub out west, so plenty of our jobs here run into the city or between the west-end suburbs", "Nepean", "nepean"),
+    ("orleans", "Orléans", "Ottawa", "ottawa", "Orléans is Ottawa's fast-growing east end, and many moves run to or from downtown or the other suburbs", "Nepean", "nepean"),
 ]
 for _slug, _city, _hub, _hubslug, _hook, _sib, _sibslug in _ON_HUB:
     SEO_SECTIONS[_slug] = _mk_intercity(_city, _hub, _hubslug, _hook, _sib, _sibslug)

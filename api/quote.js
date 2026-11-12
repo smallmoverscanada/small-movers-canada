@@ -79,7 +79,7 @@ const PARTNERS = [
   {
     // Salaman (A1 Property Solutions) — Ottawa area.
     email: 'a1propertysolutionsca@gmail.com',
-    cities: ['ottawa', 'nepean'],
+    cities: ['ottawa', 'nepean', 'kanata', 'orleans'],
   },
   {
     // Brad (Oshawa / Durham area).
