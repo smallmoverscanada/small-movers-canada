@@ -40,7 +40,7 @@ const PARTNERS = [
     cities: ['vancouver', 'surrey', 'north vancouver', 'richmond', 'langley', 'port moody',
              'white rock', 'pitt meadows', 'coquitlam', 'port coquitlam', 'burnaby', 'delta',
              'new westminster', 'west vancouver', 'ladner', 'tsawwassen', 'abbotsford',
-             'maple ridge'],
+             'maple ridge', 'chilliwack'],
   },
   {
     // Kelowna / Vernon partner.

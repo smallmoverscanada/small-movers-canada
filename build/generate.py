@@ -91,7 +91,7 @@ ON_PARTNER_SLUGS = ["guelph", "hamilton", "kitchener", "brantford", "cambridge",
 LM_SLUGS = ["vancouver", "surrey", "north-vancouver", "richmond", "langley", "port-moody",
             "white-rock", "pitt-meadows", "coquitlam", "port-coquitlam", "burnaby", "delta",
             "new-westminster", "west-vancouver", "ladner", "tsawwassen", "abbotsford",
-            "maple-ridge"]
+            "maple-ridge", "chilliwack"]
 for _slug in LM_SLUGS:
     CITY_PHONE_OVERRIDES[_slug] = "236-707-8241"
     RATE_OVERRIDES[_slug] = (105, 145)  # $105/hr 1 mover, $145/hr 2 movers
