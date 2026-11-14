@@ -165,6 +165,7 @@ NEARBY = {
     "beaumont": ["edmonton", "leduc"],
     "fort-saskatchewan": ["edmonton", "sherwood-park"],
     "edmonton": ["sherwood-park", "spruce-grove", "leduc", "fort-saskatchewan", "beaumont"],
+    "calgary": ["airdrie", "red-deer"],
     # Salaman (A1 Property Solutions) — Ottawa cluster.
     "kanata": ["ottawa", "nepean", "orleans"],
     "orleans": ["ottawa", "nepean", "kanata"],
@@ -675,6 +676,41 @@ _ON_LOCAL = [
 ]
 for _slug, _city, _hook in _ON_LOCAL:
     SEO_SECTIONS[_slug] = _mk_local(_city, _hook)
+
+# Edmonton & Calgary refresh (2026-11-13) — added depth sections + internal links.
+SEO_SECTIONS["edmonton"] = (
+    '<section class="local-seo" style="padding:56px 20px;">\n'
+    '  <div class="container" style="max-width:820px;">\n'
+    '    <h2 style="margin-bottom:16px;">Small Moves Across Edmonton &amp; Area</h2>\n'
+    '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">Most of our Edmonton jobs are '
+    'the small, specific moves the big van lines either turn down or overcharge for &mdash; a mattress or '
+    'couch across town, a studio or one-bedroom apartment, a condo downsizing, or a reno\'s worth of '
+    'furniture into storage. Because we send a right-sized crew and bill by the hour, you are not paying '
+    'five-ton-truck rates for a half-ton job.</p>\n'
+    '    <p style="color:#3a4f63; line-height:1.8;">We cover the whole city and the surrounding '
+    'communities with the same hourly pricing, so a move out to '
+    '<a href="/sherwood-park/" style="color:#2c7a5b; font-weight:700;">Sherwood Park movers</a>, '
+    '<a href="/spruce-grove/" style="color:#2c7a5b; font-weight:700;">Spruce Grove movers</a> or '
+    '<a href="/leduc/" style="color:#2c7a5b; font-weight:700;">Leduc movers</a> costs the same honest '
+    'rate as a move within Edmonton. Give us the pickup and drop-off and we will send back a quick, flat '
+    'estimate.</p>\n'
+    '  </div>\n</section>\n\n'
+)
+SEO_SECTIONS["calgary"] = (
+    '<section class="local-seo" style="padding:56px 20px;">\n'
+    '  <div class="container" style="max-width:820px;">\n'
+    '    <h2 style="margin-bottom:16px;">Small Moves Across Calgary &amp; Area</h2>\n'
+    '    <p style="color:#3a4f63; line-height:1.8; margin-bottom:16px;">Calgary\'s small-move market is '
+    'exactly what we are built for &mdash; the single-item deliveries, studio and one-bedroom moves, and '
+    'condo downsizings that do not need a full crew and a five-ton truck. We bill by the hour with no '
+    'truck minimums, so a Beltline condo or a Kensington walk-up costs only the time it actually takes, '
+    'not a padded flat rate.</p>\n'
+    '    <p style="color:#3a4f63; line-height:1.8;">We also cover the towns around the city, so whether '
+    'you are moving within Calgary or out to '
+    '<a href="/airdrie/" style="color:#2c7a5b; font-weight:700;">Airdrie movers</a>, it is the same '
+    'by-the-hour pricing. Send us both addresses and we will come back with an honest quote.</p>\n'
+    '  </div>\n</section>\n\n'
+)
 
 
 # FAQ items per slug: (question, answer). Injected at <!--CITY_FAQ_SECTION-->
