@@ -80,7 +80,7 @@ for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burl
               "niagara-falls", "st-catharines",
               "stoney-creek", "ancaster", "grimsby", "georgetown", "maple", "aurora",
               "port-dover", "binbrook", "caledonia", "acton", "st-jacobs", "smithville",
-              "halton-hills"]:
+              "halton-hills", "milton"]:
     CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
 # Sal (GTA) — now on his main tracking number (replaced Rolan's retired 365-694-5533).
 for _slug in ["mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville"]:
@@ -92,7 +92,7 @@ ON_PARTNER_SLUGS = ["guelph", "hamilton", "kitchener", "brantford", "cambridge",
                     "mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville",
                     "stoney-creek", "ancaster", "grimsby", "georgetown", "maple", "aurora",
                     "port-dover", "binbrook", "caledonia", "acton", "st-jacobs", "smithville",
-                    "halton-hills"]
+                    "halton-hills", "milton"]
 # Lower Mainland partner — one tracking number + his custom pricing across these pages.
 LM_SLUGS = ["vancouver", "surrey", "north-vancouver", "richmond", "langley", "port-moody",
             "white-rock", "pitt-meadows", "coquitlam", "port-coquitlam", "burnaby", "delta",
