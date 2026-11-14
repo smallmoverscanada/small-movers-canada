@@ -45,6 +45,8 @@ RATE_OVERRIDES = {
     "orillia": (85, 150),   # Khalil (Sairon Logistics)
     "bradford": (85, 150),  # Khalil (Sairon Logistics) — Bradford West Gwillimbury
     "newmarket": (85, 150), # Khalil (Sairon Logistics)
+    "georgina": (85, 150),  # Khalil (Sairon Logistics)
+    "wasaga-beach": (85, 150),  # Khalil (Sairon Logistics)
     "winnipeg": (90, 140),  # Vansh/Anmol Kapoor — $90 1 mover, $140 2 movers (1.5h min, see 6e)
 }
 
@@ -63,6 +65,8 @@ CITY_PHONE_OVERRIDES = {
     "orillia": "249-444-6102",   # Khalil — shares the Barrie tracking line (src=BAR)
     "bradford": "249-444-6102",  # Khalil — shares the Barrie tracking line (src=BAR)
     "newmarket": "249-444-6102",  # Khalil — shares the Barrie tracking line (src=BAR)
+    "georgina": "249-444-6102",  # Khalil — shares the Barrie tracking line (src=BAR)
+    "wasaga-beach": "249-444-6102",  # Khalil — shares the Barrie tracking line (src=BAR)
     "warman": "639-638-8439",       # Trigo (Meshack) — shares the Saskatoon line
     "martensville": "639-638-8439", # Trigo (Meshack) — shares the Saskatoon line
     "thunder-bay": "807-700-3451",  # Steve Bourgoin (Perfect Brushes) — Twilio tracking # → +18073560091, src=TBY
@@ -75,7 +79,8 @@ CITY_PHONE_OVERRIDES = {
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",
               "niagara-falls", "st-catharines",
               "stoney-creek", "ancaster", "grimsby", "georgetown", "maple", "aurora",
-              "port-dover", "binbrook", "caledonia", "acton", "st-jacobs", "smithville"]:
+              "port-dover", "binbrook", "caledonia", "acton", "st-jacobs", "smithville",
+              "halton-hills"]:
     CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
 # Sal (GTA) — now on his main tracking number (replaced Rolan's retired 365-694-5533).
 for _slug in ["mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville"]:
@@ -86,7 +91,8 @@ ON_PARTNER_SLUGS = ["guelph", "hamilton", "kitchener", "brantford", "cambridge",
                     "niagara-falls", "st-catharines",
                     "mississauga", "brampton", "etobicoke", "north-york", "vaughan", "oakville",
                     "stoney-creek", "ancaster", "grimsby", "georgetown", "maple", "aurora",
-                    "port-dover", "binbrook", "caledonia", "acton", "st-jacobs", "smithville"]
+                    "port-dover", "binbrook", "caledonia", "acton", "st-jacobs", "smithville",
+                    "halton-hills"]
 # Lower Mainland partner — one tracking number + his custom pricing across these pages.
 LM_SLUGS = ["vancouver", "surrey", "north-vancouver", "richmond", "langley", "port-moody",
             "white-rock", "pitt-meadows", "coquitlam", "port-coquitlam", "burnaby", "delta",
@@ -137,11 +143,13 @@ NEARBY = {
                   "new-westminster", "coquitlam", "delta"],
     # Khalil (Sairon Logistics) — Barrie / Simcoe corridor. 'newmarket' lights up
     # automatically once that page is built (missing pages are skipped).
-    "barrie": ["innisfil", "orillia", "bradford", "newmarket"],
+    "barrie": ["innisfil", "orillia", "bradford", "newmarket", "wasaga-beach"],
     "innisfil": ["barrie", "orillia", "bradford"],
-    "orillia": ["barrie", "innisfil"],
-    "bradford": ["barrie", "newmarket", "innisfil"],
-    "newmarket": ["bradford", "barrie"],
+    "orillia": ["barrie", "innisfil", "wasaga-beach"],
+    "bradford": ["barrie", "newmarket", "innisfil", "georgina"],
+    "newmarket": ["bradford", "barrie", "georgina"],
+    "georgina": ["newmarket", "bradford", "barrie"],
+    "wasaga-beach": ["barrie", "orillia", "innisfil"],
     # Trigo (Meshack) — Saskatoon satellites.
     "warman": ["saskatoon", "martensville"],
     "martensville": ["saskatoon", "warman"],
@@ -162,6 +170,10 @@ NEARBY = {
     "orleans": ["ottawa", "nepean", "kanata"],
     "ottawa": ["kanata", "orleans", "nepean"],
     "nepean": ["kanata", "orleans", "ottawa"],
+    # Sal — Halton Hills cluster.
+    "halton-hills": ["georgetown", "acton", "milton"],
+    "georgetown": ["acton", "halton-hills", "milton"],
+    "acton": ["georgetown", "halton-hills", "milton"],
 }
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
@@ -644,6 +656,9 @@ _ON_HUB = [
     ("east-york", "East York", "Toronto", "toronto", "East York is central Toronto, so most moves here are short cross-town trips", "Scarborough", "scarborough"),
     ("kanata", "Kanata", "Ottawa", "ottawa", "Kanata is Ottawa's tech hub out west, so plenty of our jobs here run into the city or between the west-end suburbs", "Nepean", "nepean"),
     ("orleans", "Orléans", "Ottawa", "ottawa", "Orléans is Ottawa's fast-growing east end, and many moves run to or from downtown or the other suburbs", "Nepean", "nepean"),
+    ("georgina", "Georgina", "Newmarket", "newmarket", "Georgina sits on the south shore of Lake Simcoe, so a lot of our jobs here run down to Newmarket, Aurora and the rest of York Region", "Bradford", "bradford"),
+    ("wasaga-beach", "Wasaga Beach", "Barrie", "barrie", "Wasaga Beach sits on Georgian Bay northwest of Barrie, so plenty of moves run between the beach town and the city", "Orillia", "orillia"),
+    ("halton-hills", "Halton Hills", "Milton", "milton", "Halton Hills — Georgetown and Acton — sits right next to Milton, so plenty of moves cross between them", "Georgetown", "georgetown"),
 ]
 for _slug, _city, _hub, _hubslug, _hook, _sib, _sibslug in _ON_HUB:
     SEO_SECTIONS[_slug] = _mk_intercity(_city, _hub, _hubslug, _hook, _sib, _sibslug)

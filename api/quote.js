@@ -19,7 +19,7 @@ const PARTNERS = [
              'mississauga', 'brampton', 'etobicoke', 'north york', 'vaughan', 'oakville',
              'stoney creek', 'ancaster', 'grimsby', 'georgetown', 'maple', 'aurora',
              'port dover', 'binbrook', 'caledonia', 'acton', 'st. jacobs', 'smithville',
-             'waterdown', 'dundas', 'welland', 'thorold'],
+             'waterdown', 'dundas', 'welland', 'thorold', 'halton hills'],
   },
   {
     email: 'Sugam.passi07@gmail.com',
@@ -64,7 +64,7 @@ const PARTNERS = [
   {
     // Khalil (Sairon Logistics) — Barrie / Simcoe corridor (Newmarket to follow once that page is built).
     email: 'contact@saironlogistics.com',
-    cities: ['barrie', 'innisfil', 'orillia', 'bradford', 'newmarket'],
+    cities: ['barrie', 'innisfil', 'orillia', 'bradford', 'newmarket', 'georgina', 'wasaga beach'],
   },
   {
     // Vansh & Anmol Kapoor (Brothers Big Truck) — Winnipeg.
