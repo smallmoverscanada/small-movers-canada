@@ -74,6 +74,10 @@ CITY_PHONE_OVERRIDES = {
     "nepean": "343-429-6895",  # Salaman — shares the Ottawa tracking line (src=OTT)
     "kanata": "343-429-6895",  # Salaman — shares the Ottawa tracking line (src=OTT)
     "orleans": "343-429-6895", # Salaman — shares the Ottawa tracking line (src=OTT)
+    "toronto": "365-825-7868",       # Muetez — Toronto Twilio tracking number
+    "east-york": "365-825-7868",     # Muetez — shares the Toronto tracking line
+    "markham": "365-825-7868",       # Muetez — shares the Toronto tracking line
+    "richmond-hill": "365-825-7868", # Muetez — shares the Toronto tracking line
 }
 # smallmovers.ontario (SW/Central ON) — one tracking number across those city pages.
 for _slug in ["guelph", "hamilton", "kitchener", "brantford", "cambridge", "burlington",

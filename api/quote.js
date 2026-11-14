@@ -82,6 +82,11 @@ const PARTNERS = [
     cities: ['ottawa', 'nepean', 'kanata', 'orleans'],
   },
   {
+    // Muetez — Toronto (Toronto, East York, Markham, Richmond Hill).
+    email: 'muetaz2017@gmail.com',
+    cities: ['toronto', 'east york', 'markham', 'richmond hill'],
+  },
+  {
     // Brad (Oshawa / Durham area).
     email: 'pwservices24@gmail.com',
     cities: ['whitby', 'clarington', 'kawartha lakes', 'belleville', 'whitchurch-stouffville',
