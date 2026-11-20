@@ -53,7 +53,7 @@ RATE_OVERRIDES = {
 # Per-city phone overrides — a dedicated number for a specific city (overrides the
 # province number on that city page only). Used for per-city monetization trials.
 CITY_PHONE_OVERRIDES = {
-    "victoria": "778-400-7868",
+    "victoria": "778-561-4399",
     "calgary": "587-317-9080",
     "courtenay": "778-716-0061",
     "kelowna": "778-946-0968",
