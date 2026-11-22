@@ -19,7 +19,8 @@ const PARTNERS = [
              'mississauga', 'brampton', 'etobicoke', 'north york', 'vaughan', 'oakville',
              'stoney creek', 'ancaster', 'grimsby', 'georgetown', 'maple', 'aurora',
              'port dover', 'binbrook', 'caledonia', 'acton', 'st. jacobs', 'smithville',
-             'waterdown', 'dundas', 'welland', 'thorold', 'halton hills', 'milton'],
+             'waterdown', 'dundas', 'welland', 'thorold', 'halton hills', 'milton',
+             'woodstock', 'concord'],
   },
   {
     email: 'Sugam.passi07@gmail.com',

@@ -114,7 +114,7 @@ for _slug in EDM_SLUGS:
     CITY_PHONE_OVERRIDES[_slug] = "587-713-9768"  # Sugam's Edmonton-area tracking number
 
 # New ON town pages (weekly rollout) routed to Sal — his tracking number + ON pricing.
-SAL_BATCH_SLUGS = ["waterdown", "dundas", "welland", "thorold"]
+SAL_BATCH_SLUGS = ["waterdown", "dundas", "welland", "thorold", "woodstock", "concord"]
 for _slug in SAL_BATCH_SLUGS:
     CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
 ON_PARTNER_SLUGS += SAL_BATCH_SLUGS
@@ -179,6 +179,13 @@ NEARBY = {
     "halton-hills": ["georgetown", "acton", "milton"],
     "georgetown": ["acton", "halton-hills", "milton"],
     "acton": ["georgetown", "halton-hills", "milton"],
+    # Sal — Woodstock (SW ON corridor) + Concord (Vaughan).
+    "woodstock": ["brantford", "cambridge", "kitchener"],
+    "brantford": ["cambridge", "woodstock"],
+    "cambridge": ["kitchener", "woodstock", "brantford"],
+    "concord": ["vaughan", "maple"],
+    "vaughan": ["maple", "concord"],
+    "maple": ["vaughan", "concord"],
 }
 
 # The canonical template's hero H1 (replaced wholesale with the city's real H1).
