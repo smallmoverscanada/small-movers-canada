@@ -29,7 +29,7 @@ const PARTNERS = [
   },
   {
     email: 'cargovanlogistics@gmail.com',
-    cities: ['calgary'],
+    cities: ['calgary', 'airdrie'],
   },
   {
     email: 'fuller2008.19@gmail.com',

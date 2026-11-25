@@ -40,6 +40,7 @@ PROVINCE_FULL = {
 RATE_OVERRIDES = {
     "toronto": (95, 150),
     "calgary": (100, 140),
+    "airdrie": (100, 140),  # Lucien (Cargo Van Logistics) — same rates as Calgary
     "barrie": (85, 150),    # Khalil (Sairon Logistics) — $85/hr 1 mover, $150/hr 2 movers
     "innisfil": (85, 150),  # Khalil (Sairon Logistics)
     "orillia": (85, 150),   # Khalil (Sairon Logistics)
@@ -55,6 +56,7 @@ RATE_OVERRIDES = {
 CITY_PHONE_OVERRIDES = {
     "victoria": "778-561-4399",
     "calgary": "587-317-9080",
+    "airdrie": "587-317-9080",  # Lucien (Cargo Van Logistics) — shares the Calgary tracking line
     "courtenay": "778-716-0061",
     "kelowna": "778-946-0968",
     "vernon": "778-946-0968",
