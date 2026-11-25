@@ -121,6 +121,14 @@ for _slug in SAL_BATCH_SLUGS:
     CITY_PHONE_OVERRIDES[_slug] = "289-780-3118"
 ON_PARTNER_SLUGS += SAL_BATCH_SLUGS
 
+# Brad (pwservices24@gmail.com) — Durham + eastern GTA pages. One Twilio tracking
+# number across his pages → forwards to his cell 250-532-3331 (src=DUR). Default
+# pricing (not on the smallmovers.ontario $50 flat-fee model).
+BRAD_SLUGS = ["whitby", "clarington", "kawartha-lakes", "belleville", "whitchurch-stouffville",
+              "ajax", "pickering", "peterborough", "oshawa", "scarborough"]
+for _slug in BRAD_SLUGS:
+    CITY_PHONE_OVERRIDES[_slug] = "365-650-8737"  # Brad's Twilio tracking # → +12505323331, src=DUR
+
 # Cities that have a dedicated Senior Moves landing page — a contextual link is
 # injected into the city page (see render()).
 SENIOR_MOVES = {"hamilton": "/hamilton/senior-moves/", "surrey": "/surrey/senior-moves/"}
